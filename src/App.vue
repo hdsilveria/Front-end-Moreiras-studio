@@ -1,28 +1,64 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<div>
+
+<ul class="nav justify-content-left">
+  <li class="nav-item">
+    <button id="menuText" class="btn btn-dark" @click="insert()">Inserir</button>
+  </li>
+  <li class="nav-item">
+    <button id="menuText" class="btn btn-dark" @click="estoque()">Estoque</button>
+  </li>
+</ul>
+
+    <lista v-show="mostraEstoque" />
+    <inserir v-show="mostraInsert" />
+
+</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import lista from './components/lista'
+import inserir from './components/inserir'
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  data(){
+    return { mostraEstoque: true, mostraInsert: false  }
+  },
+
+  components: { lista, inserir },
+
+  methods:{
+
+  estoque: function(){
+      this.mostraEstoque = true;
+      this.mostraInsert = false;
+  },
+
+  insert: function(){
+      this.mostraEstoque = false;
+      this.mostraInsert = true;
+  },
+
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
+ul{
+  background-color: black;
 }
+
+li {
+  padding: 10px;
+}
+
+#menuText {
+  font-size: 26pt;
+  margin-left: 200px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0);
+}
+
 </style>
