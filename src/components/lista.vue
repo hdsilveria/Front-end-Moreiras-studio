@@ -34,7 +34,7 @@
       <th scope="col">Valor</th>
       <th scope="col">Data</th>
       <th scope="col"></th>
-      <th scope="col"><td><button type="button" class="btn btn-link" @click="editar()">&#9999;</button></td></th>
+      <th scope="col"><td><button type="button" class="btn btn-link" @click="editar()">✏️</button></td></th>
     </tr>
   </thead>
 
@@ -45,7 +45,7 @@
       <td>{{material.quantidade}}</td>
       <td>{{material.valor | ValorDecimal }}</td>
       <td>{{material.data}}</td>
-      <td><button type="button" class="btn btn-link" @click="remover(material)">&#128465;</button></td>      
+      <td><button type="button" class="btn btn-link" @click="remover(material)">🗑️</button></td>      
     </tr>
   </tbody>
     
@@ -128,7 +128,8 @@ export default {
 <style scoped>
 
 #tabela{
-  padding: 6%;
+  padding: 2%;
+  margin-left: 10px;
 }
 
 h1 {

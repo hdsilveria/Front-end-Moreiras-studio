@@ -25,7 +25,7 @@
         </div>
 
       </div>
-      <button class="btn btn-dark"> Salvar </button>
+      <button class="btn btn-dark"> Salvar </button><br><br>
     </form>
   </div>
 
@@ -70,7 +70,7 @@ margin-top: 40px;
   text-align: left;
   background-color: rgba(2, 2, 2, 0.726);
   color: white;
-  height: 250px;
+  height: auto;
   width: 360px;
 }
 

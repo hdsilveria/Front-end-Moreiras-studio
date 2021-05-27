@@ -18,7 +18,7 @@
 
 <p><i>- npm run serve -- --port "PORTA DESEJADA"</i></p>
 
-<p>- Ao iniciar no navegador com as URL Local: http://localhost:8080/ ou Network: http://192.168.1.6:8080/, será carregado o app no Modelo single page app, onde é possivel vizualizar o estoque, inserir um novo material, realizar alterações e deletar; Para inserir um novo material, deve ir na opção "inserir", no menu superior:</p>
+<p>- Ao iniciar no navegador com as URL Local: http://localhost:8080/ ou Network: http://192.168.1.6:8080/, será carregado o app no Modelo single page app, onde é possivel vizualizar o estoque, inserir um novo material, realizar alterações e deletar; Para inserir um novo material, deve ir na opção "inserir", no menu a esquerda:</p>
 
 <img src="./git_img/estoque_all.png">
 
@@ -40,7 +40,7 @@
 
 <img src="./git_img/estoque_update.png">
 
-<p>- Para alterar um material, deve ser confirmado o delete por meio de um alerta:</p>
+<p>- Para alterar um material, deve ser confirmado por meio de um alerta:</p>
 
 <img src="./git_img/estoque_update_confirm.png">
 
