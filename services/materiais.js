@@ -1,13 +1,18 @@
 import { api } from './config'
 
+
 export default {
 
-    listar: () =>{
-        return api.get('/estoque')
+    listar: (token) =>{
+        return api.get('/estoque', token )
     },
 
-    cadastrar: (CadMaterial) =>{
-        return api.post('/inserirMaterial', CadMaterial)
+    login: (loginUser) =>{
+        return api.post('/login', loginUser )
+    },
+
+    cadastrar: (CadMaterial, token) =>{
+        return api.post('/inserirMaterial', CadMaterial, token)
     },
 
     atualizar: (UpdMaterial) => {

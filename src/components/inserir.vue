@@ -49,13 +49,21 @@ data(){
     }
   },
 
+props: {
+  token: String
+},
+
 methods: {
 
     inserirMaterial(){       
-        materiais.cadastrar(this.NovoMaterial).then(response =>{
-        alert('Material inserido com sucesso!'),
-        console.log(response),
-        location.href = "/"
+        materiais.cadastrar(this.NovoMaterial, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} })
+        .then(response =>{
+          alert('Material inserido com sucesso!'),
+          console.log(response),
+          location.href = "/"
+        })
+        .catch(err => {
+          alert('Usuario não autenticado! ' + err)
         })
     },
   }

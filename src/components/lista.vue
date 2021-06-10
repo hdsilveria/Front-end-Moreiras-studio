@@ -1,6 +1,7 @@
 <template>
 <div id="estoque">
 
+<transition name="fade">
   <div id="edit" class="container" v-show="mostraEdit">
     <form @submit.prevent="atualizar()">
       <div class="row g-3">
@@ -22,6 +23,8 @@
       <button class="btn btn-dark" type="submit"> Salvar </button>
     </form>
   </div>
+</transition>
+
 
 <div class="container" id="tabela">
 
@@ -47,10 +50,10 @@
       <td>{{material.data}}</td>
       <td><button type="button" class="btn btn-link" @click="remover(material)">🗑️</button></td>      
     </tr>
-  </tbody>
-    
+  </tbody><br><br>
   </table>
 </div>
+
 
 </div>
 </template>
@@ -59,10 +62,13 @@
 
 import materiais from '/services/materiais'
 
+
 export default {
 
- mounted(){
-    this.listar()
+mounted(){  
+  materiais.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }).then((response)=>{
+    this.materiais = response.data
+    })
   },
   
  data(){
@@ -77,22 +83,19 @@ export default {
     }
   },
 
-  methods: {
+props: {
+  token: String
+},
 
-  listar(){
-    materiais.listar().then(response =>{
-    this.materiais = response.data
-    console.log(materiais)
-      })
-    },
+methods: {
 
   remover(deletMaterial){
     if ( confirm('deseja excluir?') ){
       materiais.apagar(deletMaterial).then(response => {
-      this.listar(),
-      console.log(response)
+        this.listar(),
+        console.log(response)
       }).catch(err =>{
-      console.log(err)
+        console.log(err)
       })
      }
     },
@@ -129,7 +132,7 @@ export default {
 
 #tabela{
   padding: 2%;
-  margin-left: 10px;
+  margin-left: 25px;
 }
 
 h1 {
@@ -162,5 +165,13 @@ input::-webkit-inner-spin-button {
 button { 
  text-decoration: none; 
 } 
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
 
 </style>
