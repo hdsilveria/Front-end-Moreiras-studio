@@ -83,17 +83,12 @@ mounted(){
     }
   },
 
-props: {
-  token: String
-},
-
 methods: {
 
   remover(deletMaterial){
     if ( confirm('deseja excluir?') ){
-      materiais.apagar(deletMaterial).then(response => {
-        this.listar(),
-        console.log(response)
+      materiais.apagar(deletMaterial).then(() => {
+        location.href = "/"
       }).catch(err =>{
         console.log(err)
       })

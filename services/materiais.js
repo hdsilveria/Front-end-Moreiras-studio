@@ -21,6 +21,10 @@ export default {
 
     apagar: (Delmaterial) => {
         return api.delete('/deletarMaterial', {data: Delmaterial})
-    }
+    },
+
+    criarUsuario: (cadUsuario, token) =>{
+        return api.post('/criarUser', cadUsuario, token)
+    },
 
 }

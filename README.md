@@ -18,31 +18,57 @@
 
 <p><i>- npm run serve -- --port "PORTA DESEJADA"</i></p>
 
-<p>- Ao iniciar no navegador com as URL Local: http://localhost:8080/ ou Network: http://192.168.1.6:8080/, será carregado o app no Modelo single page app, onde é possivel vizualizar o estoque, inserir um novo material, realizar alterações e deletar; Para inserir um novo material, deve ir na opção "inserir", no menu a esquerda:</p>
+<p>- Ao iniciar no navegador com as URL Local: http://localhost:8080/ ou Network: http://192.168.1.6:8080/, será carregado o app no Modelo single page app, onde é necessario fazer o login para autenticação, pois para acessar as rotas, é necessario fornecer o Token via Headers, para isso, deve ser inserido o usuario e senha cadastrados no banco para ser gerado o token e assim, iniciar a sessão no LocalStorage.</p>
 
-<img src="./git_img/estoque_all.png">
+<img src="./git_img/login.png">
 
-<p>- Para inserir um novo material, deve ser realizado o preenchimento do formulario a seguir:</p>
+<p>- Ao efetuar o login, sera carregado a pagina inicial do dashboard, no menu lateral é apresentado o nome do usuario, perfil, e abaixo, as opções disponiveis para o perfil logado, neste caso, o perfil é administrador; Neste perfil apresentado, é possivel criar usuarios, vizualizar o estoque e inserir novo material:</p>
 
-<img src="./git_img/estoque_insert.png">
+<img src="./git_img/dashboard.png">
+
+<p>- No topo do menu lateral, é apresentado o usuario e perfil: </p>
+
+<img src="./git_img/usuario_perfil.png">
+
+<p>- Ao selecionar a opção crirar novo usuario, sera apresentado o formulario a seguir: </p>
+
+<img src="./git_img/criar_usuario.png">
+
+<p>- Ao selecionar a opção inserir material, sera apresentado o formulario a seguir :</p>
+
+<img src="./git_img/inserir_material.png">
+
+<p>- Ao selecionar a opção Meu estoque, sera apresentado o estoque atual, onde há tambem as funções de alterar um material ja existente ou deletar material: </p>
+
+<img src="./git_img/meu_estoque.png">
 
 <p>- Para deletar um material, é necessario clicar no icone da lixeira, onde deve ser confirmado o delete por meio de um alerta: </p>
 
-<img src="./git_img/estoque_delet.png">
+<img src="./git_img/deletar_material.png">
+
 <br>
-<img src="./git_img/estoque_delet_confirm.png">
+
+<img src="./git_img/confirmar_delete.png">
 
 <p>- Para realizar alterações nos materiais cadastrados, deve ir na opção editar, no icone de Lapis: - Ao clicar, sera apresentado a tela para editar os campos, informando o Id para escolher o material:</p>
 
-<img src="./git_img/estoque_update_icon.png">
+<img src="./git_img/alterar_material.png">
 
 <p>- Ao clicar, sera apresentado a tela para editar os campos, informando o Id para escolher o material: </p>
 
-<img src="./git_img/estoque_update.png">
+<img src="./git_img/alterar_material_aba.png">
 
 <p>- Para alterar um material, deve ser confirmado por meio de um alerta:</p>
 
-<img src="./git_img/estoque_update_confirm.png">
+<img src="./git_img/confirmar_alterar.png">
+
+<p>- Para deslogar, o usuario deve ir na opção "Sair", onde é necessario confirmar por meio de um alert. Feito o logout, o localStorage é limpo, e a sessão é encerrada, voltando para a tela de login:</p>
+
+<img src="./git_img/exit.png">
+
+<br>
+
+<img src="./git_img/exit.png">
 
 
 <i> Projeto para demonstar um projeto SPA em constante mudança, avançando para melhoria e implementações de novas funcionalidas;</i>

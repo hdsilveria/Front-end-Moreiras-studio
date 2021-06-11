@@ -49,10 +49,6 @@ data(){
     }
   },
 
-props: {
-  token: String
-},
-
 methods: {
 
     inserirMaterial(){       

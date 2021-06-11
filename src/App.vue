@@ -4,19 +4,36 @@
 <div class="w3-sidebar w3-bar-block" style="width:20%" id="menu">
   <div id="menuInt">
 
+    <div v-if="this.usuario" style="margin-left: 5px;">
+      <p>Bem vindo, {{usuario}}</p> <br>
+        
+        <div v-if="this.perfil == 1 ">
+          <p> Administrador </p>
+        </div>
+
+        <div v-if="this.perfil == 2 ">
+          <p> Operador </p>
+        </div><hr>
+
+        <div v-if="this.perfil == 1 ">
+          <a @click="nwUser()" class="w3-bar-item w3-button w3-hover-gray">Criar novo usuario</a><br>
+        </div>
+
+          <a @click="insert()" class="w3-bar-item w3-button w3-hover-gray">Inserir Material</a><br>
+          <a @click="estoque()" class="w3-bar-item w3-button w3-hover-gray">Meu Estoque</a><br>
+          <hr>
+          <a @click="sair()" class="w3-bar-item w3-button w3-hover-gray">Sair</a>
+    </div>
+
+    <div v-else>
     <a @click="login()" class="w3-bar-item w3-button w3-hover-gray">Login</a>
-    <hr>
-      <a @click="insert()" class="w3-bar-item w3-button w3-hover-gray">Inserir</a>
-    <br>
-      <a @click="estoque()" class="w3-bar-item w3-button w3-hover-gray">Estoque</a>
-    <br>
-      <hr>
+    </div>
 
 <transition name="fade">
   <div class="container" id="loginPrincipal" v-show="mostraLogin">
     <form @submit.prevent="loginAcess">
       <div class="row g-3">
-
+        <hr>
         <div class="col-md-9">
           <label class="form-label">Email: </label>
           <input v-model="newLogin.email" class="form-control" type="email">
@@ -27,33 +44,24 @@
           <input v-model="newLogin.password" class="form-control" type="password">
         </div>
 
-      </div>
-      <br>
+      </div><br>
       <button class="btn" style="color: white; background-color: black;">Logar</button><br><br>
     </form>
   </div>
 </transition>
 
-    <div v-if="this.usuario" style="margin-left: 5px;">
-        <p>{{usuario}}</p>
-
-        <div v-if="this.perfil == 1 ">
-          <p>1 - Administrador</p>
-        </div>
-
-        <div v-if="this.perfil == 2 ">
-          <p>2 - Operador</p>
-        </div>
-      <a @click="sair()" class="w3-bar-item w3-button w3-hover-gray">Sair</a>
-    </div>
-
-
   </div>
 </div>
 
-<div id="cont">
-    <lista v-show="mostraEstoque" :token="userToken" />
-    <inserir v-show="mostraInsert" :token="userToken" />
+<div id="cont" v-if="this.usuario">
+    <lista v-show="mostraEstoque" />
+    <inserir v-show="mostraInsert" />
+    <newUser v-show="mostraNovoUser" />
+</div>
+
+<div id="cont" style="padding: 10%; margin-left: 495px;" v-else>
+  <h1>Sistema de estoque</h1>
+  <p>Necessario realizar o login.</p>
 </div>
 
 <footer id="cont" class="fixed">
@@ -70,6 +78,7 @@ require('/style/w3.css')
 
 import lista from './components/lista'
 import inserir from './components/inserir'
+import newUser from './components/newUser'
 import materiais from '/services/materiais'
 
 export default {
@@ -79,6 +88,7 @@ export default {
       mostraEstoque: true, 
       mostraInsert: false, 
       mostraLogin: false,
+      mostraNovoUser: false,
 
       newLogin: { email: '', password: ''},
     
@@ -88,18 +98,26 @@ export default {
       perfil: localStorage.getItem('Perfil'),
     }},
 
-  components: { lista, inserir },
+  components: { lista, inserir, newUser },
 
   methods:{
 
   estoque: function(){
       this.mostraEstoque = true;
       this.mostraInsert = false;
+      this.mostraNovoUser = false;
   },
 
   insert: function(){
-      this.mostraEstoque = false;
       this.mostraInsert = true;
+      this.mostraEstoque = false;
+      this.mostraNovoUser = false;
+  },
+
+    nwUser: function(){
+      this.mostraNovoUser = true;
+      this.mostraInsert = false;
+      this.mostraEstoque = false;
   },
 
   login: function(){
@@ -118,6 +136,8 @@ export default {
 
           localStorage.setItem('token', this.userToken)
           console.log(this.userToken)
+
+          location.href = "/"
       })
       .catch(err => {
           alert('Usuario ou senha invalidos!'),
@@ -126,7 +146,10 @@ export default {
     },
 
     sair(){
+      if (confirm('Deseja Sair?')){
       localStorage.clear();
+      location.href = "/"
+      }
     }
 
   }
@@ -154,7 +177,7 @@ height: 110%;
 
 #menuInt {
   margin-top: 50px;
-  font-size: 14pt;
+  font-size: 13pt;
 }
 
 footer {
@@ -181,7 +204,8 @@ footer {
     width: 360px;
     position:fixed;
     background-color: rgb(39, 39, 39);
-    border-radius: 50px;
+    border-radius: 70px;
+    margin-top: 40px;
 }
 
 </style>
