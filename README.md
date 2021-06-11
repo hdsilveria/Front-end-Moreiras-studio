@@ -50,15 +50,15 @@
 
 <img src="./git_img/confirmar_delete.png">
 
-<p>- Para realizar alterações nos materiais cadastrados, deve ir na opção editar, no icone de Lapis: - Ao clicar, sera apresentado a tela para editar os campos, informando o Id para escolher o material:</p>
+<p>- Para realizar alterações nos materiais cadastrados, o usuario deve ir na opção editar, no icone de Lapis, e ao clicar, sera apresentado a tela para editar os campos:</p>
 
 <img src="./git_img/alterar_material.png">
 
-<p>- Ao clicar, sera apresentado a tela para editar os campos, informando o Id para escolher o material: </p>
+<p>- Para editar, o usuario deve informar o Id para escolher o material e alterar os campos disponiveis: </p>
 
 <img src="./git_img/alterar_material_aba.png">
 
-<p>- Para alterar um material, deve ser confirmado por meio de um alerta:</p>
+<p>- A alteração deve ser confirmada por meio de um alert:</p>
 
 <img src="./git_img/confirmar_alterar.png">
 
