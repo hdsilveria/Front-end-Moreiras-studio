@@ -1,10 +1,12 @@
 <template>
 <div id="estoque">
 
+  <h3> Meu Estoque </h3>
+
 <transition name="fade">
   <div id="edit" class="container" v-show="mostraEdit">
     <form @submit.prevent="atualizar()">
-      <div class="row g-3">
+      <div class="row g-3 justify-content-center">
         <div class="col-auto">
           <label class="form-label">ID: </label>
           <input v-model="UpdateMaterial.id" class="form-control" type="number" min="0" max="200" required>
@@ -20,13 +22,22 @@
           <input v-model="UpdateMaterial.valor" class="form-control" type="number" min="0" max="200"><br>
         </div>
       </div>
-      <button class="btn btn-dark" type="submit"> Salvar </button>
+
+      <b-row align-h="between">
+        <b-col md="6" class="d-flex d-row justify-content-center">
+          <button class="btn btn-outline-light" type="submit"> Salvar </button>
+        </b-col>
+        <b-col md="6" class="d-flex d-row justify-content-center">
+          <button class="btn btn-outline-light" @click="editar()"> Cancelar </button>
+        </b-col>
+      </b-row>
+
     </form>
   </div>
 </transition>
 
 
-<div class="container" id="tabela">
+<div class="container overflow-auto" id="tabela">
 
   <table class="table table-borderless">
   <thead>
@@ -35,9 +46,8 @@
       <th scope="col">Material</th>
       <th scope="col">Quantidade</th>
       <th scope="col">Valor</th>
-      <th scope="col">Data</th>
-      <th scope="col"></th>
-      <th scope="col"><td><button type="button" class="btn btn-link" @click="editar()">✏️</button></td></th>
+      <th scope="col">Data da Compra</th>
+      <th scope="col"><button type="button" class="btn btn-outline-light btn-sm" @click="editar()">Editar✏️</button></th>
     </tr>
   </thead>
 
@@ -48,12 +58,12 @@
       <td>{{material.quantidade}}</td>
       <td>{{material.valor | ValorDecimal }}</td>
       <td>{{material.data}}</td>
-      <td><button type="button" class="btn btn-link" @click="remover(material)">🗑️</button></td>      
+      <td><button type="button" class="btn btn-outline-dark btn-sm" @click="remover(material)">Deletar</button></td>
     </tr>
+    
   </tbody><br><br>
   </table>
 </div>
-
 
 </div>
 </template>
@@ -85,23 +95,36 @@ mounted(){
 
 methods: {
 
+    showModal() {
+      this.$root.$emit('bv::show::modal', 'modal-1', '#btnShow')
+    },
+
   remover(deletMaterial){
     if ( confirm('deseja excluir?') ){
       materiais.apagar(deletMaterial).then(() => {
-        location.href = "/"
+        location.reload()
       }).catch(err =>{
         console.log(err)
       })
      }
     },
 
-  atualizar(){
+  // atualizar(){
+  //   if (confirm('Deseja realizar a alteração?')){
+  //   materiais.atualizar(this.UpdateMaterial).then(response =>{
+  //   this.UpdateMaterial = '',
+  //   this.listar(),
+  //   console.log(response),
+  //   location.reload()
+  //     })
+  //    }
+  //   },
+
+    atualizar(UpdateMaterial){
     if (confirm('Deseja realizar a alteração?')){
-    materiais.atualizar(this.UpdateMaterial).then(response =>{
-    this.UpdateMaterial = '',
-    this.listar(),
+    materiais.atualizar(UpdateMaterial).then(response =>{
     console.log(response),
-    location.href = "/"
+    location.reload()
       })
      }
     },
@@ -126,8 +149,7 @@ methods: {
 <style scoped>
 
 #tabela{
-  padding: 2%;
-  margin-left: 25px;
+  padding: 1%;
 }
 
 h1 {
@@ -167,6 +189,16 @@ button {
 
 .fade-enter, .fade-leave-to {
   opacity: 0;
+}
+
+h3 {
+  text-align: center;
+  margin: 40px;
+}
+
+thead {
+    color: white;
+    background-color: rgba(2, 2, 2, 0.726);
 }
 
 </style>

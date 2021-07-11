@@ -1,22 +1,24 @@
 <template>
-<div  class="container">
+<div>
     
+<b-row class="d-flex d-row" align-h="between" id="novoUsuario">
 
-<div class="container" id="novoUsuario">
+<b-col md="6">
+
+   <h4> Criar Novo Usuario </h4>
     <form @submit.prevent="cadastrarUsuario">
-      <div class="row g-3">
         <div>
-          <label class="form-label">Nome: </label>
+          <label class="form-label">Nome </label>
           <input v-model="usuario.usuario" class="form-control" type="text" autocomplete="off">
         </div>
 
         <div>
-          <label class="form-label">email: </label>
+          <label class="form-label">Email </label>
           <input v-model="usuario.email" class="form-control" type="email" autocomplete="off">
         </div>
 
         <div class="col-md-6">
-          <label class="form-label">perfil: </label> 
+          <label class="form-label">Perfil </label> 
           <select class="form-control" v-model="usuario.perfil">
               <option value=1 selected>1 - Administrador </option>
               <option value=2 > 2 - Operador </option>
@@ -24,26 +26,58 @@
         </div>
 
         <div >
-          <label class="form-label">senha: </label>
+          <label class="form-label">Senha </label>
           <input v-model="usuario.password" class="form-control" type="password">
         </div>
 
-      </div>
-      <br><button class="btn btn-dark"> Criar Usuario </button><br><br>
+        <div >
+          <label class="form-label">Confirme a Senha </label>
+          <input v-model="passwordConfirm" class="form-control" type="password">
+        </div><br>
+          <b-row>
+        <b-col class="d-flex d-row justify-content-center">
+            <br><button class="btn btn-outline-light" type="submit"> Criar Usuario </button>
+        </b-col>
+    </b-row> <br>
     </form>
-  </div>
+
+  </b-col>
+
+  <b-col md="6" class="justify-content-center">
+    <h4> Usuarios Criados </h4> 
+    <div class="usersCreated">
+      <br>
+      <ul v-for="usuarios in users" :key="usuarios.id">
+        <li><b>Usuario:</b> {{usuarios.usuario}}</li>
+        <li><b>Email:</b> {{usuarios.email}}</li>
+        <li><b>Perfil:</b> {{usuarios.perfil}}</li>
+      </ul>
+    </div>
+  </b-col>
+
+
+
+  </b-row>
 
 </div>
 </template>
 
 <script>
 
-import materiais from '/services/materiais'
+import users from '/services/users'
 
 export default {
 
+mounted(){  
+  users.listarUsuario({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }).then((response)=>{
+    this.users = response.data
+    })
+  },
+
 data(){
     return {
+        users: [],
+        passwordConfirm: '',
         usuario: {
             usuario: '',
             email: '',
@@ -55,16 +89,61 @@ data(){
 
 methods: {
 
-    cadastrarUsuario(){       
-        materiais.criarUsuario(this.usuario, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} })
+    cadastrarUsuario(){
+      
+      if (this.usuario.password === this.passwordConfirm) {
+        users.criarUsuario(this.usuario, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} })
         .then(response =>{
-          alert('Usuario inserido com sucesso!'),
+            this.$toast.success("Usuario inserido com sucesso!", {
+              position: "bottom-right",
+              timeout: 2000,
+              closeOnClick: true,
+              pauseOnFocusLoss: true,
+              pauseOnHover: true,
+              draggable: true,
+              draggablePercent: 2,
+              showCloseButtonOnHover: false,
+              hideProgressBar: true,
+              closeButton: "button",
+              icon: true,
+              rtl: false
+            });
           console.log(response),
-          location.href = "/"
+          location.reload()
         })
         .catch(err => {
           alert('Erro: ' + err)
+            this.$toast.error("Erro, contate o Administrador!", {
+              position: "bottom-right",
+              timeout: 2000,
+              closeOnClick: true,
+              pauseOnFocusLoss: true,
+              pauseOnHover: true,
+              draggable: true,
+              draggablePercent: 2,
+              showCloseButtonOnHover: false,
+              hideProgressBar: true,
+              closeButton: "button",
+              icon: true,
+              rtl: false
+            });
         })
+      } else {
+          this.$toast.error("Senhas não confirmadas!", {
+              position: "bottom-right",
+              timeout: 2000,
+              closeOnClick: true,
+              pauseOnFocusLoss: true,
+              pauseOnHover: true,
+              draggable: true,
+              draggablePercent: 2,
+              showCloseButtonOnHover: false,
+              hideProgressBar: true,
+              closeButton: "button",
+              icon: true,
+              rtl: false
+            });
+      }
     },
   }
 
@@ -79,14 +158,31 @@ methods: {
     background-color: rgba(2, 2, 2, 0.726);
     color: white;
     height: auto;
-    width: 400px;
-    margin-left: 300px;
+    width: 100%;
+    padding: 1%;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+h4 {
+  text-align: center;
+  margin: 30px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.usersCreated {
+  max-height: 350px;
+  width: 100%;
+  overflow: scroll;
+  overflow-x: hidden;
+  border: 1px solid white;
 }
 
 </style>

@@ -68,7 +68,7 @@
 
 <br>
 
-<img src="./git_img/exit.png">
+<img src="./git_img/confirmar_exit.png">
 
 
 <i> Projeto para demonstar um projeto SPA em constante mudança, avançando para melhoria e implementações de novas funcionalidas;</i>
