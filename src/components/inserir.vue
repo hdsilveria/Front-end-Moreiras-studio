@@ -24,7 +24,7 @@
           <input v-model="NovoMaterial.valor" class="form-control" type="number" min="0" max="200" required><br>
         </b-col>
 
-        <b-col md="5">
+        <b-col md="6">
           <label class="form-label">Data da Compra </label>
           <input v-model="NovoMaterial.data" class="form-control" type="tel" v-mask="'##/##/####'" min="0" max="200">
         </b-col>
