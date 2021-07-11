@@ -11,5 +11,9 @@ export default {
             return api.get('/usuarios', token )
         },
 
+        apagar: (delUser) => {
+            return api.delete('/deleteUser', {data: delUser})
+        },
+
 
 }

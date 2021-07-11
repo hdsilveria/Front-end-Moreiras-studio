@@ -9,17 +9,17 @@
     <form @submit.prevent="cadastrarUsuario">
         <div>
           <label class="form-label">Nome </label>
-          <input v-model="usuario.usuario" class="form-control" type="text" autocomplete="off">
+          <input v-model="usuario.usuario" class="form-control" type="text" autocomplete="off" required>
         </div>
 
         <div>
           <label class="form-label">Email </label>
-          <input v-model="usuario.email" class="form-control" type="email" autocomplete="off">
+          <input v-model="usuario.email" class="form-control" type="email" autocomplete="off" required>
         </div>
 
         <div class="col-md-6">
           <label class="form-label">Perfil </label> 
-          <select class="form-control" v-model="usuario.perfil">
+          <select class="form-control" v-model="usuario.perfil" required>
               <option value=1 selected>1 - Administrador </option>
               <option value=2 > 2 - Operador </option>
           </select>
@@ -27,12 +27,12 @@
 
         <div >
           <label class="form-label">Senha </label>
-          <input v-model="usuario.password" class="form-control" type="password">
+          <input v-model="usuario.password" class="form-control" type="password" required>
         </div>
 
         <div >
           <label class="form-label">Confirme a Senha </label>
-          <input v-model="passwordConfirm" class="form-control" type="password">
+          <input v-model="passwordConfirm" class="form-control" type="password" required>
         </div><br>
           <b-row>
         <b-col class="d-flex d-row justify-content-center">
@@ -49,7 +49,7 @@
       <br>
       <ul v-for="usuarios in users" :key="usuarios.id">
         <li><b>Usuario:</b> {{usuarios.usuario}}</li>
-        <li><b>Email:</b> {{usuarios.email}}</li>
+        <li><b>Email:</b> {{usuarios.email}} &nbsp;&nbsp;&nbsp;&nbsp; <button class="btn btn-outline-light" @click="remover(usuarios)" >Deletar </button></li>
         <li><b>Perfil:</b> {{usuarios.perfil}}</li>
       </ul>
     </div>
@@ -88,6 +88,15 @@ data(){
 },
 
 methods: {
+    remover(deletMaterial){
+    if ( confirm('deseja excluir?') ){
+      users.apagar(deletMaterial).then(() => {
+        location.reload()
+      }).catch(err =>{
+        console.log(err)
+      })
+     }
+    },
 
     cadastrarUsuario(){
       

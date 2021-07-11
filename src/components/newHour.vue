@@ -25,8 +25,8 @@
         <b-col>
           <label class="form-label">Procedimento </label>
             <select class="form-control" v-model="novoHorario.procedimento" required>
-              <option value="Manutenção" selected>1 - Administrador </option>
-              <option value="Manutenção" > 2 - Operador </option>
+              <option value="Manutenção" selected>Volume Russo </option>
+              <option value="Manutenção" > Fio a Fio </option>
           </select>
         </b-col>
     </b-row> <br>
