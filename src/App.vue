@@ -6,10 +6,10 @@
     <router-view />
 </div>
 
-<div id="cont" class="d-flex d-row justify-content-center" v-else>
-  <div>
-    <h1>Sistema de Estoque e Agendamento</h1>
+<div id="cont" v-else>
+  <div style="text-align: center;">
     <img src="./static/logo_login.png">
+    <h1>Sistema de Estoque e Agendamento</h1>
   </div>
 </div>
 
@@ -76,6 +76,11 @@ export default {
 <style>
   #cont {
     margin-left: 20%;
-    padding: 2%
+    padding: 2%;
+    height: 650px;
+  }
+
+  h1 {
+    color: #222222;
   }
 </style>

@@ -114,7 +114,8 @@ mounted(){
 
 .agenda {
     text-align: left;
-    background-color: rgba(2, 2, 2, 0.726);
+background: rgb(244,191,187);
+background: linear-gradient(180deg, rgba(244,191,187,1) 0%, rgba(158,104,100,1) 100%);
     color: white;
     height: 100px;
 }
@@ -127,12 +128,14 @@ h3 {
 thead {
     width: 100%;
     color: white;
-    background-color: rgba(2, 2, 2, 0.726);
+background: rgb(244,191,187);
+background: linear-gradient(180deg, rgba(244,191,187,1) 0%, rgba(158,104,100,1) 100%);
 }
 
 .searchButton {
     color: white;
-    background-color: rgba(2, 2, 2, 0.726);
+background: rgb(244,191,187);
+background: linear-gradient(180deg, rgba(244,191,187,1) 0%, rgba(158,104,100,1) 100%);
 }
 
 button { 

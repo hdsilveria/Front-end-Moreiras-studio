@@ -167,7 +167,8 @@ table {
 
 #edit {
   text-align: left;
-  background-color: rgba(2, 2, 2, 0.726);
+background: rgb(244,191,187);
+background: linear-gradient(180deg, rgba(244,191,187,1) 0%, rgba(158,104,100,1) 100%);
   color: white;
   height: 170px;
   width: 345px;
@@ -198,7 +199,8 @@ h3 {
 
 thead {
     color: white;
-    background-color: rgba(2, 2, 2, 0.726);
+background: rgb(244,191,187);
+background: linear-gradient(180deg, rgba(244,191,187,1) 0%, rgba(158,104,100,1) 100%);
 }
 
 </style>

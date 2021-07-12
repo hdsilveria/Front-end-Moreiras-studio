@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="princ">
     
 <b-row class="d-flex d-row" align-h="between" id="novoUsuario">
 
@@ -164,9 +164,10 @@ methods: {
 #novoUsuario {
     margin-top: 40px;
     text-align: left;
-    background-color: rgba(2, 2, 2, 0.726);
+    background: rgb(244,191,187);
+    background: linear-gradient(185deg, rgba(244,191,187,1) 7%, rgba(158,104,100,1) 54%);
     color: white;
-    height: auto;
+    font-weight: 500;
     width: 100%;
     padding: 1%;
 }

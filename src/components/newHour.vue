@@ -31,8 +31,8 @@
               <option value="Mega Volume" >Cilius: Mega Volume </option>
               <option value="Gel na Tip" >Unhas: Gel na Tip </option>
               <option value="Fibra de Vidro" >Unhas: Fibra de Vidro </option>
-              <option value="Blingagem com Fibra" >Unhas: Blingagem com Fibra </option>
-              <option value="Blingagem Comum" >Unhas: Blingagem Comum </option>
+              <option value="Blingagem com Fibra" >Unhas: Blindagem com Fibra </option>
+              <option value="Blingagem Comum" >Unhas: Blindagem Comum </option>
 
           </select>
         </b-col>
@@ -111,7 +111,8 @@ methods: {
 #inserir {
 margin-top: 40px;
   text-align: left;
-  background-color: rgba(2, 2, 2, 0.726);
+  background: rgb(244,191,187);
+  background: linear-gradient(180deg, rgba(244,191,187,1) 0%, rgba(158,104,100,1) 100%);
   color: white;
   width: 60%;
   padding: 1%;

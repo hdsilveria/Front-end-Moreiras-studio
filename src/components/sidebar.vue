@@ -15,33 +15,32 @@
         </div><hr>
 
         <div v-if="this.perfil == 1 ">
-          <router-link to="/newUser" class="w3-bar-item w3-button w3-hover-gray">Criar novo usuario</router-link><br>
+          <router-link to="/newUser" class="w3-bar-item w3-button w3-hover-none">Criar novo usuario</router-link><br>
         </div>
 
-          <router-link to="/insertMaterial"  class="w3-bar-item w3-button w3-hover-gray">Inserir Material</router-link><br>
-          <router-link to="/newHour"  class="w3-bar-item w3-button w3-hover-gray">Inserir Horario na Agenda</router-link><br>
-          <router-link to="/home"  class="w3-bar-item w3-button w3-hover-gray">Meu Estoque</router-link><br>
-          <router-link to="/minhaAgenda"  class="w3-bar-item w3-button w3-hover-gray">Minha Agenda</router-link><br>
+          <router-link to="/insertMaterial" class="w3-bar-item w3-button w3-hover-none">Inserir Material</router-link><br>
+          <router-link to="/newHour"  class="w3-bar-item w3-button w3-hover-none">Inserir Horario na Agenda</router-link><br>
+          <router-link to="/home"  class="w3-bar-item w3-button w3-hover-none">Meu Estoque</router-link><br>
+          <router-link to="/minhaAgenda"  class="w3-bar-item w3-button w3-hover-none">Minha Agenda</router-link><br>
           <hr>
-          <a @click="sair()" class="w3-bar-item w3-button w3-hover-gray">Sair</a>
+          <a @click="sair()" class="w3-bar-item w3-button w3-hover-none">Sair</a>
     </div>
 
     <div v-else>
-    <a @click="login()" class="w3-bar-item w3-button w3-hover-gray">Login</a>
+    <a @click="login()" class="w3-bar-item w3-button w3-hover-none btnLogin">Login</a>
     </div>
 
 <transition name="fade">
   <div class="container" id="loginPrincipal" v-show="mostraLogin">
     <form @submit.prevent="loginAcess">
       <div class="row g-3">
-        <hr>
         <div class="col-md-9">
-          <label class="form-label">Email: </label>
+          <label class="form-label">Email </label>
           <input v-model="newLogin.email" class="form-control" type="email">
         </div>
 
         <div class="col-md-9">
-          <label class="form-label">Senha: </label>
+          <label class="form-label">Senha </label>
           <input v-model="newLogin.password" class="form-control" type="password">
         </div>
 
@@ -143,10 +142,12 @@ export default {
 
 <style scoped>
 #menu{
-background-color: rgb(39, 39, 39);
-color: white;
+background: rgb(244,191,187);
+background: linear-gradient(185deg, rgba(244,191,187,1) 3%, rgba(158,104,100,1) 72%);
+color: rgb(255, 255, 255);
 margin-top: -20px;
 height: 110%;
+font-weight: 500;
 }
 
 #contLogin {
@@ -171,12 +172,19 @@ height: 110%;
 
 #loginPrincipal {
   text-align: left;
-    color: white;
     height: auto;
     width: 360px;
     position:fixed;
-    background-color: rgb(39, 39, 39);
-    border-radius: 70px;
+background: rgb(244,191,187);
+background: linear-gradient(180deg, rgba(244,191,187,1) 58%, rgba(158,104,100,1) 99%);
+    color: rgb(255, 255, 255);
+    border-radius: 20px;
     margin-top: 40px;
 }
-</style>
+
+.btnLogin {
+  font-size: 16pt;
+  font-weight: 700;
+}
+
+</style>  

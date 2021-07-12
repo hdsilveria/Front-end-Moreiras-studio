@@ -95,7 +95,8 @@ methods: {
 #inserir {
 margin-top: 40px;
   text-align: left;
-  background-color: rgba(2, 2, 2, 0.726);
+  background: rgb(244,191,187);
+  background: linear-gradient(180deg, rgba(244,191,187,1) 0%, rgba(158,104,100,1) 100%);
   color: white;
   height: auto;
   width: 360px;
