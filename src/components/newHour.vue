@@ -25,8 +25,15 @@
         <b-col>
           <label class="form-label">Procedimento </label>
             <select class="form-control" v-model="novoHorario.procedimento" required>
-              <option value="Manutenção" selected>Volume Russo </option>
-              <option value="Manutenção" > Fio a Fio </option>
+              <option value="Volume Russo" selected>Cilius: Volume Russo </option>
+              <option value="Fio a Fio" >Cilius: Fio a Fio </option>
+              <option value="Volume Leve" >Cilius: Volume Leve </option>
+              <option value="Mega Volume" >Cilius: Mega Volume </option>
+              <option value="Gel na Tip" >Unhas: Gel na Tip </option>
+              <option value="Fibra de Vidro" >Unhas: Fibra de Vidro </option>
+              <option value="Blingagem com Fibra" >Unhas: Blingagem com Fibra </option>
+              <option value="Blingagem Comum" >Unhas: Blingagem Comum </option>
+
           </select>
         </b-col>
     </b-row> <br>
