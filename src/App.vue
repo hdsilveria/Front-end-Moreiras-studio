@@ -9,8 +9,7 @@
 <div id="cont" class="d-flex d-row justify-content-center" v-else>
   <div>
     <img src="./static/logo_login.png">
-    <h1>Sistema de estoque</h1>
-    <p>Necessario realizar o login.</p>
+    <h1>Sistema de Estoque e Agendamento</h1>
   </div>
 </div>
 
