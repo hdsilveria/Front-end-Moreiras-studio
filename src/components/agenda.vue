@@ -42,7 +42,7 @@
       <td>{{horario.horario}}</td>
       <td>{{horario.procedimento}}</td>
       <td>{{horario.tipo}}</td>
-      <td><button type="button" class="btn btn-outline-dark btn-sm" @click="remover(horario)">Deletar</button></td>      
+      <td><button type="button" class="btn btn-outline-dark btn-sm" @click="remover(horario.id)">Deletar</button></td>      
     </tr>
   </tbody><br><br>
   </table>
