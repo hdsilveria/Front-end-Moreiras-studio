@@ -15,8 +15,8 @@ export default {
         return api.put('/alterarHorario', UpdMaterial)
     },
 
-    apagar: (Delmaterial) => {
-        return api.delete('/deletarHorario', {data: Delmaterial})
+    apagar: (DelHorario) => {
+        return api.delete('/deletarHorario', {data: DelHorario})
     },
 
 }

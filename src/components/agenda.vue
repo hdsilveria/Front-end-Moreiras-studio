@@ -69,7 +69,7 @@ methods: {
       agenda.apagar(deletHorario).then(() => {
           location.reload()
       }).catch(err =>{
-        console.log(err)
+        console.log("Erro: " + err)
       })
      }
     },
