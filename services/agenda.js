@@ -7,16 +7,16 @@ export default {
         return api.get('/horarios', token )
     },
 
-    cadastrar: (CadMaterial, token) =>{
-        return api.post('/inserirHorario', CadMaterial, token)
+    cadastrar: (CadHorario, token) =>{
+        return api.post('/inserirHorario', CadHorario, token)
     },
 
-    atualizar: (UpdMaterial) => {
-        return api.put('/alterarHorario', UpdMaterial)
+    atualizar: (UpdHorario) => {
+        return api.put('/alterarHorario', UpdHorario)
     },
 
-    apagar: (DelHorario) => {
-        return api.delete('/deletarHorario', {data: DelHorario})
+    apagar: (Delmaterial) => {
+        return api.delete('/deletarHorario', {data: Delmaterial})
     },
 
 }

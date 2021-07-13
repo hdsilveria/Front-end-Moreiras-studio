@@ -42,7 +42,7 @@
       <td>{{horario.horario}}</td>
       <td>{{horario.procedimento}}</td>
       <td>{{horario.tipo}}</td>
-      <td><button type="button" class="btn btn-outline-dark btn-sm" @click="remover(horario.id)">Deletar</button></td>      
+      <td><button type="button" class="btn btn-outline-dark btn-sm" @click="remover(horario)">Deletar</button></td>      
     </tr>
   </tbody><br><br>
   </table>
@@ -58,18 +58,13 @@ import agenda from '/services/agenda'
 export default ({
 
 methods: {
-
-    searchAll(){
-      this.clientResults = this.horarios
-      this.busca = ""
-    },
-
-    remover(deletHorario){
+  remover(deletMaterial){
+    console.log(deletMaterial)
     if ( confirm('deseja excluir?') ){
-      agenda.apagar(deletHorario).then(() => {
-          location.reload()
+      agenda.apagar(deletMaterial).then(() => {
+        location.reload()
       }).catch(err =>{
-        console.log("Erro: " + err)
+        console.log(err)
       })
      }
     },
@@ -99,11 +94,6 @@ mounted(){
         clientResults: [],
         busca: [],
         horarios: [],
-        UpdateMaterial: {
-            id: '',
-            quantidade: '',
-            valor: ''
-      }
     }
   },
 

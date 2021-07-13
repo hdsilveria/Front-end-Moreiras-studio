@@ -109,17 +109,6 @@ methods: {
      }
     },
 
-  // atualizar(){
-  //   if (confirm('Deseja realizar a alteração?')){
-  //   materiais.atualizar(this.UpdateMaterial).then(response =>{
-  //   this.UpdateMaterial = '',
-  //   this.listar(),
-  //   console.log(response),
-  //   location.reload()
-  //     })
-  //    }
-  //   },
-
     atualizar(UpdateMaterial){
     if (confirm('Deseja realizar a alteração?')){
     materiais.atualizar(UpdateMaterial).then(response =>{
