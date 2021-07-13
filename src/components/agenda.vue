@@ -113,6 +113,8 @@ background: linear-gradient(180deg, rgba(244,191,187,1) 0%, rgba(158,104,100,1) 
 h3 {
     text-align: center;
     margin: 50px;
+    font-family: athena regular;
+    color: #686868;
 }
 
 thead {

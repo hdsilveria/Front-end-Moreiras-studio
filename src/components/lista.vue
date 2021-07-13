@@ -145,6 +145,7 @@ methods: {
 
 h1 {
   text-align: center;
+  font-family: athena regular;
 }
 
 #estoque {
@@ -186,6 +187,8 @@ button {
 h3 {
   text-align: center;
   margin: 40px;
+  font-family: athena regular;
+  color: #686868;
 }
 
 thead {

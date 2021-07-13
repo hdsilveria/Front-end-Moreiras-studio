@@ -4,7 +4,7 @@
   <div id="menuInt">
 
     <div v-if="this.usuario" style="margin-left: 5px;">
-      <p>Bem vindo, {{usuario}}</p> <br>
+      <p>Bem vindo, {{usuario}}</p>
         
         <div v-if="this.perfil == 1 ">
           <p> Administrador </p>
@@ -15,13 +15,13 @@
         </div><hr>
 
         <div v-if="this.perfil == 1 ">
-          <router-link to="/newUser" class="w3-bar-item w3-button w3-hover-none">Criar novo usuario</router-link><br>
+          <router-link to="/newUser" class="w3-bar-item w3-button w3-hover-none buttonMenu">Criar novo usuario</router-link><br>
         </div>
 
-          <router-link to="/insertMaterial" class="w3-bar-item w3-button w3-hover-none">Inserir Material</router-link><br>
-          <router-link to="/newHour"  class="w3-bar-item w3-button w3-hover-none">Inserir Horario na Agenda</router-link><br>
-          <router-link to="/home"  class="w3-bar-item w3-button w3-hover-none">Meu Estoque</router-link><br>
-          <router-link to="/minhaAgenda"  class="w3-bar-item w3-button w3-hover-none">Minha Agenda</router-link><br>
+          <router-link to="/insertMaterial" class="w3-bar-item w3-button w3-hover-none buttonMenu">Inserir Material</router-link><br>
+          <router-link to="/newHour" class="w3-bar-item w3-button w3-hover-none buttonMenu">Inserir Horario na Agenda</router-link><br>
+          <router-link to="/home" class="w3-bar-item w3-button w3-hover-none buttonMenu">Meu Estoque</router-link><br>
+          <router-link to="/minhaAgenda" class="w3-bar-item w3-button w3-hover-none buttonMenu">Minha Agenda</router-link>
           <hr>
           <a @click="sair()" class="w3-bar-item w3-button w3-hover-none">Sair</a>
     </div>
@@ -159,7 +159,7 @@ font-weight: 500;
 #menuInt {
   margin-top: 50px;
   font-size: 13pt;
-  margin-top: 90px;
+  margin-top: 110px;
 }
 
 .fade-enter-active, .fade-leave-active {
@@ -173,10 +173,10 @@ font-weight: 500;
 #loginPrincipal {
   text-align: left;
     height: auto;
-    width: 360px;
+    width: 355px;
     position:fixed;
-background: rgb(244,191,187);
-background: linear-gradient(180deg, rgba(244,191,187,1) 58%, rgba(158,104,100,1) 99%);
+    background: rgb(244,191,187);
+    background: linear-gradient(180deg, rgba(244,191,187,1) 58%, rgba(158,104,100,1) 99%);
     color: rgb(255, 255, 255);
     border-radius: 20px;
     margin-top: 40px;
@@ -185,6 +185,10 @@ background: linear-gradient(180deg, rgba(244,191,187,1) 58%, rgba(158,104,100,1)
 .btnLogin {
   font-size: 16pt;
   font-weight: 700;
+}
+
+.buttonMenu {
+  margin: -5px;
 }
 
 </style>  

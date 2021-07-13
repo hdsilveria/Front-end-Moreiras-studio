@@ -181,6 +181,7 @@ input::-webkit-inner-spin-button {
 h4 {
   text-align: center;
   margin: 30px;
+  font-family: athena regular;
 }
 
 ul {

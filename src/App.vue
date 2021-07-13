@@ -81,6 +81,7 @@ export default {
   }
 
   h1 {
-    color: #222222;
+    color: #444444;
+    font-family: athena regular;
   }
 </style>
