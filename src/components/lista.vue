@@ -45,8 +45,9 @@
       <th scope="col">ID#</th>
       <th scope="col">Material</th>
       <th scope="col">Quantidade</th>
-      <th scope="col">Valor</th>
-      <th scope="col">Data da Compra</th>
+      <th scope="col">Valor Und</th>
+      <th scope="col">Valor Estoque</th>
+      <th scope="col">Data da Ultima Compra</th>
       <th scope="col"><button type="button" class="btn btn-outline-light btn-sm" @click="editar()">Editar✏️</button></th>
     </tr>
   </thead>
@@ -57,6 +58,7 @@
       <td>{{material.material}}</td>
       <td>{{material.quantidade}}</td>
       <td>{{material.valor | ValorDecimal }}</td>
+      <td>{{material.quantidade * material.valor | ValorDecimal }}</td>
       <td>{{material.data}}</td>
       <td><button type="button" class="btn btn-outline-dark btn-sm" @click="remover(material)">Deletar</button></td>
     </tr>
