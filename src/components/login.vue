@@ -70,8 +70,7 @@ export default ({
           localStorage.setItem('token', this.userToken)
           console.log(this.userToken)
 
-          setTimeout(function(){  
-            location.assign('/#/home')
+          setTimeout(function(){
             Location.reload()
              }, 1900);
       })
