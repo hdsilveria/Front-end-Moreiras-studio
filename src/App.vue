@@ -1,16 +1,13 @@
 <template>
 <div>
-<sidebar />
 
-<div id="cont" v-if="this.usuario">
-    <router-view />
+<div  v-if="this.usuario">
+  <sidebar />
+    <router-view id="cont" />
 </div>
 
-<div id="cont" v-else>
-  <div style="text-align: center;">
-    <img src="./static/logo_login.png">
-    <h1>Sistema de Estoque e Agendamento</h1>
-  </div>
+<div id="cont" style="margin-left: 0%;" v-else>
+    <login />
 </div>
 
 </div>
@@ -22,6 +19,7 @@ require('/style/w3.css')
 
 import materiais from '/services/materiais'
 import sidebar from './components/sidebar.vue'
+import login from './components/login.vue'
 
 export default {
   
@@ -36,7 +34,8 @@ export default {
     }},
 
   components: {
-    sidebar
+    sidebar,
+    login,
      },
 
   methods:{
@@ -73,7 +72,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   #cont {
     margin-left: 20%;
     padding: 2%;

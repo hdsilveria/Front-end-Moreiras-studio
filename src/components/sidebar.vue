@@ -14,41 +14,62 @@
           <p> Operador </p>
         </div><hr>
 
-        <div v-if="this.perfil == 1 ">
-          <router-link to="/newUser" class="w3-bar-item w3-button w3-hover-none buttonMenu">Criar novo usuario</router-link><br>
-        </div>
+        <b-row v-if="this.perfil == 1 ">
+          <b-col md="1">
+              <img src="../img/user.png">
+          </b-col>
+          <b-col>
+            <router-link to="/newUser" class="w3-bar-item w3-button w3-hover-none buttonMenu">Criar novo usuario</router-link>
+          </b-col>
+        </b-row> <br>
+        
+        <b-row>
+          <b-col md="1">
+              <img src="../img/addMaterial.png">
+          </b-col>
+          <b-col>
+            <router-link to="/insertMaterial" class="w3-bar-item w3-button w3-hover-none buttonMenu">Inserir Material</router-link>
+          </b-col>
+        </b-row> <br>
 
-          <router-link to="/insertMaterial" class="w3-bar-item w3-button w3-hover-none buttonMenu">Inserir Material</router-link><br>
-          <router-link to="/newHour" class="w3-bar-item w3-button w3-hover-none buttonMenu">Inserir Horario na Agenda</router-link><br>
-          <router-link to="/home" class="w3-bar-item w3-button w3-hover-none buttonMenu">Meu Estoque</router-link><br>
-          <router-link to="/minhaAgenda" class="w3-bar-item w3-button w3-hover-none buttonMenu">Minha Agenda</router-link>
-          <hr>
-          <a @click="sair()" class="w3-bar-item w3-button w3-hover-none">Sair</a>
+        <b-row>
+          <b-col md="1">
+              <img src="../img/addHour.png">
+          </b-col>
+          <b-col>
+            <router-link to="/newHour" class="w3-bar-item w3-button w3-hover-none buttonMenu">Inserir Horario na Agenda</router-link>
+          </b-col>
+        </b-row><br>
+
+        <b-row>
+          <b-col md="1">
+              <img src="../img/myMaterial.png">
+          </b-col>
+          <b-col>
+            <router-link to="/home" class="w3-bar-item w3-button w3-hover-none buttonMenu">Meu Estoque</router-link>
+          </b-col>
+        </b-row><br>
+
+        <b-row>
+          <b-col md="1">
+              <img src="../img/myHour.png">
+          </b-col>
+          <b-col>
+            <router-link to="/minhaAgenda" class="w3-bar-item w3-button w3-hover-none buttonMenu">Minha Agenda</router-link>
+          </b-col>
+        </b-row>
+
+        <hr>
+        <b-row>
+          <b-col md="1">
+              <img src="../img/out.png">
+          </b-col>
+          <b-col>
+             <a @click="sair()" class="w3-bar-item w3-button w3-hover-none">Sair</a>
+          </b-col>
+        </b-row>
+
     </div>
-
-    <div v-else>
-    <a @click="login()" class="w3-bar-item w3-button w3-hover-none btnLogin">Login</a>
-    </div>
-
-<transition name="fade">
-  <div class="container" id="loginPrincipal" v-show="mostraLogin">
-    <form @submit.prevent="loginAcess">
-      <div class="row g-3">
-        <div class="col-md-9">
-          <label class="form-label">Email </label>
-          <input v-model="newLogin.email" class="form-control" type="email">
-        </div>
-
-        <div class="col-md-9">
-          <label class="form-label">Senha </label>
-          <input v-model="newLogin.password" class="form-control" type="password">
-        </div>
-
-      </div><br>
-      <button class="btn btn-outline-light">Logar</button><br><br>
-    </form>
-  </div>
-</transition>
 
   </div>
 </div>
@@ -58,9 +79,6 @@
 
 
 require('/style/w3.css')
-
-import materiais from '/services/materiais'
-
 
 export default {
   
@@ -79,53 +97,6 @@ export default {
   login: function(){
       this.mostraLogin = !this.mostraLogin;
   },
-
-  loginAcess(){       
-    materiais.login(this.newLogin)
-      .then(response =>{
-          this.$toast.success("Login Efetuado com sucesso!", {
-              position: "bottom-right",
-              timeout: 2000,
-              closeOnClick: true,
-              pauseOnFocusLoss: true,
-              pauseOnHover: true,
-              draggable: true,
-              draggablePercent: 2,
-              showCloseButtonOnHover: false,
-              hideProgressBar: true,
-              closeButton: "button",
-              icon: true,
-              rtl: false
-            });
-          this.userToken = response.data.token
-          this.dadosUser = response.data
-
-          localStorage.setItem('Usuario', this.dadosUser.Usuario)
-          localStorage.setItem('Perfil', this.dadosUser.Perfil)
-
-          localStorage.setItem('token', this.userToken)
-          console.log(this.userToken)
-
-          setTimeout(function(){ location.reload() }, 1900);
-      })
-      .catch(err => {
-          this.$toast.error("'Usuario ou senha invalidos!'", {
-            position: "bottom-right",
-            timeout: 2000,
-            closeOnClick: true,
-            pauseOnFocusLoss: true,
-            pauseOnHover: true,
-            draggable: true,
-            draggablePercent: 2,
-            showCloseButtonOnHover: false,
-            hideProgressBar: true,
-            closeButton: "button",
-            icon: true,
-            rtl: false
-          });
-          console.log(err)
-      })
-    },
 
     sair(){
       if (confirm('Deseja Sair?')){
