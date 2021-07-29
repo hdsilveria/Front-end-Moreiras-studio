@@ -44,10 +44,6 @@ export default ({
     }},
   methods:{
 
-  login: function(){
-      this.mostraLogin = !this.mostraLogin;
-  },
-
   loginAcess(){       
     materiais.login(this.newLogin)
       .then(response =>{
@@ -74,7 +70,7 @@ export default ({
           localStorage.setItem('token', this.userToken)
           console.log(this.userToken)
 
-          setTimeout(function(){  location.assign('home') }, 1900);
+          setTimeout(function(){  location.assign('/home') }, 1900);
       })
       .catch(err => {
           this.$toast.error("'Usuario ou senha invalidos!'", {
