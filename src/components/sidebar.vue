@@ -1,72 +1,86 @@
 <template>
     
-<div class="w3-sidebar w3-bar-block" style="width:20%" id="menu">
+<div class="w3-sidebar w3-bar-block" id="menu">
   <div id="menuInt">
 
     <div v-if="this.usuario" style="margin-left: 5px;">
-      <p>Bem vindo, {{usuario}}</p>
+      <span>Bem vindo, {{usuario}}</span>
         
         <div v-if="this.perfil == 1 ">
-          <p> Administrador </p>
+          <span> Administrador </span>
         </div>
 
         <div v-if="this.perfil == 2 ">
-          <p> Operador </p>
+          <span> Operador </span>
         </div><hr>
 
         <b-row v-if="this.perfil == 1 ">
-          <b-col md="1">
-              <img src="../img/user.png">
-          </b-col>
-          <b-col>
-            <router-link to="/newUser" class="w3-bar-item w3-button w3-hover-none buttonMenu">Criar novo usuario</router-link>
-          </b-col>
+          <router-link to="/newUser" class="w3-bar-item w3-button w3-hover-none buttonMenu d-flex">
+            <b-col md="1">
+                <img src="../img/user.png">
+            </b-col>
+            <b-col class="text-center" md="8" align-self="top">
+            <span>Criar novo usuario</span> 
+            </b-col>
+          </router-link>
         </b-row> <br>
         
         <b-row>
-          <b-col md="1">
-              <img src="../img/addMaterial.png">
-          </b-col>
-          <b-col>
-            <router-link to="/insertMaterial" class="w3-bar-item w3-button w3-hover-none buttonMenu">Inserir Material</router-link>
-          </b-col>
+          <router-link to="/insertMaterial" class="w3-bar-item w3-button w3-hover-none buttonMenu d-flex">
+            <b-col md="1">
+                <img src="../img/addMaterial.png">
+            </b-col>
+            <b-col  class="text-center" md="7">
+            <span>Inserir Material</span> 
+            </b-col>
+          </router-link>
         </b-row> <br>
 
-        <b-row>
-          <b-col md="1">
-              <img src="../img/addHour.png">
-          </b-col>
-          <b-col>
-            <router-link to="/newHour" class="w3-bar-item w3-button w3-hover-none buttonMenu">Inserir Horario na Agenda</router-link>
-          </b-col>
+        <b-row> 
+          <router-link to="/newHour" class="w3-bar-item w3-button w3-hover-none buttonMenu d-flex">
+            <b-col md="1">
+                <img src="../img/addHour.png">
+            </b-col>
+            <b-col class="text-center" md="11">
+            <span>Inserir Horario na Agenda</span> 
+            </b-col>
+          </router-link>
         </b-row><br>
 
         <b-row>
-          <b-col md="1">
-              <img src="../img/myMaterial.png">
-          </b-col>
-          <b-col>
-            <router-link to="/home" class="w3-bar-item w3-button w3-hover-none buttonMenu">Meu Estoque</router-link>
-          </b-col>
+           <router-link to="/home" class="w3-bar-item w3-button w3-hover-none buttonMenu d-flex d-row">
+            <b-col md="1">
+                <img src="../img/myMaterial.png">
+            </b-col>
+            <b-col class="text-center" md="7">
+           <span>Meu Estoque</span>
+            </b-col>
+          </router-link>
         </b-row><br>
 
         <b-row>
-          <b-col md="1">
-              <img src="../img/myHour.png">
-          </b-col>
-          <b-col>
-            <router-link to="/minhaAgenda" class="w3-bar-item w3-button w3-hover-none buttonMenu">Minha Agenda</router-link>
-          </b-col>
+          <router-link to="/minhaAgenda" class="w3-bar-item w3-button w3-hover-none buttonMenu d-flex">
+            <b-col md="1">
+                <img src="../img/myHour.png">
+            </b-col>
+            <b-col  class="text-center" md="7">
+             <span>Minha Agenda</span>
+            </b-col>
+          </router-link>
         </b-row>
 
         <hr>
         <b-row>
-          <b-col md="1">
+          <a @click="sair()" class="w3-bar-item w3-button w3-hover-none d-flex">
+          <b-col md="2">
               <img src="../img/out.png">
           </b-col>
           <b-col>
-             <a @click="sair()" class="w3-bar-item w3-button w3-hover-none">Sair</a>
+            <span>
+              Sair
+            </span>
           </b-col>
+          </a>
         </b-row>
 
     </div>
@@ -119,6 +133,7 @@ color: rgb(255, 255, 255);
 margin-top: -20px;
 height: 110%;
 font-weight: 500;
+border: 2px solid rgba(38, 38, 38, 0.268);
 }
 
 #contLogin {
@@ -160,6 +175,46 @@ font-weight: 500;
 
 .buttonMenu {
   margin: -5px;
+}
+
+
+@media screen and (min-width: 1000px){
+
+#menu {
+  width: 4%;
+  z-index: 9;
+}
+
+#menu span {
+  display: none;
+}
+
+#menu:hover a {
+  display: block;
+}
+
+#menu:hover {
+  width: 20%;
+  transition: 0.2s;
+}
+
+#menu:hover span {
+  display: block;
+}
+
+}
+
+@media screen and (max-width: 500px){
+
+#menu {
+  width: 15%;
+}
+
+#menu span {
+  display: none;
+  position: static;
+}
+
 }
 
 </style>  

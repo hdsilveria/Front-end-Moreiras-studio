@@ -1,9 +1,8 @@
 <template>
-<div class="container" id="inserir">
-    <form @submit.prevent="insertHorary">
-
+<div> 
+    <form class="container" id="inserir" @submit.prevent="insertHorary">
         <h4>Inserir Novo Horario</h4>    
-<br>
+  <br>
     <b-row>
         <b-col md="5">
           <label class="form-label">Cliente </label>

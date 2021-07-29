@@ -73,14 +73,29 @@ export default {
 </script>
 
 <style scoped>
-  #cont {
-    margin-left: 20%;
-    padding: 2%;
-    height: 650px;
-  }
 
   h1 {
     color: #444444;
     font-family: athena regular;
   }
+
+  @media screen and (min-width: 1000px){
+  #cont {
+    margin-left: 5%;
+    padding: 2%;
+    height: 650px;
+  }
+  }
+
+  @media screen and (max-width: 500px){
+
+  #cont {
+    margin-left: 15%;
+    padding: 2%;
+    height: 650px;
+  }
+
+}
+
+
 </style>
