@@ -133,7 +133,7 @@ color: rgb(255, 255, 255);
 margin-top: -20px;
 height: 110%;
 font-weight: 500;
-border: 2px solid rgba(38, 38, 38, 0.268);
+border: 2px solid rgba(38, 38, 38, 0.063);
 }
 
 #contLogin {
