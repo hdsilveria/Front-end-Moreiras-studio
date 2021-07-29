@@ -17,7 +17,6 @@
 
 require('/style/w3.css')
 
-import materiais from '/services/materiais'
 import sidebar from './components/sidebar.vue'
 import login from './components/login.vue'
 
@@ -38,37 +37,6 @@ export default {
     login,
      },
 
-  methods:{
-
-  loginAcess(){       
-    materiais.login(this.newLogin)
-      .then(response =>{
-          alert('Login com sucesso!'),
-          this.userToken = response.data.token
-          this.dadosUser = response.data
-
-          localStorage.setItem('Usuario', this.dadosUser.Usuario)
-          localStorage.setItem('Perfil', this.dadosUser.Perfil)
-
-          localStorage.setItem('token', this.userToken)
-          console.log(this.userToken)
-
-          location.reload()
-      })
-      .catch(err => {
-          alert('Usuario ou senha invalidos!'),
-          console.log(err)
-      })
-    },
-
-    sair(){
-      if (confirm('Deseja Sair?')){
-      localStorage.clear();
-      location.reload()
-      }
-    }
-
-  }
 }
 </script>
 

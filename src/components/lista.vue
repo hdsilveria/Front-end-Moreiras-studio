@@ -197,4 +197,9 @@ background: rgb(244,191,187);
 background: linear-gradient(180deg, rgba(244,191,187,1) 0%, rgba(158,104,100,1) 100%);
 }
 
+.table {
+  box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.179);
+  background-color: rgba(255, 255, 255, 0.501);
+}
+
 </style>

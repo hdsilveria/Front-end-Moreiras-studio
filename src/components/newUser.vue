@@ -1,7 +1,7 @@
 <template>
 <div class="princ">
     
-<b-row class="d-flex d-row" align-h="between" id="novoUsuario">
+<b-row class="d-flex d-row" align-h="between" id="novoUsuario" v-if="this.perfil == 1">
 
 <b-col md="6">
 
@@ -55,9 +55,11 @@
     </div>
   </b-col>
 
-
-
   </b-row>
+
+<div v-if="this.perfil == 2" class="text-center">
+  <h2>Sem permissão</h2>
+</div>
 
 </div>
 </template>
@@ -76,6 +78,8 @@ mounted(){
 
 data(){
     return {
+      user: localStorage.getItem('Usuario'),
+      perfil: localStorage.getItem('Perfil'),
         users: [],
         passwordConfirm: '',
         usuario: {

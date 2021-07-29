@@ -138,5 +138,10 @@ button {
   overflow-x: scroll; /* Show horizontal scrollbar */
 }
 
+.table {
+  box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.179);
+  background-color: rgba(255, 255, 255, 0.501);
+}
+
 
 </style>

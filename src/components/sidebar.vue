@@ -6,12 +6,12 @@
     <div v-if="this.usuario" style="margin-left: 5px;">
       <span>Bem vindo, {{usuario}}</span>
         
-        <div v-if="this.perfil == 1 ">
-          <span> Administrador </span>
+        <div v-if="this.perfil == 1 " class="d-flex">
+         <img src="../img/adm.png"> &nbsp;&nbsp;&nbsp; <span> Administrador </span>
         </div>
 
-        <div v-if="this.perfil == 2 ">
-          <span> Operador </span>
+        <div v-if="this.perfil == 2 " class="d-flex" >
+          <img src="../img/oper.png"> &nbsp;&nbsp;&nbsp; <span> Operador </span>
         </div><hr>
 
         <b-row v-if="this.perfil == 1 ">
@@ -115,7 +115,7 @@ export default {
     sair(){
       if (confirm('Deseja Sair?')){
       localStorage.clear();
-      location.reload()
+      location.assign('/')
       }
     }
 
