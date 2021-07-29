@@ -48,7 +48,7 @@
         </b-row><br>
 
         <b-row>
-           <router-link to="/home" class="w3-bar-item w3-button w3-hover-none buttonMenu d-flex d-row">
+           <router-link to="/" class="w3-bar-item w3-button w3-hover-none buttonMenu d-flex d-row">
             <b-col md="1">
                 <img src="../img/myMaterial.png">
             </b-col>

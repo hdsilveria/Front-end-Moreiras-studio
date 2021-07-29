@@ -71,7 +71,7 @@ export default ({
           console.log(this.userToken)
 
           setTimeout(function(){
-            location.assign('/home')
+            location.reload()
              }, 1900);
       })
       .catch(err => {
