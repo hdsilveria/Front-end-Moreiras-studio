@@ -70,7 +70,10 @@ export default ({
           localStorage.setItem('token', this.userToken)
           console.log(this.userToken)
 
-          setTimeout(function(){  location.assign('/#/home') }, 1900);
+          setTimeout(function(){  
+            location.assign('/#/home')
+            Location.reload()
+             }, 1900);
       })
       .catch(err => {
           this.$toast.error("'Usuario ou senha invalidos!'", {
