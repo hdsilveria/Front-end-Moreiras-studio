@@ -67,6 +67,17 @@
              <span>Minha Agenda</span>
             </b-col>
           </router-link>
+        </b-row> <br>
+
+        <b-row>
+          <router-link to="/metrics" class="w3-bar-item w3-button w3-hover-none buttonMenu d-flex">
+            <b-col md="1">
+                <img src="../img/metrics.png">
+            </b-col>
+            <b-col  class="text-center" md="7">
+             <span>Minha Agenda</span>
+            </b-col>
+          </router-link>
         </b-row>
 
         <hr>

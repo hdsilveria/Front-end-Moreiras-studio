@@ -5,6 +5,7 @@ import inserir from '../src/components/inserir'
 import newUser from '../src/components/newUser'
 import agenda from '../src/components/agenda'
 import newHour from '../src/components/newHour'
+import metricas from '../src/components/metricas'
 
 Vue.use(VueRouter)
 
@@ -33,7 +34,12 @@ const routes = [
         name: 'newHour',
         path: '/newHour',
         component: newHour
-    },        
+    },
+    {
+        name: 'metrics',
+        path: '/metrics',
+        component: metricas
+    },       
 ]
 
 const router = new VueRouter({routes})
