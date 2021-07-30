@@ -1,9 +1,15 @@
 <template>
 <div>
-
-  <div class="clients">
-    <vendas />
-  </div>
+  <b-row> <h4>Minhas Métricas</h4></b-row> <br>
+  <b-row>
+    <b-col />
+      <b-col>
+        <div class="graphic">
+          <vendas />
+        </div>
+      </b-col>
+    <b-col />
+  </b-row>
 
 </div>
 </template>
@@ -31,8 +37,12 @@ export default {
 
 <style scoped>
 
-.clients {
-  width: 400px;
+h4 {
+    text-align: center;
+    margin: 10px;
+    font-family: athena regular;
+    color: #686868;
 }
+
 
 </style>

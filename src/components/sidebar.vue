@@ -64,7 +64,7 @@
                 <img src="../img/myHour.png">
             </b-col>
             <b-col  class="text-center" md="7">
-             <span>Minha Agenda</span>
+             <span>&nbsp;Minha Agenda</span>
             </b-col>
           </router-link>
         </b-row> <br>
@@ -74,8 +74,8 @@
             <b-col md="1">
                 <img src="../img/metrics.png">
             </b-col>
-            <b-col  class="text-center" md="7">
-             <span>Minha Agenda</span>
+            <b-col  class="text-center" md="8">
+             <span>Minhas Metricas </span>
             </b-col>
           </router-link>
         </b-row>
@@ -145,6 +145,7 @@ margin-top: -20px;
 height: 110%;
 font-weight: 500;
 border: 2px solid rgba(38, 38, 38, 0.063);
+z-index: 10;
 }
 
 #contLogin {
@@ -193,7 +194,6 @@ border: 2px solid rgba(38, 38, 38, 0.063);
 
 #menu {
   width: 4%;
-  z-index: 9;
 }
 
 #menu span {

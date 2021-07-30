@@ -20,8 +20,8 @@
         <div class="col-md-6">
           <label class="form-label">Perfil </label> 
           <select class="form-control" v-model="usuario.perfil" required>
-              <option value=1 selected>1 - Administrador </option>
-              <option value=2 > 2 - Operador </option>
+              <option value=1>1 - Administrador </option>
+              <option value=2> 2 - Operador </option>
           </select>
         </div>
 
@@ -174,6 +174,7 @@ methods: {
     font-weight: 500;
     width: 100%;
     padding: 1%;
+    z-index: 1;
 }
 
 input::-webkit-outer-spin-button,
