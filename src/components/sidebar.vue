@@ -141,7 +141,7 @@ export default {
 background: rgb(244,191,187);
 background: linear-gradient(185deg, rgba(244,191,187,1) 3%, rgba(158,104,100,1) 72%);
 color: rgb(255, 255, 255);
-margin-top: -70px;
+margin-top: -30px;
 height: 110%;
 font-weight: 500;
 border: 2px solid rgba(38, 38, 38, 0.063);
@@ -156,9 +156,8 @@ overflow-x: hidden;
 
 
 #menuInt {
-  margin-top: 50px;
   font-size: 13pt;
-  margin-top: 110px;
+  margin-top: 70px;
 }
 
 .fade-enter-active, .fade-leave-active {
