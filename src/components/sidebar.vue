@@ -141,11 +141,12 @@ export default {
 background: rgb(244,191,187);
 background: linear-gradient(185deg, rgba(244,191,187,1) 3%, rgba(158,104,100,1) 72%);
 color: rgb(255, 255, 255);
-margin-top: -20px;
+margin-top: -70px;
 height: 110%;
 font-weight: 500;
 border: 2px solid rgba(38, 38, 38, 0.063);
 z-index: 10;
+overflow-x: hidden;
 }
 
 #contLogin {
