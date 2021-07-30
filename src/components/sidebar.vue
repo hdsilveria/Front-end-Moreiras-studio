@@ -157,7 +157,7 @@ overflow-x: hidden;
 
 #menuInt {
   font-size: 13pt;
-  margin-top: 70px;
+  margin-top: 80px;
 }
 
 .fade-enter-active, .fade-leave-active {
