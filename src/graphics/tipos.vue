@@ -18,7 +18,6 @@ export default {
       this.clientes = response.data.map(date => date.tipo)
       this.aplicacao = this.clientes.filter(tipos => tipos == 'Aplicação')
       this.manutencao = this.clientes.filter(tipos => tipos == 'Manutenção')
-      console.log(this.clientes)
 
      this.dados.push(
         this.aplicacao.length,

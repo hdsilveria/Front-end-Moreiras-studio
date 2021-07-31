@@ -20,7 +20,6 @@ export default {
       clientesMarco: '',
       clientesFavereiro: '',
       clientesJaneiro: '',
-
     }
   },
 
@@ -33,7 +32,7 @@ export default {
       this.clientesOutubro = this.clientes.filter(horarios => horarios == '10/2021')
       this.clientesSetembro = this.clientes.filter(horarios => horarios == '09/2021')
       this.clientesAgosto = this.clientes.filter(horarios => horarios == '08/2021')
-      this.clientesJulho = this.clientes.filter(horarios => horarios == 7)
+      this.clientesJulho = this.clientes.filter(horarios => horarios == '07/2021')
       this.clientesJunho = this.clientes.filter(horarios => horarios == 6)
       this.clientesMaio = this.clientes.filter(horarios => horarios == 5)
       this.clientesAbril = this.clientes.filter(horarios => horarios == 4)

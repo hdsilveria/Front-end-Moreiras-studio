@@ -27,6 +27,10 @@
       </div>
     </b-col>
 
+    <b-row class='p-0'>
+      <valoresMes style="width: 430px; margin-top: 3%;" /> 
+    </b-row>
+
   </b-row>
 
   <div v-else class="text-center">
@@ -41,13 +45,20 @@
 import vendas from '../graphics/vendas.vue'
 import procedimentos from '../graphics/procedimentos.vue'
 import tipos from '../graphics/tipos.vue'
+import valoresMes from '../graphics/valoresMes'
 
 
 export default {
 
   data(){
     return {
-      teste: [],
+      clientes: [],
+      clientsAgosto: [],
+      clientsSetembro: [],
+      clientsOutubro: [],
+      clientsNovembro: [],
+      clientsDezembro: [],
+      allClients: [],
       perfil: localStorage.getItem('Perfil'),
     }
   },
@@ -57,6 +68,7 @@ export default {
     vendas,
     procedimentos,
     tipos,
+    valoresMes,
   }
 }
 
