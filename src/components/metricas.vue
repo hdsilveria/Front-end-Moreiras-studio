@@ -1,15 +1,37 @@
 <template>
 <div>
-  <b-row> <h4>Minhas Métricas</h4></b-row> <br>
-  <b-row>
-    <b-col />
-      <b-col>
+  <b-row v-if="this.perfil == 1">
+
+    <b-row> 
+      <h4>Minhas Métricas</h4>
+    </b-row>
+
+    <b-col class="p-0">
+      <br>
         <div class="graphic">
           <vendas />
         </div>
-      </b-col>
-    <b-col />
+    </b-col>
+
+    <b-col class="p-0">
+      <br>
+      <div class="graphic">
+        <procedimentos />
+      </div>
+    </b-col>
+
+    <b-col class="p-0">
+      <br>
+      <div class="graphic">
+        <tipos />
+      </div>
+    </b-col>
+
   </b-row>
+
+  <div v-else class="text-center">
+    <h2>Usuario sem permissão</h2>
+  </div>
 
 </div>
 </template>
@@ -17,6 +39,8 @@
 <script>
 
 import vendas from '../graphics/vendas.vue'
+import procedimentos from '../graphics/procedimentos.vue'
+import tipos from '../graphics/tipos.vue'
 
 
 export default {
@@ -24,12 +48,15 @@ export default {
   data(){
     return {
       teste: [],
+      perfil: localStorage.getItem('Perfil'),
     }
   },
 
 
   components: {
     vendas,
+    procedimentos,
+    tipos,
   }
 }
 
@@ -44,5 +71,8 @@ h4 {
     color: #686868;
 }
 
+.graphic {
+  width: 400px;
+}
 
 </style>

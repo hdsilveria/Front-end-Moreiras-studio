@@ -69,7 +69,7 @@
           </router-link>
         </b-row> <br>
 
-        <b-row>
+        <b-row v-if="this.perfil == 1 ">
           <router-link to="/metrics" class="w3-bar-item w3-button w3-hover-none buttonMenu d-flex">
             <b-col md="1">
                 <img src="../img/metrics.png">

@@ -57,8 +57,8 @@
 
   </b-row>
 
-<div v-if="this.perfil == 2" class="text-center">
-  <h2>Sem permissão</h2>
+<div v-else class="text-center">
+  <h2>Usuario sem permissão</h2>
 </div>
 
 </div>

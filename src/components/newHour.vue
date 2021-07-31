@@ -30,8 +30,8 @@
               <option value="Mega Volume" >Cilius: Mega Volume </option>
               <option value="Gel na Tip" >Unhas: Gel na Tip </option>
               <option value="Fibra de Vidro" >Unhas: Fibra de Vidro </option>
-              <option value="Blingagem com Fibra" >Unhas: Blindagem com Fibra </option>
-              <option value="Blingagem Comum" >Unhas: Blindagem Comum </option>
+              <option value="Blindagem com Fibra" >Unhas: Blindagem com Fibra </option>
+              <option value="Blindagem Comum" >Unhas: Blindagem Comum </option>
 
           </select>
         </b-col>
