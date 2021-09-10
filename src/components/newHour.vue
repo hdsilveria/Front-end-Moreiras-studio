@@ -48,7 +48,12 @@
 
     <b-row>
         <b-col class="d-flex d-row justify-content-center">
-            <br><button class="btn btn-outline-light" type="submit"> Inserir Horario </button>
+            <br><button :disabled="this.load" class="btn btn-outline-light" type="submit">
+              <b-spinner v-if="this.load" variant="light"/>
+                <div v-else>
+                    Inserir Horario 
+                </div>  
+            </button>
         </b-col>
     </b-row> <br>
     
@@ -64,6 +69,7 @@ export default {
 
 data(){
     return {
+      load: false,
       novoHorario: {
           cliente: '',
           data: '',
@@ -76,9 +82,11 @@ data(){
 
 methods: {
 
-    insertHorary(){       
+    insertHorary(){
+      this.load = true
         agenda.cadastrar(this.novoHorario, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} })
-        .then(response =>{
+        .then(() =>{
+          this.load = false,
             this.$toast.success("Horario inserido com sucesso!", {
               position: "bottom-right",
               timeout: 2000,
@@ -92,12 +100,15 @@ methods: {
               closeButton: "button",
               icon: true,
               rtl: false
-            });
-          console.log(response),
-          setTimeout(() => { location.reload() }, 2100);
+            })
+          this.novoHorario.cliente = '',
+          this.novoHorario.data = '',
+          this.novoHorario.horario = '',
+          this.novoHorario.procedimento = '',
+          this.novoHorario.tipo = ''
         })
-        .catch(err => {
-          alert('Usuario não autenticado! ' + err)
+        .catch(() => {
+          this.load = false
         })
     },
   }

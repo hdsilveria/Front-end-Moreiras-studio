@@ -8,17 +8,20 @@
         <form @submit.prevent="loginAcess">
           <div class="row g-3">
             <div>
-              <label class="form-label">Email </label>
-              <input v-model="newLogin.email" class="form-control" type="email" placeholder="Digite o e-mail">
+              <input v-model="newLogin.email" class="form-control" type="email" placeholder="Email">
             </div>
 
             <div>
-              <label class="form-label">Senha </label>
               <input v-model="newLogin.password" class="form-control" type="password" placeholder="********">
             </div>
 
           </div><br>
-          <button class="btn btn-outline-dark">Logar</button><br><br>
+          <button type="submite" :disabled="this.load" class="btn btn-outline-dark w-100">
+              <b-spinner v-if="this.load" variant="dark"/>
+                <div v-else>
+                    Entrar
+                </div>   
+          </button><br><br>
         </form>
       </div>
     </b-col>
@@ -37,6 +40,7 @@ export default ({
     return { 
       newLogin: { email: '', password: ''},
       mostraLogin: false,    
+      load: false,
       userToken: 'Não Autenticado',
       dadosUser: '',
       usuario: localStorage.getItem('Usuario'),
@@ -44,9 +48,11 @@ export default ({
     }},
   methods:{
 
-  loginAcess(){       
+  loginAcess(){
+    this.load = true
     materiais.login(this.newLogin)
       .then(response =>{
+        this.load = false
           this.$toast.success("Login Efetuado com sucesso!", {
               position: "bottom-right",
               timeout: 2000,
@@ -66,15 +72,12 @@ export default ({
 
           localStorage.setItem('Usuario', this.dadosUser.Usuario)
           localStorage.setItem('Perfil', this.dadosUser.Perfil)
-
           localStorage.setItem('token', this.userToken)
-          console.log(this.userToken)
 
-          setTimeout(function(){
-            location.reload()
-             }, 1900);
+          location.reload()
       })
       .catch(err => {
+        this.load = false
           this.$toast.error("'Usuario ou senha invalidos!'", {
             position: "bottom-right",
             timeout: 2000,

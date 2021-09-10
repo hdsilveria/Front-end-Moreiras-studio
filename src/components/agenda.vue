@@ -73,10 +73,27 @@ export default ({
 
 methods: {
   remover(deletMaterial){
-    console.log(deletMaterial)
     if ( confirm('deseja excluir?') ){
       agenda.apagar(deletMaterial).then(() => {
-        location.reload()
+          agenda.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} })
+            .then((response)=>{
+            this.horarios = response.data.rows
+            this.clientResults = response.data.rows
+            })
+          this.$toast.success("Horario deletado com sucesso!", {
+              position: "bottom-right",
+              timeout: 2000,
+              closeOnClick: true,
+              pauseOnFocusLoss: true,
+              pauseOnHover: true,
+              draggable: true,
+              draggablePercent: 2,
+              showCloseButtonOnHover: false,
+              hideProgressBar: true,
+              closeButton: "button",
+              icon: true,
+              rtl: false
+            })
       }).catch(err =>{
         console.log(err)
       })
@@ -109,9 +126,10 @@ methods: {
 },
 
 mounted(){  
-  agenda.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }).then((response)=>{
-    this.horarios = response.data
-    this.clientResults = response.data
+  agenda.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} })
+  .then((response)=>{
+    this.horarios = response.data.rows
+    this.clientResults = response.data.rows
     })
   },
 

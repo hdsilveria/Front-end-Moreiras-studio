@@ -36,7 +36,12 @@
         </div><br>
           <b-row>
         <b-col class="d-flex d-row justify-content-center">
-            <br><button class="btn btn-outline-light" type="submit"> Criar Usuario </button>
+            <br><button :disabled="this.load" class="btn btn-outline-light" type="submit">
+                <b-spinner v-if="this.load" variant="light"/>
+                <div v-else>
+                    Criar Usuario 
+                </div>              
+              </button>
         </b-col>
     </b-row> <br>
     </form>
@@ -48,9 +53,9 @@
     <div class="usersCreated">
       <br>
       <ul v-for="usuarios in users" :key="usuarios.id">
-        <li><b>Usuario:</b> {{usuarios.usuario}}</li>
+        <li><b>Usuario:</b> {{usuarios.user}}</li>
         <li><b>Email:</b> {{usuarios.email}} &nbsp;&nbsp;&nbsp;&nbsp; <button class="btn btn-outline-light" @click="remover(usuarios)" >Deletar </button></li>
-        <li><b>Perfil:</b> {{usuarios.perfil}}</li>
+        <li><b>Perfil:</b> {{usuarios.profile}}</li>
       </ul>
     </div>
   </b-col>
@@ -78,6 +83,7 @@ mounted(){
 
 data(){
     return {
+      load: false,
       user: localStorage.getItem('Usuario'),
       perfil: localStorage.getItem('Perfil'),
         users: [],
@@ -95,7 +101,9 @@ methods: {
     remover(deletMaterial){
     if ( confirm('deseja excluir?') ){
       users.apagar(deletMaterial).then(() => {
-        location.reload()
+          users.listarUsuario({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }).then((response)=>{
+    this.users = response.data
+    })
       }).catch(err =>{
         console.log(err)
       })
@@ -103,10 +111,11 @@ methods: {
     },
 
     cadastrarUsuario(){
-      
+      this.load = true            
       if (this.usuario.password === this.passwordConfirm) {
         users.criarUsuario(this.usuario, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} })
-        .then(response =>{
+        .then(() =>{
+          this.load = false
             this.$toast.success("Usuario inserido com sucesso!", {
               position: "bottom-right",
               timeout: 2000,
@@ -120,12 +129,20 @@ methods: {
               closeButton: "button",
               icon: true,
               rtl: false
-            });
-          console.log(response),
-          location.reload()
+            })
+          this.usuario.usuario = ''
+          this.usuario.email = ''
+          this.usuario.perfil = ''
+          this.usuario.password = ''
+          this.passwordConfirm = ''
+
+            users.listarUsuario({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }).then((response)=>{
+    this.users = response.data
+    })
         })
         .catch(err => {
-          alert('Erro: ' + err)
+          this.load = false
+          console.log(err)
             this.$toast.error("Erro, contate o Administrador!", {
               position: "bottom-right",
               timeout: 2000,
@@ -142,7 +159,8 @@ methods: {
             });
         })
       } else {
-          this.$toast.error("Senhas não confirmadas!", {
+        this.load = false
+          this.$toast.error("Senhas não conferem!", {
               position: "bottom-right",
               timeout: 2000,
               closeOnClick: true,

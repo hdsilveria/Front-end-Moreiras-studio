@@ -194,6 +194,8 @@ overflow-x: hidden;
 
 #menu {
   width: 4%;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 #menu span {
@@ -202,6 +204,8 @@ overflow-x: hidden;
 
 #menu:hover a {
   display: block;
+  transition: 0.2s;
+
 }
 
 #menu:hover {
@@ -211,6 +215,7 @@ overflow-x: hidden;
 
 #menu:hover span {
   display: block;
+  transition: 0.2s;
 }
 
 }

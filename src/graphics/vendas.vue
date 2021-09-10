@@ -26,7 +26,7 @@ export default {
   extends: Bar ,
   async mounted () {
     await agenda.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }).then((response)=>{
-      this.clientes = response.data.map(date => date.data.slice(3,10))
+      this.clientes = response.data.rows.map(date => date.data.slice(3,10))
       this.clientesDezembro = this.clientes.filter(horarios => horarios == '12/2021')
       this.clientesNovembro = this.clientes.filter(horarios => horarios == '11/2021')
       this.clientesOutubro = this.clientes.filter(horarios => horarios == '10/2021')

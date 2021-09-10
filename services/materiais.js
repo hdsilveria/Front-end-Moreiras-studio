@@ -12,15 +12,15 @@ export default {
     },
 
     cadastrar: (CadMaterial, token) =>{
-        return api.post('/inserirMaterial', CadMaterial, token)
+        return api.post('/estoque/material', CadMaterial, token)
     },
 
-    atualizar: (UpdMaterial) => {
-        return api.put('/alterarMaterial', UpdMaterial)
+    atualizar: (UpdMaterial, token) => {
+        return api.put('/estoque/material', UpdMaterial, token)
     },
 
-    apagar: (Delmaterial) => {
-        return api.delete('/deletarMaterial', {data: Delmaterial})
+    apagar: (Delmaterial, token) => {
+        return api.delete('/estoque/material', {data: Delmaterial}, token)
     },
 
 

@@ -4,9 +4,6 @@
 <div v-if="this.usuario">
   <sidebar />
     <router-view v-if="this.usuario" id="cont" />
-    <div v-else>
-      <h2>Necessario autenticação</h2>
-    </div>
 </div>
 
 <div id="cont" style="margin-left: 0%;" v-else>
