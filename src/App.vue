@@ -2,7 +2,8 @@
 <div>
 
 <div v-if="this.usuario">
-  <sidebar />
+  <sidebar class="disSideBar" />
+  <navBar class="noneSideBar" />
     <router-view v-if="this.usuario" id="cont" />
 </div>
 
@@ -19,6 +20,7 @@ require('/style/w3.css')
 
 import sidebar from './components/sidebar.vue'
 import login from './components/login.vue'
+import navBar from './components/navBar.vue'
 
 export default {
   
@@ -35,6 +37,7 @@ export default {
   components: {
     sidebar,
     login,
+    navBar,
      },
 
 }
@@ -47,7 +50,12 @@ export default {
     font-family: athena regular;
   }
 
-  @media screen and (min-width: 1000px){
+  @media screen and (min-width: 800px){
+
+  .noneSideBar {
+    display: none;
+  }
+
   #cont {
     margin-left: 5%;
     padding: 2%;
@@ -55,11 +63,14 @@ export default {
   }
   }
 
-  @media screen and (max-width: 500px){
+  @media screen and (max-width: 799px){
+
+  .disSideBar {
+    display: none;
+  }
 
   #cont {
-    margin-left: 15%;
-    padding: 2%;
+    padding: 3%;
     height: 650px;
   }
 

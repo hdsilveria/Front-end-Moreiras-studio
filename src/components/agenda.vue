@@ -21,47 +21,45 @@
         <b-button @click="searchDate" class="searchButton">Buscar</b-button>
     </b-col>
 
-    <b-col md="2" class="p-0">
+    <b-col md="2">
       <label>Buscar pelo mês</label><br>
         <b-form-select
         class="searchMounth"
         v-model="buscaMes"
         :options="options"/>
-    </b-col>
+    </b-col> <br>
 
-    <b-col md="2" align-self="end" class="p-0">
-        <b-button @click="searchMounth" class="searchButton">Buscar</b-button>
+    <b-col md="2" align-self="end">
+        <b-button @click="searchMounth" class="searchButton searchButtonMounth">Buscar</b-button>
     </b-col>
 </b-row>
 <br>
 
 <div id="tabela">
-  <table class="table table-borderless">
-  <thead>
-    <tr>
-      <th scope="col">Cliente</th>
-      <th scope="col">Data</th>
-      <th scope="col">Horario</th>
-      <th scope="col">Procedimento</th>
-      <th scope="col">Tipo</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
+  <b-row class="headTable">
+      <b-col md="3" scope="col">Cliente</b-col>
+      <b-col md="2" scope="col">Data</b-col>
+      <b-col md="2" scope="col">Horario</b-col>
+      <b-col md="2" scope="col">Procedimento</b-col>
+      <b-col md="1" scope="col">Tipo</b-col>
+      <b-col md="1" scope="col"></b-col>
+  </b-row>
 
-  <tbody v-for="horario of clientResults" :key="horario.id">
-    <tr>
-      <td>{{horario.cliente}}</td>
-      <td>{{horario.data}}</td>
-      <td>{{horario.horario}}</td>
-      <td>{{horario.procedimento}}</td>
-      <td>{{horario.tipo}}</td>
-      <td><button type="button" class="btn btn-outline-dark btn-sm" @click="remover(horario)">Deletar</button></td>      
-    </tr>
-  </tbody><br><br>
-  </table>
+  <b-row class="table" v-for="horario of clientResults" :key="horario.id">
+      <b-col md="3">{{horario.cliente}}</b-col>
+      <b-col md="2">{{horario.data}}</b-col>
+      <b-col md="2">{{horario.horario}}</b-col>
+      <b-col md="2">{{horario.procedimento}}</b-col>
+      <b-col cols="2">{{horario.tipo}}</b-col>
+      <b-col md="auto">
+        <button type="button" class="btn btn-outline-dark btn-sm" @click="remover(horario)">
+          Deletar
+        </button>
+      </b-col>
+  </b-row>
   </div>
-</div>
 
+</div>
 </div>
 </template>
 
@@ -176,7 +174,7 @@ h3 {
   color: #686868;
 }
 
-thead {
+.headTable {
   width: 100%;
   color: white;
   background: rgb(244,191,187);
@@ -187,6 +185,7 @@ thead {
   color: white;
   background: rgb(244,191,187);
   background: linear-gradient(180deg, rgba(244,191,187,1) 0%, rgba(158,104,100,1) 100%);
+  margin-left: -15px;
 }
 
 button { 
@@ -196,12 +195,35 @@ button {
 .table {
   box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.179);
   background-color: rgba(255, 255, 255, 0.501);
+  padding: 5px;
+  margin-top: 5px;
 }
 
 .searchMounth {
   margin-top: 2px;
   width: 90%;
   height: 60%;
+}
+
+  .searchButtonMounth {
+    margin-left: -30px;
+  }
+
+  @media screen and (max-width: 799px){
+
+  .headTable {
+    display: none;
+  }
+
+  .searchButton {
+    margin-top: 10px;
+    margin-left: 0px;
+  }
+
+  .searchButtonMounth {
+    margin-left: 0px;
+  }
+
 }
 
 </style>
