@@ -21,7 +21,7 @@ export default {
 
   async mounted () {
     await agenda.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }).then((response)=>{
-      let vendas = response.data.map(date => date)
+      let vendas = response.data.rows.map(date => date)
       vendas.map(proc => proc).forEach(element => {
         if (element.procedimento == 'Volume Russo' && element.tipo == 'Aplicação') {
           element = { valor: 190, data: element.data }

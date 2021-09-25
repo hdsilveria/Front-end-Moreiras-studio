@@ -22,7 +22,7 @@
 
 <img src="./git_img/login.png">
 
-<p>- Ao efetuar o login, sera carregado a pagina inicial do dashboard, no menu lateral é apresentado o nome do usuario, perfil, e abaixo, as opções disponiveis para o perfil logado, neste caso, o perfil é administrador; Neste perfil apresentado, é possivel criar usuarios, vizualizar o estoque e inserir novo material:</p>
+<p>- Ao efetuar o login, sera carregado a pagina inicial do dashboard, no menu lateral é apresentado o nome do usuario, perfil, e abaixo, as opções disponiveis para o perfil logado, neste caso, o perfil é administrador; Neste perfil apresentado, é possivel criar usuarios, vizualizar o estoque e agenda, vizualizar metricas e adicionar horario na agenda e material no estoque:</p>
 
 <img src="./git_img/dashboard.png">
 
@@ -62,6 +62,18 @@
 
 <img src="./git_img/confirmar_alterar.png">
 
+<p>- <b>Nova funcionalidade!*</b> - Minhas metricas foi adicionado para o usuario acompanhar as tendias de vendas por procedimento em um periodo mensal, representado por graficos detalhados. </p>
+
+<img src="./git_img/metricas.png">
+
+<br>
+
+<p>- <b>Nova funcionalidade!*</b> - Minha Agenda foi adicionado para o usuario acompanhar sua agenda de clientes, onde é possivel efetuar pesquisas por data e por mês.</p>
+
+<img src="./git_img/minha_agenda.png">
+
+<br>
+
 <p>- Para deslogar, o usuario deve ir na opção "Sair", onde é necessario confirmar por meio de um alert. Feito o logout, o localStorage é limpo, e a sessão é encerrada, voltando para a tela de login:</p>
 
 <img src="./git_img/exit.png">
@@ -71,7 +83,7 @@
 <img src="./git_img/confirmar_exit.png">
 
 
-<i> Projeto para demonstar um projeto SPA em constante mudança, avançando para melhoria e implementações de novas funcionalidas;</i>
+<i> Projeto em constante mudança, avançando para melhoria e implementações de novas funcionalidas;</i>
 
 
 

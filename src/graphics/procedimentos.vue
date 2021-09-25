@@ -22,7 +22,7 @@ export default {
   extends: Pie ,
   async mounted () {
     await agenda.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }).then((response)=>{
-      this.clientes = response.data.map(date => date.procedimento)
+      this.clientes = response.data.rows.map(date => date.procedimento)
       this.volumeRusso = this.clientes.filter(tipos => tipos == 'Volume Russo')
       this.fioAfio = this.clientes.filter(tipos => tipos == 'Fio a Fio')
       this.volumeLeve = this.clientes.filter(tipos => tipos == 'Volume Leve')

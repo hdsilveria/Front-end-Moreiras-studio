@@ -78,8 +78,9 @@ import materiais from '/services/materiais'
 export default {
 
 mounted(){  
-  materiais.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }).then((response)=>{
-    this.materiais = response.data
+  materiais.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} })
+    .then((response)=>{
+      this.materiais = response.data.rows
     })
   },
   
@@ -96,15 +97,27 @@ mounted(){
   },
 
 methods: {
-
-    showModal() {
-      this.$root.$emit('bv::show::modal', 'modal-1', '#btnShow')
-    },
-
   remover(deletMaterial){
     if ( confirm('deseja excluir?') ){
       materiais.apagar(deletMaterial).then(() => {
-        location.reload()
+          this.$toast.success("Material deletado com sucesso!", {
+              position: "bottom-right",
+              timeout: 2000,
+              closeOnClick: true,
+              pauseOnFocusLoss: true,
+              pauseOnHover: true,
+              draggable: true,
+              draggablePercent: 2,
+              showCloseButtonOnHover: false,
+              hideProgressBar: true,
+              closeButton: "button",
+              icon: true,
+              rtl: false
+            })
+        materiais.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} })
+          .then((response)=>{
+          this.materiais = response.data.rows
+    })
       }).catch(err =>{
         console.log(err)
       })
@@ -113,8 +126,7 @@ methods: {
 
     atualizar(UpdateMaterial){
     if (confirm('Deseja realizar a alteração?')){
-    materiais.atualizar(UpdateMaterial).then(response =>{
-    console.log(response),
+    materiais.atualizar(UpdateMaterial).then(() =>{
     location.reload()
       })
      }

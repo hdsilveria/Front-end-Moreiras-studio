@@ -33,7 +33,10 @@
       </div>
           <b-row>
         <b-col class="d-flex d-row justify-content-center">
-            <br><button class="btn btn-outline-light" type="submit"> Salvar </button>
+            <br><button :disabled="this.load" class="btn btn-outline-light" type="submit">               <b-spinner v-if="this.load" variant="light"/>
+                <div v-else>
+                    Salvar
+                </div> </button>
         </b-col>
     </b-row> <br>
     </form>
@@ -50,6 +53,7 @@ export default {
 
 data(){
     return {
+      load: false,
       NovoMaterial: {
           material: '',
           quantidade: '',
@@ -61,9 +65,11 @@ data(){
 
 methods: {
 
-    inserirMaterial(){       
+    inserirMaterial(){
+       this.load = true   
         materiais.cadastrar(this.NovoMaterial, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} })
-        .then(response =>{
+        .then(() =>{
+           this.load = false
           this.$toast.success("Material inserido com sucesso!", {
             position: "bottom-right",
             timeout: 2000,
@@ -77,12 +83,14 @@ methods: {
             closeButton: "button",
             icon: true,
             rtl: false
-          });
-          console.log(response),
-          location.reload()
+          })
+          this.NovoMaterial.material = '',
+          this.NovoMaterial.quantidade = '',
+          this.NovoMaterial.valor = '',
+          this.NovoMaterial.data = ''
         })
-        .catch(err => {
-          alert(err)
+        .catch(() => {
+           this.load = false
         })
     },
   }

@@ -15,7 +15,7 @@ export default {
   extends: Doughnut ,
   async mounted () {
     await agenda.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }).then((response)=>{
-      this.clientes = response.data.map(date => date.tipo)
+      this.clientes = response.data.rows.map(date => date.tipo)
       this.aplicacao = this.clientes.filter(tipos => tipos == 'Aplicação')
       this.manutencao = this.clientes.filter(tipos => tipos == 'Manutenção')
 

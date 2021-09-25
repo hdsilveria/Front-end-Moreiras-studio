@@ -236,7 +236,6 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 
 body {
     background-image: url('../src/static/fundo.png');
-    background-repeat: no-repeat;
     background-position: center top;
     background-size: 280%;
 }
