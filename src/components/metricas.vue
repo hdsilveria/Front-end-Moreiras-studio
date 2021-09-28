@@ -3,7 +3,7 @@
   <b-row v-if="this.perfil == 1">
 
     <b-row> 
-      <h4>Minhas Métricas</h4>
+      <h4>Dashboard</h4>
     </b-row>
 
     <b-col class="p-0">
@@ -16,20 +16,21 @@
     <b-col class="p-0">
       <br>
       <div class="graphic">
-        <procedimentos />
+        <tipos />
       </div>
     </b-col>
 
     <b-col class="p-0">
       <br>
       <div class="graphic">
-        <tipos />
+        <procedimentos />
       </div>
     </b-col>
 
-    <b-row class='p-0'>
-      <valoresMes style="width: 430px; margin-top: 3%;" /> 
-    </b-row>
+    <b-col class="p-0">
+      <br>
+      <valoresMes class="graphic" /> 
+    </b-col>
 
   </b-row>
 
@@ -84,7 +85,7 @@ h4 {
 }
 
 .graphic {
-  width: 400px;
+  width: 270px;
 }
 
 </style>

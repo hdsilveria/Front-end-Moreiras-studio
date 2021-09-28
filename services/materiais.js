@@ -4,7 +4,7 @@ import { api } from './config'
 export default {
 
     listar: (token) =>{
-        return api.get('/estoque', token )
+        return api.get('/estoque?page=0&size=100', token )
     },
 
     login: (loginUser) =>{
@@ -19,8 +19,8 @@ export default {
         return api.put('/estoque/material', UpdMaterial, token)
     },
 
-    apagar: (Delmaterial, token) => {
-        return api.delete('/estoque/material', {data: Delmaterial}, token)
+    apagar: (id, token) => {
+        return api.delete(`/estoque/material/${id}`, token)
     },
 
 

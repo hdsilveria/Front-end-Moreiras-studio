@@ -52,7 +52,7 @@
       <b-col md="2">{{horario.procedimento}}</b-col>
       <b-col cols="2">{{horario.tipo}}</b-col>
       <b-col md="auto">
-        <button type="button" class="btn btn-outline-dark btn-sm" @click="remover(horario)">
+        <button type="button" class="btn btn-outline-dark btn-sm" @click="remover(horario.id)">
           Deletar
         </button>
       </b-col>
@@ -75,8 +75,8 @@ methods: {
       agenda.apagar(deletMaterial).then(() => {
           agenda.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} })
             .then((response)=>{
-            this.horarios = response.data.rows
-            this.clientResults = response.data.rows
+            this.horarios = response.data.data.rows
+            this.clientResults = response.data.data.rows
             })
           this.$toast.success("Horario deletado com sucesso!", {
               position: "bottom-right",
@@ -93,7 +93,7 @@ methods: {
               rtl: false
             })
       }).catch(err =>{
-        console.log(err)
+        console.log(err.response)
       })
      }
     },
@@ -118,6 +118,7 @@ methods: {
       }
     
     else {
+      console.log(this.clientResults)
         this.clientResults = this.horarios.filter(horarios => horarios.data.slice(3,5).includes(this.buscaMes))
     }
     }
@@ -126,8 +127,8 @@ methods: {
 mounted(){  
   agenda.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} })
   .then((response)=>{
-    this.horarios = response.data.rows
-    this.clientResults = response.data.rows
+    this.horarios = response.data.data.rows
+    this.clientResults = response.data.data.rows
     })
   },
 
@@ -181,6 +182,15 @@ h3 {
   background: linear-gradient(180deg, rgba(244,191,187,1) 0%, rgba(158,104,100,1) 100%);
 }
 
+
+.table {
+  box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.179);
+  background-color: rgba(255, 255, 255, 0.501);
+  padding: 5px;
+  margin-top: 5px;
+}
+
+
 .searchButton {
   color: white;
   background: rgb(244,191,187);
@@ -190,13 +200,6 @@ h3 {
 
 button { 
  text-decoration: none; 
-}
-
-.table {
-  box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.179);
-  background-color: rgba(255, 255, 255, 0.501);
-  padding: 5px;
-  margin-top: 5px;
 }
 
 .searchMounth {
