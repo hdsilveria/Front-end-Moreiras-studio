@@ -21,11 +21,11 @@
     </b-row>
 
     <b-row style="margin-top: 10px;">
-        <b-col>
+        <b-col md="6">
           <label class="form-label">Telefone </label>
           <input v-model="novaCliente.tel" class="form-control" type="tel" v-mask="'(##)#####-####'" autocomplete="off" required>
         </b-col>
-        <b-col>
+        <b-col md="5">
           <label class="form-label">Rede Social </label>
           <input v-model="novaCliente.social" class="form-control" type="text" autocomplete="off" required>
         </b-col>

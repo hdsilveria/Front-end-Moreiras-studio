@@ -16,7 +16,7 @@
         </div>
       </b-col>
       <b-col>
-        <div class="clientArea text-left" style="width: 360px;">
+        <div class="clientArea text-left" style="width: 360px; overflow: auto; overflow-x: hidden;">
           <span style="margin-left: 70px;">Aniversariantes do Mês</span> <br><br>
           <div v-for="birth in clientes" :key="birth.id">
             <b-row>

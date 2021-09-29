@@ -132,7 +132,7 @@ h3 {
 .nameClient {
   cursor: pointer;
   color: rgb(158, 104, 100);
-  font-size: 14pt;
+  font-size: 13pt;
 }
 
 </style>
