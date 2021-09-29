@@ -4,6 +4,7 @@
   <div id="menuInt">
 
     <div v-if="this.usuario" style="margin-left: 5px;">
+      <div style="margin-left: 5px;">
       <span>Bem vindo, {{usuario}}</span>
         
         <div v-if="this.perfil == 1 " class="d-flex">
@@ -13,6 +14,7 @@
         <div v-if="this.perfil == 2 " class="d-flex" >
           <img src="../img/oper.png"> &nbsp;&nbsp;&nbsp; <span> Operador </span>
         </div><hr>
+      </div>
 
         
           <b-row v-if="this.perfil == 1 ">
@@ -53,8 +55,19 @@
             <b-col md="1">
                 <img src="../img/addHour.png">
             </b-col>
-            <b-col class="text-center" md="11">
-            <span>Inserir Horario na Agenda</span> 
+            <b-col class="text-center" md="10">
+            <span style="margin-left: 13px;">Inserir Horario na Agenda</span> 
+            </b-col>
+          </router-link>
+        </b-row><br>
+
+        <b-row> 
+          <router-link to="/novaCliente" class="w3-bar-item w3-button w3-hover-none buttonMenu d-flex">
+            <b-col md="1">
+                <img src="../img/addCliente.png">
+            </b-col>
+            <b-col class="text-center" md="8">
+            <span>Adicionar Cliente</span> 
             </b-col>
           </router-link>
         </b-row><br>
@@ -192,13 +205,18 @@ overflow-x: hidden;
     margin-top: 40px;
 }
 
+span {
+  font-size: 15px !important;
+}
+
 .btnLogin {
   font-size: 16pt;
   font-weight: 700;
 }
 
 .buttonMenu {
-  margin: -5px;
+  margin: -10px;
+  margin-left: 1px;
 }
 
 

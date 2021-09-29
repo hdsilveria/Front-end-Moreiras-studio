@@ -11,35 +11,55 @@
       <b-col md="2" scope="col">Idade</b-col>
       <b-col md="2" scope="col">Telefone</b-col>
       <b-col md="2" scope="col">Aniversario</b-col>
-      <b-col md="1" scope="col">Rede Social</b-col>
+      <b-col md="2" scope="col">Rede Social</b-col>
       <b-col md="1" scope="col"></b-col>
   </b-row>
 
   <b-row class="table" v-for="cliente of clientes" :key="cliente.id">
-      <b-col md="3">{{cliente.name}}</b-col>
-      <b-col md="2">{{cliente.age}}</b-col>
-      <b-col md="2">{{cliente.tel}}</b-col>
-      <b-col md="2">{{cliente.birthday}}</b-col>
-      <b-col cols="2">{{cliente.social}}</b-col>
+      <b-col md="3">
+        <span @click="openModalUpdt(cliente)" class="nameClient">
+          {{cliente.name}}
+        </span>
+      </b-col>
+      <b-col md="2">
+        {{cliente.age}} anos
+      </b-col>
+      <b-col md="2">
+        {{cliente.tel}}
+      </b-col>
+      <b-col md="2">
+        {{cliente.birthday}}
+      </b-col>
+      <b-col cols="2">
+        {{cliente.social}}
+      </b-col>
       <b-col md="auto">
         <button type="button" class="btn btn-outline-dark btn-sm" @click="remover(cliente.id)">
           Deletar
         </button>
       </b-col>
   </b-row>
-  </div>
+  </div> <br>
+
+  <updateClient :client="updClient" @attClients="listClients()"/>
 
   </div>
 </template>
 
 <script>
 import clients from '../../services/clientes'
+import updateClient from '../modals/updateClient.vue'
 
 export default {
   data(){
     return {
-      clientes: []
+      clientes: [],
+      updClient: {},
     }
+  },
+
+  components: {
+    updateClient
   },
 
   mounted(){
@@ -47,6 +67,11 @@ export default {
   },
 
   methods: {
+
+    openModalUpdt(cliente){
+      this.updClient = cliente
+      this.$modal.show('updateClient')
+    },
 
     listClients(){
       clients.listar().then(response => {
@@ -102,6 +127,12 @@ h3 {
   background-color: rgba(255, 255, 255, 0.501);
   padding: 5px;
   margin-top: 5px;
+}
+
+.nameClient {
+  cursor: pointer;
+  color: rgb(158, 104, 100);
+  font-size: 14pt;
 }
 
 </style>

@@ -7,6 +7,7 @@ import agenda from '../src/components/agenda'
 import newHour from '../src/components/newHour'
 import metricas from '../src/components/metricas'
 import clients from '../src/components/clientes'
+import newClients from '../src/components/newClient'
 
 Vue.use(VueRouter)
 
@@ -45,7 +46,12 @@ const routes = [
         name: 'clients',
         path: '/clientes',
         component: clients
-    },        
+    },
+    {
+        name: 'novaCliente',
+        path: '/novaCliente',
+        component: newClients
+    },      
 ]
 
 const router = new VueRouter({routes})

@@ -6,6 +6,25 @@
       <h4>Dashboard</h4>
     </b-row>
 
+    <b-row style="margin-top: 25px;">
+      <b-col md="4">
+        <div class="clientArea text-center">
+          <span>Numero de clientes Cadastradas</span><br><br>
+          <strong>
+            {{nmClientes.data.count}}
+          </strong>
+        </div>
+      </b-col>
+      <b-col>
+        <div class="clientArea text-center">
+          <span>Aniversariantes do Mês</span> <br>
+          <strong>
+            
+          </strong>
+        </div>
+      </b-col>
+    </b-row>
+
     <b-col class="p-0">
       <br>
         <div class="graphic">
@@ -31,7 +50,6 @@
       <br>
       <valoresMes class="graphic" /> 
     </b-col>
-
   </b-row>
 
   <div v-else class="text-center">
@@ -47,6 +65,7 @@ import vendas from '../graphics/vendas.vue'
 import procedimentos from '../graphics/procedimentos.vue'
 import tipos from '../graphics/tipos.vue'
 import valoresMes from '../graphics/valoresMes'
+import clients from '../../services/clientes'
 
 
 export default {
@@ -54,6 +73,7 @@ export default {
   data(){
     return {
       clientes: [],
+      nmClientes: [],
       clientsAgosto: [],
       clientsSetembro: [],
       clientsOutubro: [],
@@ -64,6 +84,11 @@ export default {
     }
   },
 
+  created(){
+    clients.listar().then(res => {
+      this.nmClientes = res
+    })
+  },
 
   components: {
     vendas,
@@ -88,4 +113,20 @@ h4 {
   width: 270px;
 }
 
+.clientArea {
+  height: 150px;
+  background: linear-gradient(180deg, rgba(244,191,187,1) 0%, rgba(158,104,100,1) 100%);
+  color: white;
+  border: 2px solid rgba(158,104,100,1);
+  width: 300px;
+}
+
+strong {
+  font-size: 18pt;
+  color: white;
+}
+
+span {
+  font-size: 14pt;
+}
 </style>

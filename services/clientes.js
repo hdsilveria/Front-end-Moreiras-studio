@@ -8,5 +8,9 @@ export default {
 
   deletar: (id) => {
     return api.delete(`/clientes/${id}`)
+  },
+
+  inserir: client => {
+    return api.post(`/clientes/insertClient`, client)
   }
 }
