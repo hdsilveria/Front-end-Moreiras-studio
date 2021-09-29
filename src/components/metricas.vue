@@ -6,25 +6,27 @@
       <h4>Dashboard</h4>
     </b-row>
 
-    <b-row style="margin-top: 45px; margin-bottom: 45px;">
+    <b-row style="margin-top: 45px; margin-bottom: 20px;">
       <b-col md="4">
         <div class="clientArea text-center">
-          <span>Numero de clientes Cadastradas</span><br><br>
+          <span>Numero de clientes Cadastradas </span><strong>❤️</strong><br><br>
           <strong>
             {{nmClientes}}
           </strong>
-        </div>
-      </b-col>
+        </div><br>
+      </b-col> 
       <b-col>
         <div class="clientArea text-left" style="width: 360px; overflow: auto; overflow-x: hidden;">
-          <span style="margin-left: 70px;">Aniversariantes do Mês</span> <br><br>
+          <span style="margin-left: 70px;">Aniversariantes do Mês</span> <strong>🍰</strong><br><br>
+
+          <small v-if="clientes.length == 0">🙁Não há Aniversariantes este mês🙁</small>
           <div v-for="birth in clientes" :key="birth.id">
             <b-row>
               <b-col cols="7">
-                <small>{{birth.name}}</small>
+                <small>{{ birth.name }}</small>
               </b-col>
               <b-col>
-                <small>{{birth.birthday}}</small>
+                <small>{{ birth.birthday }}</small>
               </b-col>
             </b-row>
           </div>

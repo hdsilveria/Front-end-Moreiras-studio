@@ -74,9 +74,10 @@ export default ({
           localStorage.setItem('Perfil', this.dadosUser.Perfil)
           localStorage.setItem('token', this.userToken)
 
+          this.$router.push({name: 'metrics'})
           location.reload()
       })
-      .catch(err => {
+      .catch(() => {
         this.load = false
           this.$toast.error("'Usuario ou senha invalidos!'", {
             position: "bottom-right",
@@ -92,7 +93,6 @@ export default ({
             icon: true,
             rtl: false
           });
-          console.log(err)
       })
     },
 

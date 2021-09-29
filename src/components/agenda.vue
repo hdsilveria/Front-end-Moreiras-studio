@@ -118,7 +118,6 @@ methods: {
       }
     
     else {
-      console.log(this.clientResults)
         this.clientResults = this.horarios.filter(horarios => horarios.data.slice(3,5).includes(this.buscaMes))
     }
     }
