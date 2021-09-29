@@ -12,5 +12,9 @@ export default {
 
   inserir: client => {
     return api.post(`/clientes/insertClient`, client)
+  },
+
+  atualizar: (id, value) => {
+    return api.put(`/clientes/${id}`, value)
   }
 }

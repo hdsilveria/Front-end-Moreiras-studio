@@ -11,6 +11,7 @@
     <div id="inserir">
     <h3 style="text-align: center;">Atualizar Cliente</h3> <br>
 
+    <form class="container" id="inserir" @submit.prevent="updClient()">
       <b-row>
         <b-col md="5">
           <label class="form-label">Nome </label>
@@ -50,6 +51,7 @@
             </button>
         </b-col>
     </b-row> <br>
+    </form>
     </div>
   </modal>
 </template>
@@ -57,7 +59,7 @@
 
 <script>
 
-// import clients from '../../services/clientes'
+import clients from '../../services/clientes'
 
 export default {
   props: {
@@ -70,8 +72,34 @@ export default {
     setVar(){
       this.updateClient = this.client
     },
+
     attList(){
       this.$emit('attClients')
+    },
+
+    updClient(){
+      this.load = true
+      clients.atualizar(this.updateClient.id, this.updateClient).then(() => {
+        this.load = false,
+        this.$modal.hide('updateClient')
+          this.$toast.success("Cliente Atualizado com sucesso!", {
+              position: "bottom-right",
+              timeout: 2000,
+              closeOnClick: true,
+              pauseOnFocusLoss: true,
+              pauseOnHover: true,
+              draggable: true,
+              draggablePercent: 2,
+              showCloseButtonOnHover: false,
+              hideProgressBar: true,
+              closeButton: "button",
+              icon: true,
+              rtl: false
+            })
+      }).catch(err => {
+          this.load = false
+          console.log(err)
+        })
     }
   },
 
