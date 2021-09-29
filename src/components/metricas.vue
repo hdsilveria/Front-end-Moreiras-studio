@@ -11,7 +11,7 @@
         <div class="clientArea text-center">
           <span>Numero de clientes Cadastradas</span><br><br>
           <strong>
-            {{nmClientes.data.count}}
+            {{nmClientes}}
           </strong>
         </div>
       </b-col>
@@ -86,7 +86,7 @@ export default {
 
   created(){
     clients.listar().then(res => {
-      this.nmClientes = res
+      this.nmClientes = res.data.count
     })
   },
 
