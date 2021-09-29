@@ -11,7 +11,7 @@
     <div id="inserir">
     <h3 style="text-align: center;">Atualizar Cliente</h3> <br>
 
-    <form class="container" id="inserir" @submit.prevent="updClient()">
+    <form @submit.prevent="updClient()">
       <b-row>
         <b-col md="5">
           <label class="form-label">Nome </label>
