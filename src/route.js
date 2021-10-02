@@ -6,6 +6,9 @@ import newUser from '../src/components/newUser'
 import agenda from '../src/components/agenda'
 import newHour from '../src/components/newHour'
 import metricas from '../src/components/metricas'
+import clients from '../src/components/clientes'
+import newClients from '../src/components/newClient'
+import newPassword from '../src/components/newPassword'
 
 Vue.use(VueRouter)
 
@@ -37,9 +40,27 @@ const routes = [
     },
     {
         name: 'metrics',
-        path: '/metrics',
+        path: '/dashboard',
         component: metricas
-    },       
+    },
+    {
+        name: 'clients',
+        path: '/clientes',
+        component: clients
+    },
+    {
+        name: 'novaCliente',
+        path: '/novaCliente',
+        component: newClients
+    },
+    {
+        name: 'resetPassword',
+        path: '/novaSenha',
+        component: newPassword,
+        meta: {
+            menu: false,
+        }
+    },      
 ]
 
 const router = new VueRouter({routes})

@@ -1,7 +1,7 @@
 <template>
 <div class="text-center">
   <b-row>
-    <b-col></b-col>
+    <b-col />
   <b-col md="4">
   <img src="../static/logo_login.png">
       <div class="p-4">
@@ -21,11 +21,12 @@
                 <div v-else>
                     Entrar
                 </div>   
-          </button><br><br>
+          </button>
         </form>
+        <small @click="$router.push({name:'resetPassword'})">Esqueci minha senha</small>
       </div>
     </b-col>
-    <b-col></b-col>
+    <b-col />
   </b-row>
 </div>
 </template>
@@ -74,9 +75,10 @@ export default ({
           localStorage.setItem('Perfil', this.dadosUser.Perfil)
           localStorage.setItem('token', this.userToken)
 
+          this.$router.push({name: 'metrics'})
           location.reload()
       })
-      .catch(err => {
+      .catch(() => {
         this.load = false
           this.$toast.error("'Usuario ou senha invalidos!'", {
             position: "bottom-right",
@@ -92,7 +94,6 @@ export default ({
             icon: true,
             rtl: false
           });
-          console.log(err)
       })
     },
 
@@ -106,6 +107,11 @@ export default ({
 span {
   font-family: Beskill;
   font-size: 13pt;
+}
+
+small {
+  cursor: pointer;
+  margin-top: 15px;
 }
 
 </style>

@@ -48,11 +48,15 @@
       <th scope="col">Valor Und</th>
       <th scope="col">Valor Estoque</th>
       <th scope="col">Data da Ultima Compra</th>
-      <th scope="col"><button type="button" class="btn btn-outline-light btn-sm" @click="editar()">Editar✏️</button></th>
+      <th scope="col"><button type="button" disabled class="btn btn-outline-light btn-sm" @click="editar()">Editar✏️</button></th>
     </tr>
   </thead>
 
-  <tbody v-for="material of materiais" :key="material.id">
+  <div v-if="this.load" style="margin-left: 500px; position: absolute;" class="p-2">
+    <b-spinner variant="dark"/>
+  </div>
+
+  <tbody v-else v-for="material of materiais" :key="material.id">
     <tr>
       <td>{{material.id}}</td>
       <td>{{material.material}}</td>
@@ -60,7 +64,7 @@
       <td>{{material.valor | ValorDecimal }}</td>
       <td>{{material.quantidade * material.valor | ValorDecimal }}</td>
       <td>{{material.data}}</td>
-      <td><button type="button" class="btn btn-outline-dark btn-sm" @click="remover(material)">Deletar</button></td>
+      <td><button type="button" class="btn btn-outline-dark btn-sm" @click="remover(material.id)">Deletar</button></td>
     </tr>
     
   </tbody><br><br>
@@ -77,10 +81,12 @@ import materiais from '/services/materiais'
 
 export default {
 
-mounted(){  
+mounted(){
+  this.load = true 
   materiais.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} })
     .then((response)=>{
       this.materiais = response.data.rows
+      this.load = false
     })
   },
   
@@ -88,6 +94,7 @@ mounted(){
     return { 
       materiais: [],
       mostraEdit: false,
+      load: false, 
       UpdateMaterial: {
           id: '',
           quantidade: '',
@@ -100,6 +107,10 @@ methods: {
   remover(deletMaterial){
     if ( confirm('deseja excluir?') ){
       materiais.apagar(deletMaterial).then(() => {
+        materiais.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} })
+          .then((response)=>{
+            this.materiais = response.data.rows
+        })
           this.$toast.success("Material deletado com sucesso!", {
               position: "bottom-right",
               timeout: 2000,
@@ -114,10 +125,6 @@ methods: {
               icon: true,
               rtl: false
             })
-        materiais.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} })
-          .then((response)=>{
-          this.materiais = response.data.rows
-    })
       }).catch(err =>{
         console.log(err)
       })

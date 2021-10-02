@@ -11,13 +11,26 @@
 
     <b-collapse id="navbar-toggle-collapse" is-nav>
       <b-navbar-nav class="ml-auto">
+      <b-nav-item>
+        <b-row>
+          <router-link to="/dashboard" class="w3-bar-item w3-button w3-hover-none buttonMenu d-flex">
+            <b-col md="1">
+            <img src="../img/metrics.png">
+            </b-col>
+            <b-col class="text-center" md="6">
+             <span>Dashboard</span>
+            </b-col>
+          </router-link>
+        </b-row>
+      </b-nav-item>
+
         <b-nav-item>
           <b-row v-if="this.perfil == 1 ">
           <router-link to="/newUser" class="w3-bar-item w3-button w3-hover-none buttonMenu d-flex">
-            <b-col md="2">
+            <b-col md="1">
                 <img src="../img/user.png">
             </b-col>
-            <b-col class="text-center" md="9" align-self="top">
+            <b-col class="text-center" md="8" align-self="top">
             <span>Criar novo usuario</span> 
             </b-col>
           </router-link>
@@ -26,7 +39,7 @@
 
       <b-nav-item>
         <b-row>
-          <router-link to="/insertMaterial" class="w3-button buttonMenu d-flex">
+          <router-link to="/insertMaterial" class="w3-bar-item w3-button w3-hover-none buttonMenu d-flex">
             <b-col md="1">
                 <img src="../img/addMaterial.png">
             </b-col>
@@ -43,8 +56,21 @@
             <b-col md="1">
                 <img src="../img/addHour.png">
             </b-col>
-            <b-col class="text-center" md="11">
-            <span>Inserir Horario na Agenda</span> 
+            <b-col class="text-center" md="10">
+            <span style="margin-left: 13px;">Inserir Horario na Agenda</span> 
+            </b-col>
+          </router-link>
+        </b-row>
+      </b-nav-item>
+
+      <b-nav-item>
+        <b-row>
+          <router-link to="/novaCliente" class="w3-bar-item w3-button w3-hover-none buttonMenu d-flex">
+            <b-col md="1">
+                <img src="../img/addCliente.png">
+            </b-col>
+            <b-col class="text-center" md="8">
+            <span>Adicionar Cliente</span> 
             </b-col>
           </router-link>
         </b-row>
@@ -78,18 +104,18 @@
 
       <b-nav-item>
           <b-row v-if="this.perfil == 1 ">
-          <router-link to="/metrics" class="w3-bar-item w3-button w3-hover-none buttonMenu d-flex">
+          <router-link to="/clientes" class="w3-bar-item w3-button w3-hover-none buttonMenu d-flex">
             <b-col md="1">
-                <img src="../img/metrics.png">
+                <img src="../img/cliente.png">
             </b-col>
-            <b-col  class="text-center" md="8">
-             <span>Minhas Metricas </span>
+            <b-col  class="text-center" md="7">
+             <span>&nbsp;Minhas Clientes</span>
             </b-col>
           </router-link>
         </b-row>
       </b-nav-item>
 
-            <b-nav-item>
+      <b-nav-item>
         <b-row>
           <a @click="sair()" class="w3-bar-item w3-button w3-hover-none d-flex">
           <b-col>
