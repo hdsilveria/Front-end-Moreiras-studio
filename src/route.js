@@ -47,6 +47,7 @@ const routes = [
         name: 'clients',
         path: '/clientes',
         component: clients
+<<<<<<< HEAD
     },
     {
         name: 'novaCliente',
@@ -61,6 +62,9 @@ const routes = [
             menu: false,
         }
     },      
+=======
+    },        
+>>>>>>> a65c89fa192ea58b03832e249cff541c3305815a
 ]
 
 const router = new VueRouter({routes})

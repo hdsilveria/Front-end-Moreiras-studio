@@ -28,6 +28,18 @@
           </router-link>
         </b-row> <br>
 
+        
+          <b-row v-if="this.perfil == 1 ">
+          <router-link to="/dashboard" class="w3-bar-item w3-button w3-hover-none buttonMenu d-flex">
+            <b-col md="1">
+            <img src="../img/metrics.png">
+            </b-col>
+            <b-col class="text-center" md="6">
+             <span>Dashboard</span>
+            </b-col>
+          </router-link>
+        </b-row> <br>
+
         <b-row v-if="this.perfil == 1 ">
           <router-link to="/newUser" class="w3-bar-item w3-button w3-hover-none buttonMenu d-flex">
             <b-col md="1">

@@ -103,6 +103,19 @@
       </b-nav-item>
 
       <b-nav-item>
+        <b-row>
+          <router-link to="/minhaAgenda" class="w3-bar-item w3-button w3-hover-none buttonMenu d-flex">
+            <b-col md="1">
+                <img src="../img/cliente.png">
+            </b-col>
+            <b-col  class="text-center" md="7">
+             <span>&nbsp;Minha Agenda</span>
+            </b-col>
+          </router-link>
+        </b-row>
+      </b-nav-item>
+
+      <b-nav-item>
           <b-row v-if="this.perfil == 1 ">
           <router-link to="/clientes" class="w3-bar-item w3-button w3-hover-none buttonMenu d-flex">
             <b-col md="1">
