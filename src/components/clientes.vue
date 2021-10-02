@@ -15,7 +15,11 @@
       <b-col md="1" scope="col"></b-col>
   </b-row>
 
-  <b-row class="table" v-for="cliente of clientes" :key="cliente.id">
+  <div v-if="this.load" class="justify-content-center text-center p-5">
+    <b-spinner variant="dark"/>
+  </div>
+
+  <b-row v-else class="table" v-for="cliente of clientes" :key="cliente.id">
       <b-col md="3">
         <span @click="openModalUpdt(cliente)" class="nameClient">
           {{cliente.name}}
@@ -55,6 +59,7 @@ export default {
     return {
       clientes: [],
       updClient: {},
+      load: false, 
     }
   },
 
@@ -63,6 +68,7 @@ export default {
   },
 
   mounted(){
+    this.load = true
     this.listClients()
   },
 
@@ -76,6 +82,7 @@ export default {
     listClients(){
       clients.listar().then(response => {
         this.clientes = response.data.rows
+        this.load = false
       })
     },
 

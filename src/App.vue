@@ -7,8 +7,9 @@
     <router-view v-if="this.usuario" id="cont" />
 </div>
 
-<div id="cont" style="margin-left: 0%;" v-else>
-    <login />
+<div style="margin-left: 0%; margin-top: 2%" v-else>
+    <router-view v-if="$route.meta.menu == false" id="cont" />
+    <login v-else/>
 </div>
 
 </div>

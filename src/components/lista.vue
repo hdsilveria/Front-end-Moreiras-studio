@@ -52,7 +52,11 @@
     </tr>
   </thead>
 
-  <tbody v-for="material of materiais" :key="material.id">
+  <div v-if="this.load" style="margin-left: 500px; position: absolute;" class="p-2">
+    <b-spinner variant="dark"/>
+  </div>
+
+  <tbody v-else v-for="material of materiais" :key="material.id">
     <tr>
       <td>{{material.id}}</td>
       <td>{{material.material}}</td>
@@ -77,10 +81,12 @@ import materiais from '/services/materiais'
 
 export default {
 
-mounted(){  
+mounted(){
+  this.load = true 
   materiais.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} })
     .then((response)=>{
       this.materiais = response.data.rows
+      this.load = false
     })
   },
   
@@ -88,6 +94,7 @@ mounted(){
     return { 
       materiais: [],
       mostraEdit: false,
+      load: false, 
       UpdateMaterial: {
           id: '',
           quantidade: '',

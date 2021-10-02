@@ -267,3 +267,9 @@ body {
     border-radius: 3px;
   }
   
+  h5 {
+    text-align: center;
+    margin: 10px;
+    font-family: athena regular;
+    color: #686868;
+}

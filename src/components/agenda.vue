@@ -45,6 +45,11 @@
       <b-col md="1" scope="col"></b-col>
   </b-row>
 
+  <div v-if="this.load" class="justify-content-center text-center p-5">
+    <b-spinner variant="dark"/>
+  </div>
+
+  <div v-else>
   <b-row class="table" v-for="horario of clientResults" :key="horario.id">
       <b-col md="3">{{horario.cliente}}</b-col>
       <b-col md="2">{{horario.data}}</b-col>
@@ -57,6 +62,7 @@
         </button>
       </b-col>
   </b-row>
+  </div>
   </div>
 
 </div>
@@ -123,16 +129,19 @@ methods: {
     }
 },
 
-mounted(){  
+mounted(){
+  this.load = true
   agenda.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} })
   .then((response)=>{
     this.horarios = response.data.data.rows
     this.clientResults = response.data.data.rows
+    this.load = false
     })
   },
 
    data(){
     return {
+        load: false,
         clientResults: [],
         busca: [],
         options: [

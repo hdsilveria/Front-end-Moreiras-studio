@@ -10,17 +10,29 @@
       <b-col md="4">
         <div class="clientArea text-center">
           <span>Numero de clientes Cadastradas </span><strong>❤️</strong><br><br>
-          <strong>
+
+          <div v-if="this.load" class="text-center p-2">
+            <b-spinner variant="light"/>
+          </div>
+
+          <strong v-else>
             {{nmClientes}}
           </strong>
+
         </div><br>
       </b-col> 
       <b-col>
-        <div class="clientArea text-left" style="width: 360px; overflow: auto; overflow-x: hidden;">
-          <span style="margin-left: 70px;">Aniversariantes do Mês</span> <strong>🍰</strong><br><br>
+        <div class="clientArea" style="width: 360px; overflow: auto; overflow-x: hidden;">
+          <div class="text-center">
+            <span>Aniversariantes do Mês</span> <strong>🍰</strong><br><br>
+          </div>
+          
+          <div v-if="this.load" class="text-center p-2">
+            <b-spinner variant="light"/>
+          </div>
 
-          <small v-if="clientes.length == 0">🙁Não há Aniversariantes este mês🙁</small>
-          <div v-for="birth in clientes" :key="birth.id">
+          <div v-else>
+            <div v-for="birth in clientes" :key="birth.id">
             <b-row>
               <b-col cols="7">
                 <small>{{ birth.name }}</small>
@@ -30,6 +42,14 @@
               </b-col>
             </b-row>
           </div>
+          
+          <div class="text-center" v-if="clientes.length == 0">
+          <small>
+            🙁Não há Aniversariantes este mês🙁
+          </small>
+          </div>
+          </div>          
+
         </div>
       </b-col>
     </b-row>
@@ -89,16 +109,19 @@ export default {
       clientsNovembro: [],
       clientsDezembro: [],
       allClients: [],
+      load: false,
       perfil: localStorage.getItem('Perfil'),
       mounth: '',
     }
   },
 
   created(){
+    this.load = true
     this.mounth = new Date().getMonth() + 1
     clients.listar().then(res => {
       this.nmClientes = res.data.count
-      this.clientes = res.data.rows.filter(res => res.birthday.slice(3,5) == `0${this.mounth}`)
+      this.clientes = res.data.rows.filter(res => res.birthday.slice(3,5) == `${this.mounth}`)
+      this.load = false
     })
   },
 

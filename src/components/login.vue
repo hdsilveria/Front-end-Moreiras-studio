@@ -1,7 +1,7 @@
 <template>
 <div class="text-center">
   <b-row>
-    <b-col></b-col>
+    <b-col />
   <b-col md="4">
   <img src="../static/logo_login.png">
       <div class="p-4">
@@ -21,11 +21,12 @@
                 <div v-else>
                     Entrar
                 </div>   
-          </button><br><br>
+          </button>
         </form>
+        <small @click="$router.push({name:'resetPassword'})">Esqueci minha senha</small>
       </div>
     </b-col>
-    <b-col></b-col>
+    <b-col />
   </b-row>
 </div>
 </template>
@@ -106,6 +107,11 @@ export default ({
 span {
   font-family: Beskill;
   font-size: 13pt;
+}
+
+small {
+  cursor: pointer;
+  margin-top: 15px;
 }
 
 </style>
