@@ -13,17 +13,12 @@
 
     <form @submit.prevent="updMaterial()">
       <b-row>
-        <b-col md="2">
-          <label class="form-label">ID</label>
-          <input v-model="upMaterial.id" class="form-control" type="text" disabled autocomplete="off">
-        </b-col>
-
         <b-col md="auto">
           <label class="form-label">Material </label>
           <input v-model="upMaterial.material" class="form-control" type="text" autocomplete="off" required>
         </b-col>
 
-        <b-col md="4">
+        <b-col md="auto">
           <label class="form-label">Quantidade </label>
           <input v-model="upMaterial.quantidade" class="form-control" type="number" autocomplete="off" required>
         </b-col>
@@ -35,7 +30,7 @@
           <input v-model="upMaterial.data" class="form-control" type="tel" v-mask="'##/##/####'"  autocomplete="off" required>
         </b-col>
 
-        <b-col md="6">
+        <b-col md="auto">
           <label class="form-label">Valor </label>
           <input v-model="upMaterial.valor" class="form-control" type="number" required>
         </b-col>
