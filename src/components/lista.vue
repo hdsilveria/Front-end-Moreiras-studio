@@ -6,28 +6,28 @@
 <div class="container overflow-auto" id="tabela">
 
   <div>
-  <b-row class="headTable">
-      <b-col scope="col">Material</b-col>
-      <b-col scope="col">Quantidade</b-col>
-      <b-col scope="col">Valor Und</b-col>
-      <b-col scope="col">Valor Estoque</b-col>
-      <b-col scope="col">Data da Ultima Compra</b-col>
-      <b-col scope="col"></b-col>
+  <b-row class="headTable text-center">
+      <b-col md="2">Material</b-col>
+      <b-col md="2">Quantidade</b-col>
+      <b-col md="2">Valor Und</b-col>
+      <b-col md="2">Valor Estoque</b-col>
+      <b-col md="auto" class="text-nowrap">Data da Ultima Compra</b-col>
+      <b-col md="2"></b-col>
   </b-row>
 
   <div v-if="this.load" class="justify-content-center text-center p-5">
     <b-spinner variant="dark"/>
   </div>
 
-  <b-row v-else class="table" v-for="material of materiais" :key="material.id">
+  <b-row v-else class="table text-center" v-for="material of materiais" :key="material.id">
       <b-col>{{material.material}}</b-col>
       <b-col>{{material.quantidade}}</b-col>
       <b-col>{{material.valor | ValorDecimal }}</b-col>
       <b-col>{{material.quantidade * material.valor | ValorDecimal }}</b-col>
       <b-col>{{material.data}}</b-col>
       <b-col class="d-flex">
-        <button style="margin: 2px;" type="button" class="btn btn-outline-dark btn-sm" @click="openModalUpdt(material)">Editar✏️</button>
-        <button style="margin: 2px;" type="button" class="btn btn-outline-dark btn-sm" @click="remover(material.id)">Deletar</button>
+        <button style="margin: 2px;" type="button" class="btn btn-outline-dark btn-sm" @click="openModalUpdt(material)">✏️ Editar</button>
+        <button style="margin: 2px;" type="button" class="btn btn-outline-danger btn-sm" @click="remover(material.id)">Deletar 🗑️</button>
         </b-col>
   </b-row>
   </div> <br>

@@ -8,7 +8,7 @@
 <div id="tabela">
   <b-row class="headTable">
       <b-col md="3" scope="col">Cliente</b-col>
-      <b-col md="2" scope="col">Idade</b-col>
+      <b-col md="1" scope="col">Idade</b-col>
       <b-col md="2" scope="col">Telefone</b-col>
       <b-col md="2" scope="col">Aniversario</b-col>
       <b-col md="2" scope="col">Rede Social</b-col>
@@ -21,11 +21,9 @@
 
   <b-row v-else class="table" v-for="cliente of clientes" :key="cliente.id">
       <b-col md="3">
-        <span @click="openModalUpdt(cliente)" class="nameClient">
-          {{cliente.name}}
-        </span>
+        {{cliente.name}}
       </b-col>
-      <b-col md="2">
+      <b-col md="1">
         {{cliente.age}} anos
       </b-col>
       <b-col md="2">
@@ -34,13 +32,12 @@
       <b-col md="2">
         {{cliente.birthday}}
       </b-col>
-      <b-col cols="2">
+      <b-col cols="2" class="text-nowrap">
         {{cliente.social}}
       </b-col>
-      <b-col md="auto">
-        <button type="button" class="btn btn-outline-dark btn-sm" @click="remover(cliente.id)">
-          Deletar
-        </button>
+      <b-col md="auto" class="d-flex">
+        <button style="margin: 2px;" type="button" class="btn btn-outline-dark btn-sm" @click="openModalUpdt(cliente)">✏️ Editar</button>
+        <button style="margin: 2px;" type="button" class="btn btn-outline-danger btn-sm" @click="remover(cliente.id)">Deletar 🗑️</button>
       </b-col>
   </b-row>
   </div> <br>
