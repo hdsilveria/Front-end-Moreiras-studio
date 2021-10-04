@@ -11,12 +11,12 @@ export default {
         return api.post('/agenda/horario', CadHorario, token)
     },
 
-    atualizar: (UpdHorario, id) => {
-        return api.put(`/agenda/horario/${id}`, UpdHorario)
+    atualizar: (UpdHorario, id, token) => {
+        return api.put(`/agenda/horario/${id}`, UpdHorario, token)
     },
 
-    apagar: Delmaterial => {
-        return api.delete(`/agenda/horario/${Delmaterial}`)
+    apagar: (Delmaterial, token) => {
+        return api.delete(`/agenda/horario/${Delmaterial}`, token)
     },
 
 }

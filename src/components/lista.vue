@@ -91,7 +91,8 @@ mounted(){
   },
   
  data(){
-    return { 
+    return {
+      token: { headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} },
       materiais: [],
       mostraEdit: false,
       load: false, 
@@ -106,8 +107,8 @@ mounted(){
 methods: {
   remover(deletMaterial){
     if ( confirm('deseja excluir?') ){
-      materiais.apagar(deletMaterial).then(() => {
-        materiais.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} })
+      materiais.apagar(deletMaterial, this.token).then(() => {
+        materiais.listar(this.token)
           .then((response)=>{
             this.materiais = response.data.rows
         })

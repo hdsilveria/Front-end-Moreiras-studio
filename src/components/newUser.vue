@@ -54,7 +54,7 @@
       <br>
       <ul v-for="usuarios in users" :key="usuarios.id">
         <li><b>Usuario:</b> {{usuarios.user}}</li>
-        <li><b>Email:</b> {{usuarios.email}} &nbsp;&nbsp;&nbsp;&nbsp; <button class="btn btn-outline-light" @click="remover(usuarios)" >Deletar </button></li>
+        <li><b>Email:</b> {{usuarios.email}} &nbsp;&nbsp;&nbsp;&nbsp; <button class="btn btn-outline-light" @click="remover(usuarios.id)" >Deletar </button></li>
         <li><b>Perfil:</b> {{usuarios.profile}}</li>
       </ul>
     </div>
@@ -86,6 +86,7 @@ data(){
       load: false,
       user: localStorage.getItem('Usuario'),
       perfil: localStorage.getItem('Perfil'),
+      token: { headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} },
         users: [],
         passwordConfirm: '',
         usuario: {
@@ -98,10 +99,10 @@ data(){
 },
 
 methods: {
-    remover(deletMaterial){
+    remover(user){
     if ( confirm('deseja excluir?') ){
-      users.apagar(deletMaterial).then(() => {
-          users.listarUsuario({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }).then((response)=>{
+      users.apagar(user, this.token).then(() => {
+          users.listarUsuario(this.token).then((response)=>{
     this.users = response.data
     })
       }).catch(err =>{
@@ -113,7 +114,7 @@ methods: {
     cadastrarUsuario(){
       this.load = true            
       if (this.usuario.password === this.passwordConfirm) {
-        users.criarUsuario(this.usuario, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} })
+        users.criarUsuario(this.usuario, this.token)
         .then(() =>{
           this.load = false
             this.$toast.success("Usuario inserido com sucesso!", {
@@ -136,7 +137,7 @@ methods: {
           this.usuario.password = ''
           this.passwordConfirm = ''
 
-            users.listarUsuario({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }).then((response)=>{
+            users.listarUsuario(this.token).then((response)=>{
     this.users = response.data
     })
         })

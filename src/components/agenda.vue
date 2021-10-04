@@ -78,8 +78,8 @@ export default ({
 methods: {
   remover(deletMaterial){
     if ( confirm('deseja excluir?') ){
-      agenda.apagar(deletMaterial).then(() => {
-          agenda.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} })
+      agenda.apagar(deletMaterial, this.token ).then(() => {
+          agenda.listar(this.token)
             .then((response)=>{
             this.horarios = response.data.data.rows
             this.clientResults = response.data.data.rows
@@ -130,8 +130,9 @@ methods: {
 },
 
 mounted(){
+  this.token = { headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }
   this.load = true
-  agenda.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} })
+  agenda.listar(this.token)
   .then((response)=>{
     this.horarios = response.data.data.rows
     this.clientResults = response.data.data.rows
@@ -143,6 +144,7 @@ mounted(){
     return {
         load: false,
         clientResults: [],
+        token: null,
         busca: [],
         options: [
           { value: '01', text: "Janeiro"},

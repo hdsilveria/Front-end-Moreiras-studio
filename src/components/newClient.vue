@@ -93,8 +93,22 @@ methods: {
           this.novaCliente.procedimento = '',
           this.novaCliente.tipo = ''
         })
-        .catch(() => {
+        .catch(err => {
           this.load = false
+            this.$toast.error(`Erro: ${err.response.data.message}`, {
+              position: "bottom-right",
+              timeout: 2000,
+              closeOnClick: true,
+              pauseOnFocusLoss: true,
+              pauseOnHover: true,
+              draggable: true,
+              draggablePercent: 2,
+              showCloseButtonOnHover: false,
+              hideProgressBar: true,
+              closeButton: "button",
+              icon: true,
+              rtl: false
+            })
         })
     },
   }

@@ -60,6 +60,7 @@ export default {
       clientes: [],
       updClient: {},
       load: false, 
+      token: { headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }
     }
   },
 
@@ -80,7 +81,7 @@ export default {
     },
 
     listClients(){
-      clients.listar().then(response => {
+      clients.listar(this.token).then(response => {
         this.clientes = response.data.rows
         this.load = false
       })
@@ -88,7 +89,7 @@ export default {
 
     remover(id){
       if ( confirm('deseja excluir?') ){
-      clients.deletar(id).then(() => {
+      clients.deletar(id, this.token).then(() => {
           this.$toast.success("Cliente deletado com sucesso!", {
               position: "bottom-right",
               timeout: 2000,

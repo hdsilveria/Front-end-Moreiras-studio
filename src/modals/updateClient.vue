@@ -79,7 +79,7 @@ export default {
 
     updClient(){
       this.load = true
-      clients.atualizar(this.updateClient.id, this.updateClient).then(() => {
+      clients.atualizar(this.updateClient.id, this.updateClient, this.token).then(() => {
         this.load = false,
         this.$modal.hide('updateClient')
           this.$toast.success("Cliente Atualizado com sucesso!", {
@@ -106,6 +106,7 @@ export default {
   data(){
     return {
       load: false,
+      token: { headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} },
       updateClient: {}
     }
   },

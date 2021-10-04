@@ -53,6 +53,7 @@ export default {
 
 data(){
     return {
+      token: { headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} },
       load: false,
       NovoMaterial: {
           material: '',
@@ -67,7 +68,7 @@ methods: {
 
     inserirMaterial(){
        this.load = true   
-        materiais.cadastrar(this.NovoMaterial, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} })
+        materiais.cadastrar(this.NovoMaterial, this.token)
         .then(() =>{
            this.load = false
           this.$toast.success("Material inserido com sucesso!", {

@@ -141,6 +141,7 @@ export default {
 
   data(){
     return {
+      token: { headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} },
       clientes: [],
       horarios: [],
       nmClientes: [],
@@ -177,7 +178,7 @@ export default {
     var mes = String(data.getMonth() + 1).padStart(2, '0')
 
       this.load = true
-        clients.listar().then(res => {
+        clients.listar(this.token).then(res => {
         this.nmClientes = res.data.count
         this.clientes = res.data.rows.filter(res => res.birthday.slice(3,5) == mes)
         this.load = false
@@ -186,7 +187,7 @@ export default {
 
     listarAgenda(){
     this.load = true
-      agenda.listar()
+      agenda.listar(this.token)
         .then((response)=>{
         this.horarios = response.data.data.rows
         this.dateClients = this.horarios.filter(horarios => horarios.data == this.date)

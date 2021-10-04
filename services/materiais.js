@@ -7,8 +7,8 @@ export default {
         return api.get('/estoque?page=0&size=100', token )
     },
 
-    login: (loginUser) =>{
-        return api.post('/login', loginUser )
+    login: (loginUser, token) =>{
+        return api.post('/login', loginUser, token )
     },
 
     cadastrar: (CadMaterial, token) =>{

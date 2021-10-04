@@ -6,15 +6,15 @@ export default {
     return api.get('/clientes?page=0&size=100', token )
   },
 
-  deletar: (id) => {
-    return api.delete(`/clientes/${id}`)
+  deletar: (id, token) => {
+    return api.delete(`/clientes/${id}`, token)
   },
 
-  inserir: client => {
-    return api.post(`/clientes/insertClient`, client)
+  inserir: (client, token) => {
+    return api.post(`/clientes/insertClient`, client, token)
   },
 
-  atualizar: (id, value) => {
-    return api.put(`/clientes/${id}`, value)
+  atualizar: (id, value, token) => {
+    return api.put(`/clientes/${id}`, value, token)
   }
 }
