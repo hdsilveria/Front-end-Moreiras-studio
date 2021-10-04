@@ -3,73 +3,37 @@
 
   <h3> Meu Estoque </h3>
 
-<transition name="fade">
-  <div id="edit" class="container" v-show="mostraEdit">
-    <form @submit.prevent="atualizar()">
-      <div class="row g-3 justify-content-center">
-        <div class="col-auto">
-          <label class="form-label">ID: </label>
-          <input v-model="UpdateMaterial.id" class="form-control" type="number" min="0" max="200" required>
-        </div>
-
-        <div class="col-auto">
-          <label class="form-label">Quantidade: </label>
-          <input v-model="UpdateMaterial.quantidade" class="form-control" type="number" min="0" max="200">
-        </div>
-
-        <div class="col-auto">
-          <label class="form-label">Valor: </label> 
-          <input v-model="UpdateMaterial.valor" class="form-control" type="number" min="0" max="200"><br>
-        </div>
-      </div>
-
-      <b-row align-h="between">
-        <b-col md="6" class="d-flex d-row justify-content-center">
-          <button class="btn btn-outline-light" type="submit"> Salvar </button>
-        </b-col>
-        <b-col md="6" class="d-flex d-row justify-content-center">
-          <button class="btn btn-outline-light" @click="editar()"> Cancelar </button>
-        </b-col>
-      </b-row>
-
-    </form>
-  </div>
-</transition>
-
-
 <div class="container overflow-auto" id="tabela">
 
-  <table class="table table-borderless">
-  <thead>
-    <tr>
-      <th scope="col">ID#</th>
-      <th scope="col">Material</th>
-      <th scope="col">Quantidade</th>
-      <th scope="col">Valor Und</th>
-      <th scope="col">Valor Estoque</th>
-      <th scope="col">Data da Ultima Compra</th>
-      <th scope="col"><button type="button" disabled class="btn btn-outline-light btn-sm" @click="editar()">Editar✏️</button></th>
-    </tr>
-  </thead>
+  <div>
+  <b-row class="headTable">
+      <b-col scope="col">Material</b-col>
+      <b-col scope="col">Quantidade</b-col>
+      <b-col scope="col">Valor Und</b-col>
+      <b-col scope="col">Valor Estoque</b-col>
+      <b-col scope="col">Data da Ultima Compra</b-col>
+      <b-col scope="col"></b-col>
+  </b-row>
 
-  <div v-if="this.load" style="margin-left: 500px; position: absolute;" class="p-2">
+  <div v-if="this.load" class="justify-content-center text-center p-5">
     <b-spinner variant="dark"/>
   </div>
 
-  <tbody v-else v-for="material of materiais" :key="material.id">
-    <tr>
-      <td>{{material.id}}</td>
-      <td>{{material.material}}</td>
-      <td>{{material.quantidade}}</td>
-      <td>{{material.valor | ValorDecimal }}</td>
-      <td>{{material.quantidade * material.valor | ValorDecimal }}</td>
-      <td>{{material.data}}</td>
-      <td><button type="button" class="btn btn-outline-dark btn-sm" @click="remover(material.id)">Deletar</button></td>
-    </tr>
-    
-  </tbody><br><br>
-  </table>
+  <b-row v-else class="table" v-for="material of materiais" :key="material.id">
+      <b-col>{{material.material}}</b-col>
+      <b-col>{{material.quantidade}}</b-col>
+      <b-col>{{material.valor | ValorDecimal }}</b-col>
+      <b-col>{{material.quantidade * material.valor | ValorDecimal }}</b-col>
+      <b-col>{{material.data}}</b-col>
+      <b-col class="d-flex">
+        <button style="margin: 2px;" type="button" class="btn btn-outline-dark btn-sm" @click="openModalUpdt(material)">Editar✏️</button>
+        <button style="margin: 2px;" type="button" class="btn btn-outline-dark btn-sm" @click="remover(material.id)">Deletar</button>
+        </b-col>
+  </b-row>
+  </div> <br>
 </div>
+
+<updateMaterialModal :material="updtMaterial" @attMaterial="getMaterial()" />
 
 </div>
 </template>
@@ -77,9 +41,14 @@
 <script>
 
 import materiais from '/services/materiais'
+import updateMaterialModal from '../modals/updateMaterial.vue'
 
 
 export default {
+
+components: {
+  updateMaterialModal
+},
 
 mounted(){
   this.load = true 
@@ -95,6 +64,7 @@ mounted(){
       token: { headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} },
       materiais: [],
       mostraEdit: false,
+      updtMaterial: {},
       load: false, 
       UpdateMaterial: {
           id: '',
@@ -105,13 +75,16 @@ mounted(){
   },
 
 methods: {
+  getMaterial(){
+    materiais.listar(this.token)
+      .then((response)=>{
+        this.materiais = response.data.rows
+    })
+  },
   remover(deletMaterial){
     if ( confirm('deseja excluir?') ){
       materiais.apagar(deletMaterial, this.token).then(() => {
-        materiais.listar(this.token)
-          .then((response)=>{
-            this.materiais = response.data.rows
-        })
+        this.getMaterial().then(() => {
           this.$toast.success("Material deletado com sucesso!", {
               position: "bottom-right",
               timeout: 2000,
@@ -126,6 +99,7 @@ methods: {
               icon: true,
               rtl: false
             })
+        })
       }).catch(err =>{
         console.log(err)
       })
@@ -140,9 +114,10 @@ methods: {
      }
     },
 
-  editar(){
-    this.mostraEdit = !this.mostraEdit
-  },
+  openModalUpdt(material){
+      this.updtMaterial = material
+      this.$modal.show('updateMaterial')
+    },
 
   },
 
@@ -159,8 +134,16 @@ methods: {
 
 <style scoped>
 
-#tabela{
-  padding: 1%;
+.headTable {
+  width: 100%;
+  color: white;
+  background: rgb(244,191,187);
+  background: linear-gradient(180deg, rgba(244,191,187,1) 0%, rgba(158,104,100,1) 100%);
+  padding: 6px;
+}
+
+#tabela {
+  padding: 6px;
 }
 
 h1 {
@@ -170,11 +153,6 @@ h1 {
 
 #estoque {
   margin-top: 50px;
-}
-
-
-table {
-  text-align: center;
 }
 
 #edit {
@@ -196,25 +174,11 @@ button {
  text-decoration: none; 
 } 
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 1s;
-}
-
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
-
 h3 {
   text-align: center;
   margin: 40px;
   font-family: athena regular;
   color: #686868;
-}
-
-thead {
-    color: white;
-background: rgb(244,191,187);
-background: linear-gradient(180deg, rgba(244,191,187,1) 0%, rgba(158,104,100,1) 100%);
 }
 
 .table {

@@ -15,8 +15,8 @@ export default {
         return api.post('/estoque/material', CadMaterial, token)
     },
 
-    atualizar: (UpdMaterial, token) => {
-        return api.put('/estoque/material', UpdMaterial, token)
+    atualizar: (id, UpdMaterial, token) => {
+        return api.put(`/estoque/material/${id}`, UpdMaterial, token)
     },
 
     apagar: (id, token) => {

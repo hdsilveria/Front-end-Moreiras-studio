@@ -1,7 +1,7 @@
 <template>
     <modal 
-      name="updateClient"
-      :width="580"
+      name="updateMaterial"
+      :width="480"
       :height="'auto'"
       :adaptive="true"
       :draggable="true"
@@ -9,34 +9,35 @@
       @closed="attList()"
     >
     <div id="inserir">
-    <h3 style="text-align: center;">Atualizar Cliente</h3> <br>
+    <h3 style="text-align: center;">Atualizar Material</h3> <br>
 
-    <form @submit.prevent="updClient()">
+    <form @submit.prevent="updMaterial()">
       <b-row>
-        <b-col md="5">
-          <label class="form-label">Nome </label>
-          <input v-model="updateClient.name" class="form-control" type="text" autocomplete="off" required>
+        <b-col md="2">
+          <label class="form-label">ID</label>
+          <input v-model="upMaterial.id" class="form-control" type="text" disabled autocomplete="off">
         </b-col>
 
-        <b-col md="3">
-          <label class="form-label">Aniversario </label>
-          <input v-model="updateClient.birthday" class="form-control" type="tel" v-mask="'##/##/####'" autocomplete="off" required>
+        <b-col md="auto">
+          <label class="form-label">Material </label>
+          <input v-model="upMaterial.material" class="form-control" type="text" autocomplete="off" required>
         </b-col>
 
-        <b-col md="3">
-          <label class="form-label">Idade </label>
-          <input v-model="updateClient.age" class="form-control" type="number" required>
+        <b-col md="4">
+          <label class="form-label">Quantidade </label>
+          <input v-model="upMaterial.quantidade" class="form-control" type="number" autocomplete="off" required>
         </b-col>
     </b-row>
 
     <b-row style="margin-top: 10px;">
-        <b-col>
-          <label class="form-label">Telefone </label>
-          <input v-model="updateClient.tel" class="form-control" type="tel" v-mask="'(##)#####-####'" autocomplete="off" required>
+        <b-col md="6">
+          <label class="form-label">Data da Ultima Compra </label>
+          <input v-model="upMaterial.data" class="form-control" type="tel" v-mask="'##/##/####'"  autocomplete="off" required>
         </b-col>
-        <b-col>
-          <label class="form-label">Rede Social </label>
-          <input v-model="updateClient.social" class="form-control" type="text" autocomplete="off" required>
+
+        <b-col md="6">
+          <label class="form-label">Valor </label>
+          <input v-model="upMaterial.valor" class="form-control" type="number" required>
         </b-col>
     </b-row>
     <br>
@@ -46,7 +47,7 @@
             <br><button :disabled="this.load" class="btn btn-outline-light" type="submit">
               <b-spinner v-if="this.load" variant="light"/>
                 <div v-else>
-                    Atualizar Cliente 
+                    Atualizar Material 
                 </div>  
             </button>
         </b-col>
@@ -59,30 +60,30 @@
 
 <script>
 
-import clients from '../../services/clientes'
+import materials from '../../services/materiais'
 
 export default {
   props: {
-    client: {
+    material: {
       type: Object
     }
   },
 
   methods: {
     setVar(){
-      this.updateClient = this.client
+      this.upMaterial = this.material
     },
 
     attList(){
-      this.$emit('attClients')
+      this.$emit('attMaterial')
     },
 
-    updClient(){
+    updMaterial(){
       this.load = true
-      clients.atualizar(this.updateClient.id, this.updateClient, this.token).then(() => {
+      materials.atualizar(this.upMaterial.id, this.upMaterial, this.token).then(() => {
         this.load = false,
-        this.$modal.hide('updateClient')
-          this.$toast.success("Cliente Atualizado com sucesso!", {
+        this.$modal.hide('updateMaterial')
+          this.$toast.success("Material Atualizado com sucesso!", {
               position: "bottom-right",
               timeout: 2000,
               closeOnClick: true,
@@ -107,7 +108,7 @@ export default {
     return {
       load: false,
       token: { headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} },
-      updateClient: {}
+      upMaterial: {}
     }
   },
 }
