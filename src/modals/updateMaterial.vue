@@ -13,24 +13,24 @@
 
     <form @submit.prevent="updMaterial()">
       <b-row>
-        <b-col cols="auto">
+        <b-col cols="6">
           <label class="form-label">Material </label>
           <input v-model="upMaterial.material" class="form-control" type="text" autocomplete="off" required>
         </b-col>
 
-        <b-col cols="auto">
+        <b-col cols="6">
           <label class="form-label">Quantidade </label>
           <input v-model="upMaterial.quantidade" class="form-control" type="number" autocomplete="off" required>
         </b-col>
     </b-row>
 
     <b-row style="margin-top: 10px;">
-        <b-col cols="auto">
+        <b-col cols="6">
           <label class="form-label">Data da Ultima Compra </label>
           <input v-model="upMaterial.data" class="form-control" type="tel" v-mask="'##/##/####'"  autocomplete="off" required>
         </b-col>
 
-        <b-col cols="auto">
+        <b-col cols="6">
           <label class="form-label">Valor </label>
           <input v-model="upMaterial.valor" class="form-control" type="number" required>
         </b-col>

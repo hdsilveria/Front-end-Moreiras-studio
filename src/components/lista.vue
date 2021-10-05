@@ -25,9 +25,9 @@
       <b-col>{{material.valor | ValorDecimal }}</b-col>
       <b-col>{{material.quantidade * material.valor | ValorDecimal }}</b-col>
       <b-col>{{material.data}}</b-col>
-      <b-col class="d-flex">
-        <button style="margin: 2px;" type="button" class="btn btn-outline-dark btn-sm" @click="openModalUpdt(material)">✏️ Editar</button>
-        <button style="margin: 2px;" type="button" class="btn btn-outline-danger btn-sm" @click="remover(material.id)">Deletar 🗑️</button>
+      <b-col md="auto" class="d-flex">
+        <button style="margin: 2px;" type="button" class="btn btn-outline-dark btn-sm text-nowrap" @click="openModalUpdt(material)"><span>Editar</span></button>
+        <button style="margin: 2px;" type="button" class="btn btn-outline-danger btn-sm text-nowrap" @click="remover(material.id)"><span>Deletar</span></button>
         </b-col>
   </b-row>
   </div> <br>
@@ -184,6 +184,8 @@ h3 {
 .table {
   box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.179);
   background-color: rgba(255, 255, 255, 0.501);
+  padding: 4px;
+  margin-top: 5px;
 }
 
 </style>

@@ -36,8 +36,8 @@
         {{cliente.social}}
       </b-col>
       <b-col md="auto" class="d-flex">
-        <button style="margin: 2px;" type="button" class="btn btn-outline-dark btn-sm" @click="openModalUpdt(cliente)">✏️ Editar</button>
-        <button style="margin: 2px;" type="button" class="btn btn-outline-danger btn-sm" @click="remover(cliente.id)">Deletar 🗑️</button>
+        <button style="margin: 2px;" type="button" class="btn btn-outline-dark btn-sm" @click="openModalUpdt(cliente)">Editar</button>
+        <button style="margin: 2px;" type="button" class="btn btn-outline-danger btn-sm" @click="remover(cliente.id)">Deletar</button>
       </b-col>
   </b-row>
   </div> <br>
@@ -130,7 +130,7 @@ h3 {
 .table {
   box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.179);
   background-color: rgba(255, 255, 255, 0.501);
-  padding: 5px;
+  padding: 4px;
   margin-top: 5px;
 }
 
