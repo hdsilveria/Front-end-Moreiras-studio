@@ -33,12 +33,12 @@ export default {
       this.clientesSetembro = this.clientes.filter(horarios => horarios == '09/2021')
       this.clientesAgosto = this.clientes.filter(horarios => horarios == '08/2021')
       this.clientesJulho = this.clientes.filter(horarios => horarios == '07/2021')
-      this.clientesJunho = this.clientes.filter(horarios => horarios == 6)
-      this.clientesMaio = this.clientes.filter(horarios => horarios == 5)
-      this.clientesAbril = this.clientes.filter(horarios => horarios == 4)
-      this.clientesMarco = this.clientes.filter(horarios => horarios == 3)
-      this.clientesFavereiro = this.clientes.filter(horarios => horarios == 2)
-      this.clientesJaneiro = this.clientes.filter(horarios => horarios == 1)
+      this.clientesJunho = this.clientes.filter(horarios => horarios == '06/2021')
+      this.clientesMaio = this.clientes.filter(horarios => horarios == '05/2021')
+      this.clientesAbril = this.clientes.filter(horarios => horarios == '04/2021')
+      this.clientesMarco = this.clientes.filter(horarios => horarios == '03/2021')
+      this.clientesFavereiro = this.clientes.filter(horarios => horarios == '02/2021')
+      this.clientesJaneiro = this.clientes.filter(horarios => horarios == '01/2021')
 
 
      this.dados.push(
