@@ -16,14 +16,16 @@
             </div>
 
           </div><br>
-          <button type="submite" :disabled="this.load" class="btn btn-outline-dark w-100">
+          <button type="submite" :disabled="this.load" class="btn btn-outline-dark w-100 load">
               <b-spinner v-if="this.load" variant="dark"/>
                 <div v-else>
                     Entrar
                 </div>   
           </button>
         </form>
+        <div class="mt-2">
         <small @click="$router.push({name:'resetPassword'})">Esqueci minha senha</small>
+        </div>
       </div>
     </b-col>
     <b-col />
@@ -111,7 +113,7 @@ span {
 
 small {
   cursor: pointer;
-  margin-top: 15px;
+  margin-top: 15px !important;
 }
 
 </style>
