@@ -10,12 +10,10 @@
         <div v-if="this.perfil == 1 " class="d-flex">
          <img src="../img/adm.png"> &nbsp;&nbsp;&nbsp; <span> Administrador </span>
         </div>
-
-        <div v-if="this.perfil == 2 " class="d-flex" >
+        <div v-if="this.perfil == 2 " class="d-flex">
           <img src="../img/oper.png"> &nbsp;&nbsp;&nbsp; <span> Operador </span>
         </div><hr>
       </div>
-
         
           <b-row v-if="this.perfil == 1 ">
           <router-link to="/dashboard" class="w3-bar-item w3-button w3-hover-none buttonMenu d-flex">
