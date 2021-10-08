@@ -1,10 +1,10 @@
 <template>
   <div>
           <b-row align-h="center">
-        <b-col md="8">
+        <b-col md="5">
           <div class="sectionReset p-4">
             <b-row align-h="center">
-              <b-col md="10">
+              <b-col md="11">
                 <div class="text-center">
                   <p>Informe o Token para que seja realizado a alteração da senha.</p>
                 </div>

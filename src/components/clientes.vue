@@ -10,7 +10,7 @@
       <b-col md="3" scope="col">Cliente</b-col>
       <b-col md="1" scope="col">Idade</b-col>
       <b-col md="2" scope="col">Telefone</b-col>
-      <b-col md="2" scope="col">Aniversario</b-col>
+      <b-col md="2" scope="col">Data de Nascimento</b-col>
       <b-col md="2" scope="col">Rede Social</b-col>
       <b-col md="1" scope="col"></b-col>
   </b-row>

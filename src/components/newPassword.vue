@@ -3,13 +3,13 @@
 
 
       <b-row align-h="center">
-        <b-col md="8">
-          <div class="sectionReset p-4">
+        <b-col md="5">
+          <div class="sectionReset p-5">
             <b-row>
               <h5>Resetar senha</h5>
             </b-row>
             <b-row align-h="center">
-              <b-col md="10">
+              <b-col md="11">
                 <br>
                 <form @submit.prevent="encontrarEmail()">
                 <b-row>
