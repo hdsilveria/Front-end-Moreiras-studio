@@ -95,7 +95,7 @@ export default {
       labels: ['Julho','Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
       datasets: [
         {
-          label: 'Venda Liquida por Mês',
+          label: 'Venda Liquida por Mês em R$',
           backgroundColor: 'rgba(244,191,187,1)',
           data: this.allClients,
           borderWidth: 5,
