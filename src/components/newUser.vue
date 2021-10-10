@@ -49,7 +49,7 @@
   </b-col>
 
   <b-col md="6" class="justify-content-center">
-    <h4> Usuarios Criados </h4> 
+    <h4> Usuarios</h4> 
     <div class="usersCreated">
       <b-row v-for="usuarios in users" :key="usuarios.id" style="margin-top: 5px;"><hr>
         <b-col>
@@ -57,8 +57,15 @@
           <b-row><span><b>Email:</b> {{usuarios.email}}</span></b-row>
           <b-row><span><b>Perfil:</b> {{usuarios.profile}}</span></b-row>
         </b-col>
-        <b-col md="3">
-            <button class="btn btn-outline-light" @click="remover(usuarios.id)" >Deletar </button>
+        <b-col md="4">
+          <b-row>
+            <b-col class="p-0">
+              <button class="btn btn-light" @click="editar(usuarios.id)"><span style="color: rgba(158,104,100,1)">Editar</span></button>
+            </b-col>
+            <b-col class="p-0">
+              <button class="btn btn-outline-light" @click="remover(usuarios.id)" >Deletar </button>
+            </b-col>
+          </b-row>
         </b-col>
       </b-row>
     </div>
@@ -107,7 +114,7 @@ methods: {
     if ( confirm('deseja excluir?') ){
       users.apagar(user, this.token).then(() => {
           users.listarUsuario(this.token).then((response)=>{
-    this.users = response.data
+    this.users = response.data.filter(arr => arr.user !== localStorage.getItem('Usuario'))
     })
       }).catch(err =>{
         console.log(err)
@@ -142,7 +149,7 @@ methods: {
           this.passwordConfirm = ''
 
             users.listarUsuario(this.token).then((response)=>{
-    this.users = response.data
+    this.users = response.data.filter(arr => arr.user !== localStorage.getItem('Usuario'))
     })
         })
         .catch(err => {

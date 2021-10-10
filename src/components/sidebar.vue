@@ -241,6 +241,10 @@ span {
   transition: 0.2s;
 }
 
+#menu:not(:hover){
+  transition: 0.2s;
+}
+
 #menu:hover span {
   display: block;
   transition: 0.2s;

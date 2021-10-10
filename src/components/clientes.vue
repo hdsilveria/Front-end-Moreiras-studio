@@ -26,7 +26,16 @@
     <b-spinner variant="dark"/>
   </div>
 
-  <b-row v-else class="table" v-for="cliente of clientes" :key="cliente.id">
+
+  <div v-else>
+
+  <div class="mt-5 error text-center" v-if="clientes == '' ">
+    <strong class="msgError p-2">
+      Não há Resultados 🙁
+    </strong>
+  </div>
+
+    <b-row class="table" v-for="cliente of clientes" :key="cliente.id">
       <b-col md="3">
         {{ cliente.name[0].toUpperCase() + cliente.name.substr(1)}}
       </b-col>
@@ -47,7 +56,10 @@
         <button style="margin: 2px;" type="button" class="btn btn-outline-danger btn-sm" @click="remover(cliente.id)">Deletar</button>
       </b-col>
   </b-row>
-  </div> <br>
+  </div> 
+  </div>
+
+  <br>
 
   <updateClient :client="updClient" @attClients="listClients()"/>
 
@@ -135,6 +147,21 @@ h3 {
   margin: 50px;
   font-family: athena regular;
   color: #686868;
+}
+
+.msgError {
+  color: white;
+  background: rgb(244,191,187);
+  background: linear-gradient(180deg, rgba(244,191,187,1) 0%, rgba(158,104,100,1) 100%);
+}
+
+.error:hover {
+  transform: rotate(25deg);
+  transition: 2s;
+}
+
+.error {
+  transition: 1s;
 }
 
 .headTable {

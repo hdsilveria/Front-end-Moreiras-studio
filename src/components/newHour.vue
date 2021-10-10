@@ -18,9 +18,9 @@
           <label class="form-label">Horario </label>
           <input v-model="novoHorario.horario" class="form-control" type="time" autocomplete="off" required>
         </b-col>
-    </b-row> <br>
+    </b-row>
 
-    <b-row>
+    <b-row class="mt-2">
         <b-col>
           <label class="form-label">Procedimento </label>
             <select class="form-control" v-model="novoHorario.procedimento" required>
