@@ -19,24 +19,24 @@
         </b-col>
 
         <b-col md="3">
-          <label class="form-label">Aniversario </label>
-          <input v-model="updateClient.birthday" class="form-control" type="tel" v-mask="'##/##/####'" autocomplete="off" required>
+          <label class="form-label">Data de Nascimento</label>
+          <input v-model="updateClient.birthday" class="form-control" type="tel" v-mask="'##/##/####'" autocomplete="off">
         </b-col>
 
         <b-col md="3">
           <label class="form-label">Idade </label>
-          <input v-model="updateClient.age" class="form-control" type="number" required>
+          <input v-model="updateClient.age" class="form-control" type="number">
         </b-col>
     </b-row>
 
     <b-row style="margin-top: 10px;">
         <b-col>
           <label class="form-label">Telefone </label>
-          <input v-model="updateClient.tel" class="form-control" type="tel" v-mask="'(##)#####-####'" autocomplete="off" required>
+          <input v-model="updateClient.tel" class="form-control" type="tel" v-mask="'(##)#####-####'" autocomplete="off">
         </b-col>
         <b-col>
           <label class="form-label">Rede Social </label>
-          <input v-model="updateClient.social" class="form-control" type="text" autocomplete="off" required>
+          <input v-model="updateClient.social" class="form-control" type="text" autocomplete="off">
         </b-col>
     </b-row>
     <br>
