@@ -3,7 +3,7 @@ import { api } from './config'
 export default {
 
   listar: token =>{
-    return api.get('/clientes?page=0&size=100', token )
+    return api.get('/clientes?page=0&size=400', token )
   },
 
   deletar: (id, token) => {

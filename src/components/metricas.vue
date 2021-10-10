@@ -15,7 +15,7 @@
             <b-spinner variant="light"/>
           </div>
 
-          <strong v-else>
+          <strong v-else id="numClients" @click="$router.push({name: 'clients'})">
             {{nmClientes}}
           </strong>
 
@@ -217,6 +217,10 @@ h4 {
 
 .graphic {
   width: 270px;
+}
+
+#numClients {
+  cursor: pointer;
 }
 
 .clientArea {

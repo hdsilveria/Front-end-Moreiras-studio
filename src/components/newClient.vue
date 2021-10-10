@@ -4,7 +4,7 @@
         <h4>Inserir Nova Cliente</h4>    
   <br>
     <b-row>
-        <b-col md="5">
+        <b-col md="6">
           <label class="form-label">Nome </label>
           <input v-model="novaCliente.name" class="form-control" type="text" autocomplete="off" required>
         </b-col>
@@ -25,10 +25,17 @@
           <label class="form-label">Telefone </label>
           <input v-model="novaCliente.tel" class="form-control" type="tel" v-mask="'(##)#####-####'" autocomplete="off">
         </b-col>
-        <b-col md="5">
+        <b-col md="6">
           <label class="form-label">Rede Social </label>
           <input v-model="novaCliente.social" class="form-control" type="text" autocomplete="off">
         </b-col>
+    </b-row>
+
+    <b-row style="margin-top: 10px;">
+      <b-col>
+      <label class="form-label">E-mail</label>
+        <input v-model="novaCliente.email" class="form-control" type="email" autocomplete="off">
+      </b-col>
     </b-row>
     <br>
 
@@ -62,6 +69,7 @@ data(){
           age: '',
           tel: '',
           social: '',
+          email: ''
       }
     }
   },

@@ -6,14 +6,13 @@
     <h3>Meus Horarios</h3>
 
 <b-row class="search d-flex d-row">
-    <b-col md="3">
-      <label>Buscar pela Data</label>
+    <b-col md="3"><br>
         <b-form-input
           id="buscaDia"
           type="tel"
           v-mask="'##/##/####'"
           v-model="busca"
-          placeholder="Digite a data..."
+          placeholder="Buscar pela Data"
         ></b-form-input>
     </b-col>
 
@@ -21,8 +20,7 @@
         <b-button @click="searchDate" class="searchButton">Buscar</b-button>
     </b-col>
 
-    <b-col md="2">
-      <label>Buscar pelo mês</label><br>
+    <b-col md="2"><br>
         <b-form-select
         class="searchMounth"
         v-model="buscaMes"

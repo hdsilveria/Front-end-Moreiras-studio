@@ -39,6 +39,13 @@
           <input v-model="updateClient.social" class="form-control" type="text" autocomplete="off">
         </b-col>
     </b-row>
+
+    <b-row style="margin-top: 10px;">
+      <b-col>
+        <label class="form-label">E-mail</label>
+          <input v-model="updateClient.email" class="form-control" type="text" autocomplete="off">
+      </b-col>
+    </b-row>
     <br>
 
     <b-row>

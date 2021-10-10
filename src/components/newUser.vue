@@ -51,12 +51,16 @@
   <b-col md="6" class="justify-content-center">
     <h4> Usuarios Criados </h4> 
     <div class="usersCreated">
-      <br>
-      <ul v-for="usuarios in users" :key="usuarios.id">
-        <li><b>Usuario:</b> {{usuarios.user}}</li>
-        <li><b>Email:</b> {{usuarios.email}} &nbsp;&nbsp;&nbsp;&nbsp; <button class="btn btn-outline-light" @click="remover(usuarios.id)" >Deletar </button></li>
-        <li><b>Perfil:</b> {{usuarios.profile}}</li>
-      </ul>
+      <b-row v-for="usuarios in users" :key="usuarios.id" style="margin-top: 5px;"><hr>
+        <b-col>
+          <b-row><span><b>Usuario:</b> {{usuarios.user}}</span></b-row>
+          <b-row><span><b>Email:</b> {{usuarios.email}}</span></b-row>
+          <b-row><span><b>Perfil:</b> {{usuarios.profile}}</span></b-row>
+        </b-col>
+        <b-col md="3">
+            <button class="btn btn-outline-light" @click="remover(usuarios.id)" >Deletar </button>
+        </b-col>
+      </b-row>
     </div>
   </b-col>
 
@@ -218,6 +222,10 @@ ul {
   overflow: scroll;
   overflow-x: hidden;
   border: 1px solid white;
+}
+
+span {
+  margin-left: 6px;
 }
 
 </style>

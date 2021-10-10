@@ -6,6 +6,13 @@
     </div>
 
 <div id="tabela">
+  <b-row>
+    <b-col md="4">
+      <div class="p-3 searchBar">
+        <b-form-input placeholder="Pesquisar Cliente" v-model="search" />
+      </div>
+    </b-col>
+  </b-row>
   <b-row class="headTable">
       <b-col md="3" scope="col">Cliente</b-col>
       <b-col md="1" scope="col">Idade</b-col>
@@ -21,7 +28,7 @@
 
   <b-row v-else class="table" v-for="cliente of clientes" :key="cliente.id">
       <b-col md="3">
-        {{cliente.name}}
+        {{ cliente.name[0].toUpperCase() + cliente.name.substr(1)}}
       </b-col>
       <b-col md="1">
         {{cliente.age ? cliente.age : 'N/A'}} <span v-if="cliente.age">anos</span> 
@@ -55,7 +62,9 @@ export default {
   data(){
     return {
       clientes: [],
+      resultClients: [],
       updClient: {},
+      search: '',
       load: false, 
       token: { headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }
     }
@@ -70,6 +79,14 @@ export default {
     this.listClients()
   },
 
+  watch: {
+    search(){
+      this.clientes = this.resultClients.filter(arr => 
+        arr.name.includes(this.search)
+      )
+    }
+  },
+
   methods: {
 
     openModalUpdt(cliente){
@@ -80,6 +97,7 @@ export default {
     listClients(){
       clients.listar(this.token).then(response => {
         this.clientes = response.data.rows
+        this.resultClients = response.data.rows
         this.load = false
       })
     },
@@ -124,6 +142,13 @@ h3 {
   color: white;
   background: rgb(244,191,187);
   background: linear-gradient(180deg, rgba(244,191,187,1) 0%, rgba(158,104,100,1) 100%);
+}
+
+.searchBar {
+  background: rgb(244,191,187);
+  margin-left: -11px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 

@@ -4,7 +4,7 @@ import { api } from './config'
 export default {
 
     listar: token =>{
-        return api.get('/agenda/horario?page=0&size=100', token )
+        return api.get('/agenda/horario?page=0&size=400', token )
     },
 
     cadastrar: (CadHorario, token) =>{
