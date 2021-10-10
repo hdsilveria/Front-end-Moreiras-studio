@@ -24,16 +24,16 @@
         {{cliente.name}}
       </b-col>
       <b-col md="1">
-        {{cliente.age}} anos
+        {{cliente.age ? cliente.age : 'N/A'}} <span v-if="cliente.age">anos</span> 
       </b-col>
       <b-col md="2">
-        {{cliente.tel}}
+        {{cliente.tel ? cliente.tel : 'N/A'}}
       </b-col>
       <b-col md="2">
-        {{cliente.birthday}}
+        {{cliente.birthday ? cliente.birthday : 'N/A'}}
       </b-col>
       <b-col cols="2" class="text-nowrap">
-        {{cliente.social}}
+        {{cliente.social ? cliente.social : 'N/A'}}
       </b-col>
       <b-col md="auto" class="d-flex">
         <button style="margin: 2px;" type="button" class="btn btn-outline-dark btn-sm" @click="openModalUpdt(cliente)">Editar</button>

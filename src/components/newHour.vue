@@ -24,7 +24,7 @@
         <b-col>
           <label class="form-label">Procedimento </label>
             <select class="form-control" v-model="novoHorario.procedimento" required>
-              <option value="Volume Russo" selected>Cilius: Volume Russo </option>
+              <option value="Volume Russo">Cilius: Volume Russo </option>
               <option value="Fio a Fio" >Cilius: Fio a Fio </option>
               <option value="Volume Leve" >Cilius: Volume Leve </option>
               <option value="Mega Volume" >Cilius: Mega Volume </option>
@@ -32,19 +32,18 @@
               <option value="Fibra de Vidro" >Unhas: Fibra de Vidro </option>
               <option value="Blindagem com Fibra" >Unhas: Blindagem com Fibra </option>
               <option value="Blindagem Comum" >Unhas: Blindagem Comum </option>
-
           </select>
         </b-col>
-    </b-row> <br>
-
-        <div class="col-md-4">
+        <b-col>
           <label class="form-label">Tipo </label>
           <select class="form-control" v-model="novoHorario.tipo" required>
-              <option value="Manutenção" selected> Manutenção </option>
+              <option value="Manutenção"> Manutenção </option>
               <option value="Aplicação" > Aplicação </option>
           </select>
-        </div>
+        </b-col>
 
+
+    </b-row> <br>
 
     <b-row>
         <b-col class="d-flex d-row justify-content-center">
@@ -74,8 +73,8 @@ data(){
           cliente: '',
           data: '',
           horario: '',
-          procedimento: '',
-          tipo: '',
+          procedimento: 'Volume Russo',
+          tipo: 'Manutenção',
       }
     }
   },

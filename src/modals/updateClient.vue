@@ -18,12 +18,12 @@
           <input v-model="updateClient.name" class="form-control" type="text" autocomplete="off" required>
         </b-col>
 
-        <b-col md="3">
+        <b-col md="4">
           <label class="form-label">Data de Nascimento</label>
           <input v-model="updateClient.birthday" class="form-control" type="tel" v-mask="'##/##/####'" autocomplete="off">
         </b-col>
 
-        <b-col md="3">
+        <b-col md="2">
           <label class="form-label">Idade </label>
           <input v-model="updateClient.age" class="form-control" type="number">
         </b-col>
