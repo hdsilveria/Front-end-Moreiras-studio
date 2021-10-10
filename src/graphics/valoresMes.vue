@@ -82,12 +82,12 @@ export default {
         this.clientsDezembro = this.clientes.filter(date => date.data.slice(3,10) == '12/2021')
 
         this.allClients.push(
-        this.clientsJulho.map(valor => valor.valor).reduce((total,soma) => total + soma ),
-        this.clientsAgosto.map(valor => valor.valor).reduce((total,soma) => total + soma ), 
-        this.clientsSetembro.map(valor => valor.valor).reduce((total,soma) => total + soma ),
-        this.clientsOutubro.map(valor => valor.valor).reduce((total,soma) => total + soma ), 
-        this.clientsNovembro.map(valor => valor.valor).reduce((total,soma) => total + soma ), 
-        this.clientsDezembro.map(valor => valor.valor).reduce((total,soma) => total + soma ), 
+        this.clientsJulho.map(valor => valor.valor).reduce((total,soma) => total + soma, 0 ),
+        this.clientsAgosto.map(valor => valor.valor).reduce((total,soma) => total + soma, 0 ), 
+        this.clientsSetembro.map(valor => valor.valor).reduce((total,soma) => total + soma, 0 ),
+        this.clientsOutubro.map(valor => valor.valor).reduce((total,soma) => total + soma, 0 ), 
+        this.clientsNovembro.map(valor => valor.valor).reduce((total,soma) => total + soma, 0 ), 
+        this.clientsDezembro.map(valor => valor.valor).reduce((total,soma) => total + soma, 0 ), 
         )
       }),
     

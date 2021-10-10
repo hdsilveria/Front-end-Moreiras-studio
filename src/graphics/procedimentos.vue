@@ -42,7 +42,6 @@ export default {
         this.fibraDeVidro.length,
         this.blindagemComFibra.length,
         this.blindagemComun.length,
-
        )
       }),
     
