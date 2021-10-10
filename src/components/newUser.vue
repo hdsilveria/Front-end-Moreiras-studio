@@ -77,7 +77,7 @@ export default {
 
 mounted(){  
   users.listarUsuario({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }).then((response)=>{
-    this.users = response.data
+    this.users = response.data.filter(arr => arr.user !== localStorage.getItem('Usuario'))
     })
   },
 
@@ -92,7 +92,7 @@ data(){
         usuario: {
             usuario: '',
             email: '',
-            perfil: '',
+            perfil: '1',
             password: ''
         }
     }
