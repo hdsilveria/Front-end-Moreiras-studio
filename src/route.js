@@ -9,6 +9,7 @@ import metricas from '../src/components/metricas'
 import clients from '../src/components/clientes'
 import newClients from '../src/components/newClient'
 import newPassword from '../src/components/newPassword'
+import recoverPass from '../src/components/recoverPass'
 
 Vue.use(VueRouter)
 
@@ -60,7 +61,15 @@ const routes = [
         meta: {
             menu: false,
         }
-    },      
+    },
+    {
+        name: 'recover',
+        path: '/inserirNovaSenha',
+        component: recoverPass,
+        meta: {
+            menu: false,
+        }
+    },     
 ]
 
 const router = new VueRouter({routes})

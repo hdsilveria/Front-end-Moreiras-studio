@@ -3,18 +3,18 @@ import { api } from './config'
 export default {
 
   listar: token =>{
-    return api.get('/clientes?page=0&size=100', token )
+    return api.get('/clientes?page=0&size=400', token )
   },
 
-  deletar: (id) => {
-    return api.delete(`/clientes/${id}`)
+  deletar: (id, token) => {
+    return api.delete(`/clientes/${id}`, token)
   },
 
-  inserir: client => {
-    return api.post(`/clientes/insertClient`, client)
+  inserir: (client, token) => {
+    return api.post(`/clientes/insertClient`, client, token)
   },
 
-  atualizar: (id, value) => {
-    return api.put(`/clientes/${id}`, value)
+  atualizar: (id, value, token) => {
+    return api.put(`/clientes/${id}`, value, token)
   }
 }

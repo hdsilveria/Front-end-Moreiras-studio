@@ -3,6 +3,8 @@ import { Doughnut  } from 'vue-chartjs'
 import agenda from '/services/agenda'
 
 export default {
+
+  extends: Doughnut ,
   
     data(){
     return {
@@ -11,10 +13,8 @@ export default {
       manutencao: '',
     }
   },
-
-  extends: Doughnut ,
   async mounted () {
-    await agenda.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }).then((response)=>{
+    await agenda.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }).then(response=>{
       this.clientes = response.data.data.rows.map(date => date.tipo)
       this.aplicacao = this.clientes.filter(tipos => tipos == 'Aplicação')
       this.manutencao = this.clientes.filter(tipos => tipos == 'Manutenção')

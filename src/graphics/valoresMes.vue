@@ -3,6 +3,8 @@ import { Line  } from 'vue-chartjs'
 import agenda from '/services/agenda'
 
 export default {
+
+  extends: Line,
   
     data(){
     return {
@@ -17,10 +19,8 @@ export default {
     }
   },
 
-  extends: Line,
-
   async mounted () {
-    await agenda.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }).then((response)=>{
+    await agenda.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }).then(response=>{
       let vendas = response.data.data.rows.map(date => date)
       vendas.map(proc => proc).forEach(element => {
         if (element.procedimento == 'Volume Russo' && element.tipo == 'Aplicação') {
@@ -82,12 +82,12 @@ export default {
         this.clientsDezembro = this.clientes.filter(date => date.data.slice(3,10) == '12/2021')
 
         this.allClients.push(
-        this.clientsJulho.map(valor => valor.valor).reduce((total,soma) => total + soma ),
-        this.clientsAgosto.map(valor => valor.valor).reduce((total,soma) => total + soma ), 
-        this.clientsSetembro.map(valor => valor.valor).reduce((total,soma) => total + soma ),
-        this.clientsOutubro.map(valor => valor.valor).reduce((total,soma) => total + soma ), 
-        this.clientsNovembro.map(valor => valor.valor).reduce((total,soma) => total + soma ), 
-        this.clientsDezembro.map(valor => valor.valor).reduce((total,soma) => total + soma ), 
+        this.clientsJulho.map(valor => valor.valor).reduce((total,soma) => total + soma, 0 ),
+        this.clientsAgosto.map(valor => valor.valor).reduce((total,soma) => total + soma, 0 ), 
+        this.clientsSetembro.map(valor => valor.valor).reduce((total,soma) => total + soma, 0 ),
+        this.clientsOutubro.map(valor => valor.valor).reduce((total,soma) => total + soma, 0 ), 
+        this.clientsNovembro.map(valor => valor.valor).reduce((total,soma) => total + soma, 0 ), 
+        this.clientsDezembro.map(valor => valor.valor).reduce((total,soma) => total + soma, 0 ), 
         )
       }),
     
@@ -95,7 +95,7 @@ export default {
       labels: ['Julho','Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
       datasets: [
         {
-          label: 'Venda Liquida por Mês',
+          label: 'Venda Liquida por Mês em R$',
           backgroundColor: 'rgba(244,191,187,1)',
           data: this.allClients,
           borderWidth: 5,

@@ -273,3 +273,15 @@ body {
     font-family: athena regular;
     color: #686868;
 }
+
+.load {
+  height: 50px;
+}
+
+@media screen and (max-width: 799px){
+
+  .headTable {
+    display: none !important;
+  }
+
+}

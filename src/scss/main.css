@@ -1,0 +1,21 @@
+#menu a {
+  margin-left: -10px;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.btn {
+  border-radius: 4px !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.form-control:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+/*# sourceMappingURL=main.css.map */

@@ -11,6 +11,6 @@ const success = this.$toast.success("I'm a toast!", {
     closeButton: "button",
     icon: true,
     rtl: false
-  });
+  })
 
   export default success

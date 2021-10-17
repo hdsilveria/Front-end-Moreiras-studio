@@ -1,50 +1,100 @@
 <template>
-<div> 
-    <form class="container" id="inserir" @submit.prevent="insertClient">
-        <h4>Inserir Nova Cliente</h4>    
-  <br>
-    <b-row>
-        <b-col md="5">
+  <div> 
+    <form
+      id="inserir"
+      class="container"
+      @submit.prevent="insertClient"
+    >
+      <h4>Inserir Nova Cliente</h4>    
+      <br>
+      <b-row>
+        <b-col md="6">
           <label class="form-label">Nome </label>
-          <input v-model="novaCliente.name" class="form-control" type="text" autocomplete="off" required>
+          <input
+            v-model="novaCliente.name"
+            class="form-control"
+            type="text"
+            autocomplete="off"
+            required
+          >
         </b-col>
 
         <b-col md="3">
-          <label class="form-label">Aniversario </label>
-          <input v-model="novaCliente.birthday" class="form-control" type="tel" v-mask="'##/##/####'" autocomplete="off" required>
+          <label class="form-label">Data de Nascimento</label>
+          <input
+            v-model="novaCliente.birthday"
+            v-mask="'##/##/####'"
+            class="form-control"
+            type="tel"
+            autocomplete="off"
+          >
         </b-col>
 
         <b-col md="3">
           <label class="form-label">Idade </label>
-          <input v-model="novaCliente.age" class="form-control" type="number" required>
+          <input
+            v-model="novaCliente.age"
+            class="form-control"
+            type="number"
+          >
         </b-col>
-    </b-row>
+      </b-row>
 
-    <b-row style="margin-top: 10px;">
+      <b-row style="margin-top: 10px;">
         <b-col md="6">
           <label class="form-label">Telefone </label>
-          <input v-model="novaCliente.tel" class="form-control" type="tel" v-mask="'(##)#####-####'" autocomplete="off" required>
+          <input
+            v-model="novaCliente.tel"
+            v-mask="'(##)#####-####'"
+            class="form-control"
+            type="tel"
+            autocomplete="off"
+          >
         </b-col>
-        <b-col md="5">
+        <b-col md="6">
           <label class="form-label">Rede Social </label>
-          <input v-model="novaCliente.social" class="form-control" type="text" autocomplete="off" required>
+          <input
+            v-model="novaCliente.social"
+            class="form-control"
+            type="text"
+            autocomplete="off"
+          >
         </b-col>
-    </b-row>
-    <br>
+      </b-row>
 
-    <b-row>
-        <b-col class="d-flex d-row justify-content-center">
-            <br><button :disabled="this.load" class="btn btn-outline-light" type="submit">
-              <b-spinner v-if="this.load" variant="light"/>
-                <div v-else>
-                    Inserir Cliente 
-                </div>  
-            </button>
+      <b-row style="margin-top: 10px;">
+        <b-col>
+          <label class="form-label">E-mail</label>
+          <input
+            v-model="novaCliente.email"
+            class="form-control"
+            type="email"
+            autocomplete="off"
+          >
         </b-col>
-    </b-row> <br>
+      </b-row>
+      <br>
+
+      <b-row>
+        <b-col class="d-flex d-row justify-content-center">
+          <br><button
+            :disabled="this.load"
+            class="btn btn-outline-light"
+            type="submit"
+          >
+            <b-spinner
+              v-if="this.load"
+              variant="light"
+            />
+            <div v-else>
+              Inserir Cliente 
+            </div>  
+          </button>
+        </b-col>
+      </b-row> <br>
     
     </form>
-</div>
+  </div>
 </template>
 
 <script>
@@ -62,6 +112,7 @@ data(){
           age: '',
           tel: '',
           social: '',
+          email: ''
       }
     }
   },
@@ -72,6 +123,11 @@ methods: {
       this.load = true
         clients.inserir(this.novaCliente, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} })
         .then(() =>{
+          this.novaCliente.name = '',
+          this.novaCliente.birthday = '',
+          this.novaCliente.age = '',
+          this.novaCliente.tel = '',
+          this.novaCliente.social = ''
           this.load = false,
             this.$toast.success("Cliente inserida com sucesso!", {
               position: "bottom-right",
@@ -87,14 +143,23 @@ methods: {
               icon: true,
               rtl: false
             })
-          this.novaCliente.cliente = '',
-          this.novaCliente.data = '',
-          this.novaCliente.horario = '',
-          this.novaCliente.procedimento = '',
-          this.novaCliente.tipo = ''
         })
-        .catch(() => {
+        .catch(err => {
           this.load = false
+            this.$toast.error(`Erro: ${err.response.data.message}`, {
+              position: "bottom-right",
+              timeout: 2000,
+              closeOnClick: true,
+              pauseOnFocusLoss: true,
+              pauseOnHover: true,
+              draggable: true,
+              draggablePercent: 2,
+              showCloseButtonOnHover: false,
+              hideProgressBar: true,
+              closeButton: "button",
+              icon: true,
+              rtl: false
+            })
         })
     },
   }

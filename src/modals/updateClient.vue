@@ -18,26 +18,33 @@
           <input v-model="updateClient.name" class="form-control" type="text" autocomplete="off" required>
         </b-col>
 
-        <b-col md="3">
-          <label class="form-label">Aniversario </label>
-          <input v-model="updateClient.birthday" class="form-control" type="tel" v-mask="'##/##/####'" autocomplete="off" required>
+        <b-col md="4">
+          <label class="form-label">Data de Nascimento</label>
+          <input v-model="updateClient.birthday" class="form-control" type="tel" v-mask="'##/##/####'" autocomplete="off">
         </b-col>
 
-        <b-col md="3">
+        <b-col md="2">
           <label class="form-label">Idade </label>
-          <input v-model="updateClient.age" class="form-control" type="number" required>
+          <input v-model="updateClient.age" class="form-control" type="number">
         </b-col>
     </b-row>
 
     <b-row style="margin-top: 10px;">
         <b-col>
           <label class="form-label">Telefone </label>
-          <input v-model="updateClient.tel" class="form-control" type="tel" v-mask="'(##)#####-####'" autocomplete="off" required>
+          <input v-model="updateClient.tel" class="form-control" type="tel" v-mask="'(##)#####-####'" autocomplete="off">
         </b-col>
         <b-col>
           <label class="form-label">Rede Social </label>
-          <input v-model="updateClient.social" class="form-control" type="text" autocomplete="off" required>
+          <input v-model="updateClient.social" class="form-control" type="text" autocomplete="off">
         </b-col>
+    </b-row>
+
+    <b-row style="margin-top: 10px;">
+      <b-col>
+        <label class="form-label">E-mail</label>
+          <input v-model="updateClient.email" class="form-control" type="text" autocomplete="off">
+      </b-col>
     </b-row>
     <br>
 
@@ -55,7 +62,6 @@
     </div>
   </modal>
 </template>
-
 
 <script>
 
@@ -79,7 +85,7 @@ export default {
 
     updClient(){
       this.load = true
-      clients.atualizar(this.updateClient.id, this.updateClient).then(() => {
+      clients.atualizar(this.updateClient.id, this.updateClient, this.token).then(() => {
         this.load = false,
         this.$modal.hide('updateClient')
           this.$toast.success("Cliente Atualizado com sucesso!", {
@@ -106,6 +112,7 @@ export default {
   data(){
     return {
       load: false,
+      token: { headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} },
       updateClient: {}
     }
   },
@@ -120,5 +127,9 @@ export default {
   background: linear-gradient(180deg, rgba(244,191,187,1) 0%, rgba(158,104,100,1) 100%);
   color: white;
   padding: 20px;
+}
+
+h3 {
+  cursor: all-scroll;
 }
 </style>
