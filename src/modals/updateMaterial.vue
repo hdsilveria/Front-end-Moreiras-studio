@@ -1,53 +1,86 @@
 <template>
-    <modal 
-      name="updateMaterial"
-      :width="480"
-      :height="'auto'"
-      :adaptive="true"
-      :draggable="true"
-      @opened="setVar()"
-      @closed="attList()"
-    >
+  <modal 
+    name="updateMaterial"
+    :width="480"
+    :height="'auto'"
+    :adaptive="true"
+    :draggable="true"
+    @opened="setVar()"
+    @closed="attList()"
+  >
     <div id="inserir">
-    <h3 style="text-align: center;">Atualizar Material</h3> <br>
+      <h3 style="text-align: center;">
+        Atualizar Material
+      </h3> <br>
 
-    <form @submit.prevent="updMaterial()">
-      <b-row>
-        <b-col cols="6">
-          <label class="form-label">Material </label>
-          <input v-model="upMaterial.material" class="form-control" type="text" autocomplete="off" required>
-        </b-col>
+      <form @submit.prevent="updMaterial()">
+        <b-row>
+          <b-col cols="6">
+            <label class="form-label">Material </label>
+            <input
+              v-model="upMaterial.material"
+              class="form-control"
+              type="text"
+              autocomplete="off"
+              required
+            >
+          </b-col>
 
-        <b-col cols="6">
-          <label class="form-label">Quantidade </label>
-          <input v-model="upMaterial.quantidade" class="form-control" type="number" autocomplete="off" required>
-        </b-col>
-    </b-row>
+          <b-col cols="6">
+            <label class="form-label">Quantidade </label>
+            <input
+              v-model="upMaterial.quantidade"
+              class="form-control"
+              type="number"
+              autocomplete="off"
+              required
+            >
+          </b-col>
+        </b-row>
 
-    <b-row style="margin-top: 10px;">
-        <b-col cols="6">
-          <label class="form-label">Data da Ultima Compra </label>
-          <input v-model="upMaterial.data" class="form-control" type="tel" v-mask="'##/##/####'"  autocomplete="off" required>
-        </b-col>
+        <b-row style="margin-top: 10px;">
+          <b-col cols="6">
+            <label class="form-label">Data da Ultima Compra </label>
+            <input
+              v-model="upMaterial.data"
+              v-mask="'##/##/####'"
+              class="form-control"
+              type="tel"
+              autocomplete="off"
+              required
+            >
+          </b-col>
 
-        <b-col cols="6">
-          <label class="form-label">Valor </label>
-          <input v-model="upMaterial.valor" class="form-control" type="number" required>
-        </b-col>
-    </b-row>
-    <br>
+          <b-col cols="6">
+            <label class="form-label">Valor </label>
+            <input
+              v-model="upMaterial.valor"
+              class="form-control"
+              type="number"
+              required
+            >
+          </b-col>
+        </b-row>
+        <br>
 
-    <b-row>
-        <b-col class="d-flex d-row justify-content-center">
-            <br><button :disabled="this.load" class="btn btn-outline-light" type="submit">
-              <b-spinner v-if="this.load" variant="light"/>
-                <div v-else>
-                    Atualizar Material 
-                </div>  
+        <b-row>
+          <b-col class="d-flex d-row justify-content-center">
+            <br><button
+              :disabled="load"
+              class="btn btn-outline-light"
+              type="submit"
+            >
+              <b-spinner
+                v-if="load"
+                variant="light"
+              />
+              <div v-else>
+                Atualizar Material 
+              </div>  
             </button>
-        </b-col>
-    </b-row> <br>
-    </form>
+          </b-col>
+        </b-row> <br>
+      </form>
     </div>
   </modal>
 </template>
@@ -59,8 +92,17 @@ import materials from '../../services/materiais'
 
 export default {
   props: {
+    // eslint-disable-next-line vue/require-default-prop
     material: {
       type: Object
+    }
+  },
+
+  data(){
+    return {
+      load: false,
+      token: { headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} },
+      upMaterial: {}
     }
   },
 
@@ -96,14 +138,6 @@ export default {
           this.load = false
           console.log(err)
         })
-    }
-  },
-
-  data(){
-    return {
-      load: false,
-      token: { headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} },
-      upMaterial: {}
     }
   },
 }

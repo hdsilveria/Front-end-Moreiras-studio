@@ -3,6 +3,8 @@ import { Pie  } from 'vue-chartjs'
 import agenda from '/services/agenda'
 
 export default {
+
+  extends: Pie ,
   
     data(){
     return {
@@ -18,10 +20,8 @@ export default {
       blindagemComun: '',
     }
   },
-
-  extends: Pie ,
   async mounted () {
-    await agenda.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }).then((response)=>{
+    await agenda.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }).then(response=>{
       this.clientes = response.data.data.rows.map(date => date.procedimento)
       this.volumeRusso = this.clientes.filter(tipos => tipos == 'Volume Russo')
       this.fioAfio = this.clientes.filter(tipos => tipos == 'Fio a Fio')

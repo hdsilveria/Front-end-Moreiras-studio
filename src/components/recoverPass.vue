@@ -1,52 +1,73 @@
 <template>
   <div>
+    <b-row align-h="center">
+      <b-col md="5">
+        <div class="sectionReset p-4">
           <b-row align-h="center">
-        <b-col md="5">
-          <div class="sectionReset p-4">
-            <b-row align-h="center">
-              <b-col md="11">
-                <div class="text-center">
-                  <p>Informe o Token para que seja realizado a alteração da senha.</p>
-                </div>
-                <br>
-                <form @submit.prevent="resetarSenha()" autocomplete="false">
+            <b-col md="11">
+              <div class="text-center">
+                <p>Informe o Token para que seja realizado a alteração da senha.</p>
+              </div>
+              <br>
+              <form
+                autocomplete="false"
+                @submit.prevent="resetarSenha()"
+              >
                 <b-row>
-                  <b-form-input v-model="user.token" placeholder="Insira o código" type="text"/>
+                  <b-form-input
+                    v-model="user.token"
+                    placeholder="Insira o código"
+                    type="text"
+                  />
                 </b-row><br>
 
                 <b-row>
-                  <b-form-input v-model="user.password" placeholder="Insira a nova Senha" type="password"/>
+                  <b-form-input
+                    v-model="user.password"
+                    placeholder="Insira a nova Senha"
+                    type="password"
+                  />
                 </b-row><br>
 
                 <b-row>
-                  <b-form-input v-model="confirm" placeholder="Confirmar a nova Senha" type="password"/>
+                  <b-form-input
+                    v-model="confirm"
+                    placeholder="Confirmar a nova Senha"
+                    type="password"
+                  />
                 </b-row>
                 <br>
                 <b-row class="w-100">
                   <b-col>
-                    <button type="submite" class="load w-100 btn btn-dark">
+                    <button
+                      type="submite"
+                      class="load w-100 btn btn-dark"
+                    >
                       <div v-if="this.load">
-                      <b-spinner variant="light"/>
+                        <b-spinner variant="light" />
                       </div>
-                        <div v-else>
-                          Alterar
-                        </div>   
+                      <div v-else>
+                        Alterar
+                      </div>   
                     </button>
                   </b-col>
                   <b-col>
-                    <button @click="$router.push({name: 'home'})" class="load w-100 btn btn-outline-dark">
-                        <div>
-                          Cancelar
-                        </div>   
+                    <button
+                      class="load w-100 btn btn-outline-dark"
+                      @click="$router.push({name: 'home'})"
+                    >
+                      <div>
+                        Cancelar
+                      </div>   
                     </button>
                   </b-col>
                 </b-row>
-                </form>           
-              </b-col>
-            </b-row>
-          </div>
-        </b-col>
-      </b-row>
+              </form>           
+            </b-col>
+          </b-row>
+        </div>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -91,10 +112,10 @@ export default {
               closeButton: "button",
               icon: true,
               rtl: false
-            });
+            })
             setTimeout(() => {
               this.$router.push({name: 'home'})
-            }, 1000);
+            }, 1000)
         }).catch(err => {
         this.load = false
         this.$toast.error(err.response, {
@@ -110,7 +131,7 @@ export default {
           closeButton: "button",
           icon: true,
           rtl: false
-        });
+        })
         })
       }else{
         this.load = false
@@ -127,7 +148,7 @@ export default {
           closeButton: "button",
           icon: true,
           rtl: false
-        });
+        })
       }
     }
   }

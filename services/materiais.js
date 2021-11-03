@@ -3,7 +3,7 @@ import { api } from './config'
 
 export default {
 
-    listar: (token) =>{
+    listar: token =>{
         return api.get('/estoque?page=0&size=400', token )
     },
 

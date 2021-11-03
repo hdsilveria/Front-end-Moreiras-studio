@@ -1,57 +1,100 @@
 <template>
-<div> 
-    <form class="container" id="inserir" @submit.prevent="insertClient">
-        <h4>Inserir Nova Cliente</h4>    
-  <br>
-    <b-row>
+  <div> 
+    <form
+      id="inserir"
+      class="container"
+      @submit.prevent="insertClient"
+    >
+      <h4>Inserir Nova Cliente</h4>    
+      <br>
+      <b-row>
         <b-col md="6">
           <label class="form-label">Nome </label>
-          <input v-model="novaCliente.name" class="form-control" type="text" autocomplete="off" required>
+          <input
+            v-model="novaCliente.name"
+            class="form-control"
+            type="text"
+            autocomplete="off"
+            required
+          >
         </b-col>
 
         <b-col md="3">
           <label class="form-label">Data de Nascimento</label>
-          <input v-model="novaCliente.birthday" class="form-control" type="tel" v-mask="'##/##/####'" autocomplete="off">
+          <input
+            v-model="novaCliente.birthday"
+            v-mask="'##/##/####'"
+            class="form-control"
+            type="tel"
+            autocomplete="off"
+          >
         </b-col>
 
         <b-col md="3">
           <label class="form-label">Idade </label>
-          <input v-model="novaCliente.age" class="form-control" type="number">
+          <input
+            v-model="novaCliente.age"
+            class="form-control"
+            type="number"
+          >
         </b-col>
-    </b-row>
+      </b-row>
 
-    <b-row style="margin-top: 10px;">
+      <b-row style="margin-top: 10px;">
         <b-col md="6">
           <label class="form-label">Telefone </label>
-          <input v-model="novaCliente.tel" class="form-control" type="tel" v-mask="'(##)#####-####'" autocomplete="off">
+          <input
+            v-model="novaCliente.tel"
+            v-mask="'(##)#####-####'"
+            class="form-control"
+            type="tel"
+            autocomplete="off"
+          >
         </b-col>
         <b-col md="6">
           <label class="form-label">Rede Social </label>
-          <input v-model="novaCliente.social" class="form-control" type="text" autocomplete="off">
+          <input
+            v-model="novaCliente.social"
+            class="form-control"
+            type="text"
+            autocomplete="off"
+          >
         </b-col>
-    </b-row>
+      </b-row>
 
-    <b-row style="margin-top: 10px;">
-      <b-col>
-      <label class="form-label">E-mail</label>
-        <input v-model="novaCliente.email" class="form-control" type="email" autocomplete="off">
-      </b-col>
-    </b-row>
-    <br>
+      <b-row style="margin-top: 10px;">
+        <b-col>
+          <label class="form-label">E-mail</label>
+          <input
+            v-model="novaCliente.email"
+            class="form-control"
+            type="email"
+            autocomplete="off"
+          >
+        </b-col>
+      </b-row>
+      <br>
 
-    <b-row>
+      <b-row>
         <b-col class="d-flex d-row justify-content-center">
-            <br><button :disabled="this.load" class="btn btn-outline-light" type="submit">
-              <b-spinner v-if="this.load" variant="light"/>
-                <div v-else>
-                    Inserir Cliente 
-                </div>  
-            </button>
+          <br><button
+            :disabled="this.load"
+            class="btn btn-outline-light"
+            type="submit"
+          >
+            <b-spinner
+              v-if="this.load"
+              variant="light"
+            />
+            <div v-else>
+              Inserir Cliente 
+            </div>  
+          </button>
         </b-col>
-    </b-row> <br>
+      </b-row> <br>
     
     </form>
-</div>
+  </div>
 </template>
 
 <script>
@@ -134,6 +177,13 @@ margin-top: 40px;
   color: white;
   width: 60%;
   padding: 1%;
+}
+
+
+@media screen and (max-width: 600px) {
+  #inserir {
+    width: 100%;
+  }
 }
 
 input::-webkit-outer-spin-button,

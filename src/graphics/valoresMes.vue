@@ -3,6 +3,8 @@ import { Line  } from 'vue-chartjs'
 import agenda from '/services/agenda'
 
 export default {
+
+  extends: Line,
   
     data(){
     return {
@@ -17,10 +19,8 @@ export default {
     }
   },
 
-  extends: Line,
-
   async mounted () {
-    await agenda.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }).then((response)=>{
+    await agenda.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }).then(response=>{
       let vendas = response.data.data.rows.map(date => date)
       vendas.map(proc => proc).forEach(element => {
         if (element.procedimento == 'Volume Russo' && element.tipo == 'Aplicação') {

@@ -1,36 +1,53 @@
 <template>
-<div class="text-center">
-  <b-row>
-    <b-col />
-  <b-col md="4">
-  <img src="../static/logo_login.png">
-      <div class="p-4">
-        <form @submit.prevent="loginAcess">
-          <div class="row g-3">
-            <div>
-              <input v-model="newLogin.email" class="form-control" type="email" placeholder="Email">
-            </div>
+  <div class="text-center">
+    <b-row>
+      <b-col />
+      <b-col md="4">
+        <img src="../static/logo_login.png">
+        <div class="p-4">
+          <form @submit.prevent="loginAcess">
+            <div class="row g-3">
+              <div>
+                <input
+                  v-model="newLogin.email"
+                  class="form-control"
+                  type="email"
+                  placeholder="Email"
+                >
+              </div>
 
-            <div>
-              <input v-model="newLogin.password" class="form-control" type="password" placeholder="********">
-            </div>
+              <div>
+                <input
+                  v-model="newLogin.password"
+                  class="form-control"
+                  type="password"
+                  placeholder="********"
+                >
+              </div>
 
-          </div><br>
-          <button type="submite" :disabled="this.load" class="btn btn-outline-dark w-100 load">
-              <b-spinner v-if="this.load" variant="dark"/>
-                <div v-else>
-                    Entrar
-                </div>   
-          </button>
-        </form>
-        <div class="mt-2">
-        <small @click="$router.push({name:'resetPassword'})">Esqueci minha senha</small>
+            </div><br>
+            <button
+              type="submite"
+              :disabled="this.load"
+              class="btn btn-outline-dark w-100 load"
+            >
+              <b-spinner
+                v-if="this.load"
+                variant="dark"
+              />
+              <div v-else>
+                Entrar
+              </div>   
+            </button>
+          </form>
+          <div class="mt-2">
+            <small @click="$router.push({name:'resetPassword'})">Esqueci minha senha</small>
+          </div>
         </div>
-      </div>
-    </b-col>
-    <b-col />
-  </b-row>
-</div>
+      </b-col>
+      <b-col />
+    </b-row>
+  </div>
 </template>
 
 <script>
@@ -69,7 +86,7 @@ export default ({
               closeButton: "button",
               icon: true,
               rtl: false
-            });
+            })
           this.userToken = response.data.token
           this.dadosUser = response.data
 
@@ -95,7 +112,7 @@ export default ({
             closeButton: "button",
             icon: true,
             rtl: false
-          });
+          })
       })
     },
 

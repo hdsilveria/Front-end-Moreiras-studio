@@ -15,7 +15,7 @@ api.interceptors.response.use(
 
         if (response && response.status === 401) {
             localStorage.clear()
-            window.location.replace("/");
+            window.location.replace("/")
         }
         return Promise.reject(error)
     }

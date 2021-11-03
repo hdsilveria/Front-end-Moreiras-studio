@@ -1,63 +1,121 @@
 <template>
-<div> 
-    <form class="container" id="inserir" @submit.prevent="insertHorary">
-        <h4>Inserir Novo Horario</h4>    
-  <br>
-    <b-row>
+  <div> 
+    <form
+      id="inserir"
+      class="container"
+      @submit.prevent="insertHorary"
+    >
+      <h4>Inserir Novo Horario</h4>    
+      <br>
+      <b-row>
         <b-col md="5">
           <label class="form-label">Cliente </label>
-          <input v-model="novoHorario.cliente" class="form-control" type="text" autocomplete="off" required>
+          <input
+            v-model="novoHorario.cliente"
+            class="form-control"
+            type="text"
+            autocomplete="off"
+            required
+          >
         </b-col>
 
         <b-col md="4">
           <label class="form-label">Data </label>
-          <input v-model="novoHorario.data" class="form-control" type="tel" v-mask="'##/##/####'" autocomplete="off" required>
+          <input
+            v-model="novoHorario.data"
+            v-mask="'##/##/####'"
+            class="form-control"
+            type="tel"
+            autocomplete="off"
+            required
+          >
         </b-col>
 
         <b-col md="3">
           <label class="form-label">Horario </label>
-          <input v-model="novoHorario.horario" class="form-control" type="time" autocomplete="off" required>
+          <input
+            v-model="novoHorario.horario"
+            class="form-control"
+            type="time"
+            autocomplete="off"
+            required
+          >
         </b-col>
-    </b-row>
+      </b-row>
 
-    <b-row class="mt-2">
+      <b-row class="mt-2">
         <b-col>
           <label class="form-label">Procedimento </label>
-            <select class="form-control" v-model="novoHorario.procedimento" required>
-              <option value="Volume Russo">Cilius: Volume Russo </option>
-              <option value="Fio a Fio" >Cilius: Fio a Fio </option>
-              <option value="Volume Leve" >Cilius: Volume Leve </option>
-              <option value="Mega Volume" >Cilius: Mega Volume </option>
-              <option value="Gel na Tip" >Unhas: Gel na Tip </option>
-              <option value="Fibra de Vidro" >Unhas: Fibra de Vidro </option>
-              <option value="Blindagem com Fibra" >Unhas: Blindagem com Fibra </option>
-              <option value="Blindagem Comum" >Unhas: Blindagem Comum </option>
+          <select
+            v-model="novoHorario.procedimento"
+            class="form-control"
+            required
+          >
+            <option value="Volume Russo">
+              Cilius: Volume Russo
+            </option>
+            <option value="Fio a Fio">
+              Cilius: Fio a Fio
+            </option>
+            <option value="Volume Leve">
+              Cilius: Volume Leve
+            </option>
+            <option value="Mega Volume">
+              Cilius: Mega Volume
+            </option>
+            <option value="Gel na Tip">
+              Unhas: Gel na Tip
+            </option>
+            <option value="Fibra de Vidro">
+              Unhas: Fibra de Vidro
+            </option>
+            <option value="Blindagem com Fibra">
+              Unhas: Blindagem com Fibra
+            </option>
+            <option value="Blindagem Comum">
+              Unhas: Blindagem Comum
+            </option>
           </select>
         </b-col>
         <b-col>
           <label class="form-label">Tipo </label>
-          <select class="form-control" v-model="novoHorario.tipo" required>
-              <option value="Manutenção"> Manutenção </option>
-              <option value="Aplicação" > Aplicação </option>
+          <select
+            v-model="novoHorario.tipo"
+            class="form-control"
+            required
+          >
+            <option value="Manutenção">
+              Manutenção
+            </option>
+            <option value="Aplicação">
+              Aplicação
+            </option>
           </select>
         </b-col>
 
 
-    </b-row> <br>
+      </b-row> <br>
 
-    <b-row>
+      <b-row>
         <b-col class="d-flex d-row justify-content-center">
-            <br><button :disabled="this.load" class="btn btn-outline-light" type="submit">
-              <b-spinner v-if="this.load" variant="light"/>
-                <div v-else>
-                    Inserir Horario 
-                </div>  
-            </button>
+          <br><button
+            :disabled="this.load"
+            class="btn btn-outline-light"
+            type="submit"
+          >
+            <b-spinner
+              v-if="this.load"
+              variant="light"
+            />
+            <div v-else>
+              Inserir Horario 
+            </div>  
+          </button>
         </b-col>
-    </b-row> <br>
+      </b-row> <br>
     
     </form>
-</div>
+  </div>
 </template>
 
 <script>

@@ -1,41 +1,150 @@
 <template>
-<div id="estoque">
+  <div id="estoque">
 
-  <h3> Meu Estoque </h3>
+    <h3> Meu Estoque </h3>
 
-<div class="container overflow-auto" id="tabela">
+    <div
+      id="tabela"
+      class="container overflow-auto"
+    >
 
-  <div>
-  <b-row class="headTable text-center">
-      <b-col md="2">Material</b-col>
-      <b-col md="2">Quantidade</b-col>
-      <b-col md="2">Valor Und</b-col>
-      <b-col md="2">Valor Estoque</b-col>
-      <b-col md="auto" class="text-nowrap">Data da Ultima Compra</b-col>
-      <b-col md="2"></b-col>
-  </b-row>
+      <div>
+        <b-row class="headTable text-left">
+          <b-col md="2">
+            Material
+          </b-col>
+          <b-col md="2">
+            Quantidade
+          </b-col>
+          <b-col md="2">
+            Valor Und
+          </b-col>
+          <b-col md="2">
+            Valor Estoque
+          </b-col>
+          <b-col
+            md="auto"
+            class="text-nowrap"
+          >
+            Data da Ultima Compra
+          </b-col>
+          <b-col md="2" />
+        </b-row>
 
-  <div v-if="this.load" class="justify-content-center text-center p-5">
-    <b-spinner variant="dark"/>
+        <div
+          v-if="load"
+          class="justify-content-left text-center p-5"
+        >
+          <b-spinner variant="dark" />
+        </div>
+
+        <b-row
+          v-for="material of materiais"
+          v-else
+          :key="material.id"
+          class="table text-center"
+        >
+          <b-col
+            md="2"
+            class="d-flex justify-content-left"
+          >
+            <div class="block-mobile">
+              <span>
+                Material:
+              </span>
+            </div>
+            <span>
+              {{ material.material }}
+            </span>
+          </b-col>
+
+          <b-col
+            md="2"
+            class="d-flex justify-content-left"
+          >
+            <div class="block-mobile">
+              <span>
+                Quantidade: 
+              </span>
+            </div>
+            <span>
+              {{ material.quantidade }}
+            </span>
+          </b-col>
+
+          <b-col
+            md="2"
+            class="d-flex justify-content-left"
+          >
+            <div class="block-mobile">
+              <span>
+                Valor:
+              </span>
+            </div>
+            <span>
+              {{ material.valor | ValorDecimal }}
+            </span>
+          </b-col>
+
+          <b-col
+            md="2"
+            class="d-flex justify-content-left"
+          >
+            <div class="block-mobile">
+              <span class="text-nowrap">
+                Valor do Estoque
+              </span>
+            </div>
+            <span>
+              {{ material.quantidade * material.valor | ValorDecimal }}
+            </span>
+          </b-col>
+
+          <b-col
+            md="2"
+            class="d-flex justify-content-left"
+          >
+            <div class="block-mobile">
+              <span>
+                Data de compra:
+              </span>
+            </div>
+            <span>
+              {{ material.data }}
+            </span>
+          </b-col>
+
+          <b-col
+            md="auto"
+            class="d-flex justify-content-left"
+          >
+            <button
+              style="margin: 2px;"
+              type="button"
+              class="btn btn-outline-dark btn-sm text-nowrap"
+              @click="openModalUpdt(material)"
+            >
+              <span>Editar</span>
+            </button>
+            <button
+              style="margin: 2px;"
+              type="button"
+              class="btn btn-outline-danger btn-sm text-nowrap"
+              @click="remover(material.id)"
+            >
+              <span>Deletar</span>
+            </button>
+          </b-col>
+        </b-row>
+      </div> <br>
+    </div>
+
+    <updateMaterialModal
+      :material="updtMaterial"
+      @attMaterial="getMaterial()"
+    />
+
   </div>
-
-  <b-row v-else class="table text-center" v-for="material of materiais" :key="material.id">
-      <b-col>{{material.material}}</b-col>
-      <b-col>{{material.quantidade}}</b-col>
-      <b-col>{{material.valor | ValorDecimal }}</b-col>
-      <b-col>{{material.quantidade * material.valor | ValorDecimal }}</b-col>
-      <b-col>{{material.data}}</b-col>
-      <b-col md="auto" class="d-flex">
-        <button style="margin: 2px;" type="button" class="btn btn-outline-dark btn-sm text-nowrap" @click="openModalUpdt(material)"><span>Editar</span></button>
-        <button style="margin: 2px;" type="button" class="btn btn-outline-danger btn-sm text-nowrap" @click="remover(material.id)"><span>Deletar</span></button>
-        </b-col>
-  </b-row>
-  </div> <br>
-</div>
-
-<updateMaterialModal :material="updtMaterial" @attMaterial="getMaterial()" />
-
-</div>
 </template>
 
 <script>
@@ -50,13 +159,10 @@ components: {
   updateMaterialModal
 },
 
-mounted(){
-  this.load = true 
-  materiais.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} })
-    .then((response)=>{
-      this.materiais = response.data.rows
-      this.load = false
-    })
+  filters: {
+      ValorDecimal: valor => {
+      return "R$ " + valor + ",00"
+      }
   },
   
  data(){
@@ -74,10 +180,19 @@ mounted(){
     }
   },
 
+mounted(){
+  this.load = true 
+  materiais.listar({ headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} })
+    .then(response=>{
+      this.materiais = response.data.rows
+      this.load = false
+    })
+  },
+
 methods: {
   getMaterial(){
     materiais.listar(this.token)
-      .then((response)=>{
+      .then(response=>{
         this.materiais = response.data.rows
     })
   },
@@ -119,12 +234,6 @@ methods: {
       this.$modal.show('updateMaterial')
     },
 
-  },
-
-  filters: {
-      ValorDecimal: (valor) => {
-      return "R$ " + valor + ",00";
-      }
   }
 }
 
@@ -186,6 +295,16 @@ h3 {
   background-color: rgba(255, 255, 255, 0.501);
   padding: 4px;
   margin-top: 5px;
+}
+
+.block-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .block-mobile {
+    display: block;
+  }
 }
 
 </style>

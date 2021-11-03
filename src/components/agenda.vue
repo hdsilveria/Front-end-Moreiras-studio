@@ -1,70 +1,137 @@
 <template>
-<div>
+  <div>
 
-<div class="container overflow-auto">
+    <div class="container overflow-auto">
 
-    <h3>Meus Horarios</h3>
+      <h3>Meus Horarios</h3>
 
-<b-row class="search d-flex d-row">
-    <b-col md="3"><br>
-        <b-form-input
-          id="buscaDia"
-          type="tel"
-          v-mask="'##/##/####'"
-          v-model="busca"
-          placeholder="Buscar pela Data"
-        ></b-form-input>
-    </b-col>
+      <b-row class="search d-flex d-row">
+        <b-col md="3"><br>
+          <b-form-input
+            id="buscaDia"
+            v-model="busca"
+            v-mask="'##/##/####'"
+            type="tel"
+            placeholder="Buscar pela Data"
+            style="margin-top: 1px;"
+          />
+        </b-col>
 
-    <b-col md="3" align-self="end">
-        <b-button @click="searchDate" class="searchButton">Buscar</b-button>
-    </b-col>
+        <b-col
+          md="3"
+          align-self="end"
+        >
+          <b-button
+            class="searchButton"
+            @click="searchDate"
+          >
+            Buscar
+          </b-button>
+        </b-col>
 
-    <b-col md="2"><br>
-        <b-form-select
-        class="searchMounth"
-        v-model="buscaMes"
-        :options="options"/>
-    </b-col> <br>
+        <b-col md="2"><br>
+          <b-form-select
+            v-model="buscaMes"
+            class="searchMounth"
+            :options="options"
+          />
+        </b-col> <br>
 
-    <b-col md="2" align-self="end">
-        <b-button @click="searchMounth" class="searchButton searchButtonMounth">Buscar</b-button>
-    </b-col>
-</b-row>
-<br>
+        <b-col
+          md="2"
+          align-self="end"
+        >
+          <b-button
+            class="searchButton searchButtonMounth"
+            @click="searchMounth"
+          >
+            Buscar
+          </b-button>
+        </b-col>
+      </b-row>
+      <br>
 
-<div id="tabela">
-  <b-row class="headTable">
-      <b-col md="3" scope="col">Cliente</b-col>
-      <b-col md="2" scope="col">Data</b-col>
-      <b-col md="2" scope="col">Horario</b-col>
-      <b-col md="2" scope="col">Procedimento</b-col>
-      <b-col md="1" scope="col">Tipo</b-col>
-      <b-col md="1" scope="col"></b-col>
-  </b-row>
+      <div id="tabela">
+        <b-row class="headTable">
+          <b-col
+            md="3"
+            scope="col"
+          >
+            Cliente
+          </b-col>
+          <b-col
+            md="2"
+            scope="col"
+          >
+            Data
+          </b-col>
+          <b-col
+            md="2"
+            scope="col"
+          >
+            Horario
+          </b-col>
+          <b-col
+            md="2"
+            scope="col"
+          >
+            Procedimento
+          </b-col>
+          <b-col
+            md="1"
+            scope="col"
+          >
+            Tipo
+          </b-col>
+          <b-col
+            md="1"
+            scope="col"
+          />
+        </b-row>
 
-  <div v-if="this.load" class="justify-content-center text-center p-5">
-    <b-spinner variant="dark"/>
+        <div
+          v-if="load"
+          class="justify-content-center text-center p-5"
+        >
+          <b-spinner variant="dark" />
+        </div>
+
+        <div v-else>
+          <b-row
+            v-for="horario of clientResults"
+            :key="horario.id"
+            class="table"
+          >
+            <b-col md="3">
+              {{ horario.cliente }}
+            </b-col>
+            <b-col md="2">
+              {{ horario.data }}
+            </b-col>
+            <b-col md="2">
+              {{ horario.horario }}
+            </b-col>
+            <b-col md="2">
+              {{ horario.procedimento }}
+            </b-col>
+            <b-col cols="2">
+              {{ horario.tipo }}
+            </b-col>
+            <b-col md="auto">
+              <button
+                type="button"
+                class="btn btn-outline-dark btn-sm"
+                @click="remover(horario.id)"
+              >
+                Deletar
+              </button>
+            </b-col>
+          </b-row>
+        </div>
+      </div>
+
+    </div>
   </div>
-
-  <div v-else>
-  <b-row class="table" v-for="horario of clientResults" :key="horario.id">
-      <b-col md="3">{{horario.cliente}}</b-col>
-      <b-col md="2">{{horario.data}}</b-col>
-      <b-col md="2">{{horario.horario}}</b-col>
-      <b-col md="2">{{horario.procedimento}}</b-col>
-      <b-col cols="2">{{horario.tipo}}</b-col>
-      <b-col md="auto">
-        <button type="button" class="btn btn-outline-dark btn-sm" @click="remover(horario.id)">
-          Deletar
-        </button>
-      </b-col>
-  </b-row>
-  </div>
-  </div>
-
-</div>
-</div>
 </template>
 
 <script>
@@ -73,12 +140,48 @@ import agenda from '/services/agenda'
 
 export default ({
 
+   data(){
+    return {
+        load: false,
+        clientResults: [],
+        token: null,
+        busca: [],
+        options: [
+          { value: '01', text: "Janeiro"},
+          { value: '02', text: "Favereiro"},
+          { value: '03', text: "Março"},
+          { value: '04', text: "Abril"},
+          { value: '05', text: "Maio"},
+          { value: '06', text: "Junho"},
+          { value: '07', text: "Julho"},
+          { value: '08', text: "Agosto"},
+          { value: '09', text: "Setembro"},
+          { value: '10', text: "Outubro"},
+          { value: '11', text: "Novembro"},
+          { value: '12', text: "Dezembro"},
+        ],
+        buscaMes: '01',
+        horarios: [],
+    }
+  },
+
+mounted(){
+  this.token = { headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }
+  this.load = true
+  agenda.listar(this.token)
+  .then(response=>{
+    this.horarios = response.data.data.rows
+    this.clientResults = response.data.data.rows
+    this.load = false
+    })
+  },
+
 methods: {
   remover(deletMaterial){
     if ( confirm('deseja excluir?') ){
       agenda.apagar(deletMaterial, this.token ).then(() => {
           agenda.listar(this.token)
-            .then((response)=>{
+            .then(response=>{
             this.horarios = response.data.data.rows
             this.clientResults = response.data.data.rows
             })
@@ -126,42 +229,6 @@ methods: {
     }
     }
 },
-
-mounted(){
-  this.token = { headers: { Authorization: 'Bearer ' + localStorage.getItem('token')} }
-  this.load = true
-  agenda.listar(this.token)
-  .then((response)=>{
-    this.horarios = response.data.data.rows
-    this.clientResults = response.data.data.rows
-    this.load = false
-    })
-  },
-
-   data(){
-    return {
-        load: false,
-        clientResults: [],
-        token: null,
-        busca: [],
-        options: [
-          { value: '01', text: "Janeiro"},
-          { value: '02', text: "Favereiro"},
-          { value: '03', text: "Março"},
-          { value: '04', text: "Abril"},
-          { value: '05', text: "Maio"},
-          { value: '06', text: "Junho"},
-          { value: '07', text: "Julho"},
-          { value: '08', text: "Agosto"},
-          { value: '09', text: "Setembro"},
-          { value: '10', text: "Outubro"},
-          { value: '11', text: "Novembro"},
-          { value: '12', text: "Dezembro"},
-        ],
-        buscaMes: '01',
-        horarios: [],
-    }
-  },
 
 })
 </script>

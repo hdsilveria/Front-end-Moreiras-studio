@@ -7,7 +7,7 @@ export default {
         return api.post('/users/createUser', cadUsuario, token)
     },
 
-    listarUsuario: (token) =>{
+    listarUsuario: token =>{
         return api.get('/users', token )
     },
 

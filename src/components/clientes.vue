@@ -5,63 +5,127 @@
       <h3>Clientes</h3>
     </div>
 
-<div id="tabela">
-  <b-row>
-    <b-col md="4">
-      <div class="p-3 searchBar">
-        <b-form-input placeholder="Pesquisar Cliente" v-model="search" />
+    <div id="tabela">
+      <b-row>
+        <b-col md="4">
+          <div class="p-3 searchBar">
+            <b-form-input
+              v-model="search"
+              placeholder="Pesquisar Cliente"
+            />
+          </div>
+        </b-col>
+      </b-row>
+      <b-row class="headTable">
+        <b-col
+          md="3"
+          scope="col"
+        >
+          Cliente
+        </b-col>
+        <b-col
+          md="1"
+          scope="col"
+        >
+          Idade
+        </b-col>
+        <b-col
+          md="2"
+          scope="col"
+        >
+          Telefone
+        </b-col>
+        <b-col
+          md="2"
+          scope="col"
+        >
+          Data de Nascimento
+        </b-col>
+        <b-col
+          md="2"
+          scope="col"
+        >
+          Rede Social
+        </b-col>
+        <b-col
+          md="1"
+          scope="col"
+        />
+      </b-row>
+
+      <div
+        v-if="this.load"
+        class="justify-content-center text-center p-5"
+      >
+        <b-spinner variant="dark" />
       </div>
-    </b-col>
-  </b-row>
-  <b-row class="headTable">
-      <b-col md="3" scope="col">Cliente</b-col>
-      <b-col md="1" scope="col">Idade</b-col>
-      <b-col md="2" scope="col">Telefone</b-col>
-      <b-col md="2" scope="col">Data de Nascimento</b-col>
-      <b-col md="2" scope="col">Rede Social</b-col>
-      <b-col md="1" scope="col"></b-col>
-  </b-row>
-
-  <div v-if="this.load" class="justify-content-center text-center p-5">
-    <b-spinner variant="dark"/>
-  </div>
 
 
-  <div v-else>
+      <div v-else>
 
-  <div class="mt-5 error text-center" v-if="clientes == '' ">
-    <strong class="msgError p-2">
-      Não há Resultados 🙁
-    </strong>
-  </div>
+        <div
+          v-if="clientes == '' "
+          class="mt-5 error text-center"
+        >
+          <strong class="msgError p-2">
+            Não há Resultados 🙁
+          </strong>
+        </div>
 
-    <b-row class="table" v-for="cliente of clientes" :key="cliente.id">
-      <b-col md="3">
-        {{ cliente.name[0].toUpperCase() + cliente.name.substr(1)}}
-      </b-col>
-      <b-col md="1">
-        {{cliente.age ? cliente.age : 'N/A'}} <span v-if="cliente.age">anos</span> 
-      </b-col>
-      <b-col md="2">
-        {{cliente.tel ? cliente.tel : 'N/A'}}
-      </b-col>
-      <b-col md="2">
-        {{cliente.birthday ? cliente.birthday : 'N/A'}}
-      </b-col>
-      <b-col cols="2" class="text-nowrap">
-        {{cliente.social ? cliente.social : 'N/A'}}
-      </b-col>
-      <b-col md="auto" class="d-flex">
-        <button style="margin: 2px;" type="button" class="btn btn-outline-dark btn-sm" @click="openModalUpdt(cliente)">Editar</button>
-        <button style="margin: 2px;" type="button" class="btn btn-outline-danger btn-sm" @click="remover(cliente.id)">Deletar</button>
-      </b-col>
-  </b-row>
-  </div> 
-  </div>
+        <b-row
+          v-for="cliente of clientes"
+          :key="cliente.id"
+          class="table"
+        >
+          <b-col md="3">
+            {{ cliente.name[0].toUpperCase() + cliente.name.substr(1) }}
+          </b-col>
+          <b-col md="1">
+            {{ cliente.age ? cliente.age : 'N/A' }} <span v-if="cliente.age">anos</span> 
+          </b-col>
+          <b-col md="2">
+            {{ cliente.tel ? cliente.tel : 'N/A' }}
+          </b-col>
+          <b-col md="2">
+            {{ cliente.birthday ? cliente.birthday : 'N/A' }}
+          </b-col>
+          <b-col
+            cols="2"
+            class="text-nowrap"
+          >
+            {{ cliente.social ? cliente.social : 'N/A' }}
+          </b-col>
+          <b-col
+            md="auto"
+            class="d-flex"
+          >
+            <button
+              style="margin: 2px;"
+              type="button"
+              class="btn btn-outline-dark btn-sm"
+              @click="openModalUpdt(cliente)"
+            >
+              Editar
+            </button>
+            <button
+              style="margin: 2px;"
+              type="button"
+              class="btn btn-outline-danger btn-sm"
+              @click="remover(cliente.id)"
+            >
+              Deletar
+            </button>
+          </b-col>
+        </b-row>
+      </div> 
+    </div>
 
-  <br>
+    <br>
 
-  <updateClient :client="updClient" @attClients="listClients()"/>
+    <updateClient
+      :client="updClient"
+      @attClients="listClients()"
+    />
 
   </div>
 </template>
@@ -71,6 +135,10 @@ import clients from '../../services/clientes'
 import updateClient from '../modals/updateClient.vue'
 
 export default {
+
+  components: {
+    updateClient
+  },
   data(){
     return {
       clientes: [],
@@ -82,21 +150,17 @@ export default {
     }
   },
 
-  components: {
-    updateClient
-  },
-
-  mounted(){
-    this.load = true
-    this.listClients()
-  },
-
   watch: {
     search(){
       this.clientes = this.resultClients.filter(arr => 
         arr.name.includes(this.search)
       )
     }
+  },
+
+  mounted(){
+    this.load = true
+    this.listClients()
   },
 
   methods: {
@@ -173,7 +237,7 @@ h3 {
 
 .searchBar {
   background: rgb(244,191,187);
-  margin-left: -11px;
+  margin-left: -15px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
