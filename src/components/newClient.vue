@@ -78,12 +78,12 @@
       <b-row>
         <b-col class="d-flex d-row justify-content-center">
           <br><button
-            :disabled="this.load"
+            :disabled="load"
             class="btn btn-outline-light"
             type="submit"
           >
             <b-spinner
-              v-if="this.load"
+              v-if="load"
               variant="light"
             />
             <div v-else>

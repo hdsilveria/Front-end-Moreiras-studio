@@ -54,7 +54,7 @@
       </b-row>
 
       <div
-        v-if="this.load"
+        v-if="load"
         class="justify-content-center text-center p-5"
       >
         <b-spinner variant="dark" />
